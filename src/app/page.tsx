@@ -201,26 +201,7 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Main Content */}
-      <div className="relative z-10 pt-20">
-        {/* Hero Section */}
-        <section id="home" className="min-h-screen flex items-center justify-center relative">
-          {/* Enhanced Floating Particles */}
-          <div className="absolute inset-0">
-            {[...Array(80)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute w-1 h-1 bg-green-400 rounded-full opacity-40"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 5}s`,
-                  animation: `float ${5 + Math.random() * 10}s infinite ease-in-out alternate`
-                }}
-              />
-            ))}
-          </div>
-
+ 
           <div className="container mx-auto px-6 text-center relative z-10">
             <div className="mb-16">
               {/* Enhanced Glitch Effect Title */}
@@ -303,8 +284,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
-
 
         {/* Security Levels Section */}
         <section id="levels" className="py-20 relative">
@@ -415,12 +394,10 @@ export default function Home() {
             </p>
           </div>
         </footer>
-      </div>
-
-      {/* Background Audio */}
-      <audio id="backgroundAudio" loop>
-        <source src="/sounds/cyber-ambient.mp3" type="audio/mpeg" />
-      </audio>
-    </div>
-  );
+        
+        {/* Background Audio */}
+        <audio id="backgroundAudio" loop>
+          <source src="/sounds/cyber-ambient.mp3" type="audio/mpeg" />
+        </audio>
+      </div>  );
 }

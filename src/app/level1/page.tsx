@@ -387,21 +387,6 @@ PREFERRED_CONTACT: Secure channels only`
           </div>
         </div>
 
-        {/* Enhanced Terminal Section */}
-        <div className={`mb-16 transition-all duration-1000 delay-300 ${isLoaded ? 'fade-in' : 'opacity-0'}`}>
-          <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-green-400 mb-2">SYSTEM AUTHENTICATION</h3>
-            <p className="text-gray-400">Live security validation and profile access logs</p>
-          </div>
-          <div className="bg-black/80 border border-green-400/30 p-6 rounded-lg backdrop-blur-sm">
-            <Terminal 
-              commands={terminalCommands}
-              autoPlay={true}
-              className="max-w-5xl mx-auto"
-            />
-          </div>
-        </div>
-
         {/* Enhanced Main Content */}
         <div className={`transition-all duration-1000 delay-600 ${isLoaded ? 'fade-in' : 'opacity-0'}`}>
           
