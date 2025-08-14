@@ -57,7 +57,7 @@ export default function Level3() {
       {/* Matrix background */}
       <div className="matrix"></div>
 
-      <main className="min-h-screen relative z-10 bg-gradient-to-br from-black via-gray-900 to-black p-6">
+      <main className="min-h-screen relative z-10 bg-gradient-to-br from-black via-gray-900 overflow-x-hidden to-black p-6">
         <div className="max-w-6xl mx-auto">
           
           {/* Header */}
@@ -148,104 +148,7 @@ export default function Level3() {
             ))}
           </div>
 
-          {/* Security Features */}
-          <div className="bg-gradient-to-r from-green-400/10 to-cyan-400/10 border border-green-400/30 p-8 rounded-lg backdrop-blur-sm mb-12">
-            <h3 className="text-2xl font-bold text-green-400 mb-6 text-center">
-              🛡️ SECURITY FEATURES
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
-              {securityFeatures.map((feature, index) => (
-                <div
-                  key={index}
-                  className="bg-black/50 border border-green-400/30 p-4 rounded-lg text-center"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="text-green-400 text-sm font-mono">
-                    ✓ {feature}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Projects Showcase */}
-          <div className="space-y-8 mb-12">
-            <h3 className="text-3xl font-bold text-green-400 text-center mb-8">
-              🚀 FEATURED SECURITY PROJECTS
-            </h3>
-            
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {/* Project 1 */}
-              <div className="bg-black/60 border border-red-400/50 p-6 rounded-lg">
-                <h4 className="text-xl font-bold text-red-400 mb-4 flex items-center">
-                  <span className="mr-2">🔴</span> Critical Vulnerability
-                </h4>
-                <h5 className="text-lg font-bold text-white mb-2">Android Security Suite</h5>
-                <p className="text-gray-300 mb-4">
-                  🛠 Vulnerability: Manual ADB connection required physical access, 
-                  limiting remote security assessments.
-                </p>
-                <p className="text-gray-300 mb-4">
-                  ✅ Patch Applied: Integrated wireless ADB with auto-launch features 
-                  and encrypted communication channels.
-                </p>
-                <div className="flex space-x-2">
-                  <button className="px-4 py-2 bg-red-400/20 border border-red-400 text-red-400 rounded text-sm hover:bg-red-400 hover:text-black transition-all">
-                    View Details
-                  </button>
-                  <button className="px-4 py-2 border border-cyan-400 text-cyan-400 rounded text-sm hover:bg-cyan-400 hover:text-black transition-all">
-                    GitHub
-                  </button>
-                </div>
-              </div>
-
-              {/* Project 2 */}
-              <div className="bg-black/60 border border-yellow-400/50 p-6 rounded-lg">
-                <h4 className="text-xl font-bold text-yellow-400 mb-4 flex items-center">
-                  <span className="mr-2">🟡</span> Medium Risk
-                </h4>
-                <h5 className="text-lg font-bold text-white mb-2">Blockchain Voting System</h5>
-                <p className="text-gray-300 mb-4">
-                  🛠 Vulnerability: Centralized database architecture posed single 
-                  point of failure and potential manipulation risks.
-                </p>
-                <p className="text-gray-300 mb-4">
-                  ✅ Patch Applied: Complete migration to Ethereum smart contracts 
-                  with Solidity and immutable vote recording.
-                </p>
-                <div className="flex space-x-2">
-                  <button className="px-4 py-2 bg-yellow-400/20 border border-yellow-400 text-yellow-400 rounded text-sm hover:bg-yellow-400 hover:text-black transition-all">
-                    View Details
-                  </button>
-                  <button className="px-4 py-2 border border-cyan-400 text-cyan-400 rounded text-sm hover:bg-cyan-400 hover:text-black transition-all">
-                    GitHub
-                  </button>
-                </div>
-              </div>
-
-              {/* Project 3 */}
-              <div className="bg-black/60 border border-blue-400/50 p-6 rounded-lg">
-                <h4 className="text-xl font-bold text-blue-400 mb-4 flex items-center">
-                  <span className="mr-2">🔵</span> Information Disclosure
-                </h4>
-                <h5 className="text-lg font-bold text-white mb-2">Certificate Verification</h5>
-                <p className="text-gray-300 mb-4">
-                  🛠 Vulnerability: Insufficient validation allowed fraudulent 
-                  certificate uploads without proper verification.
-                </p>
-                <p className="text-gray-300 mb-4">
-                  ✅ Patch Applied: Implemented QR-based verification system with 
-                  blockchain traceability and digital signatures.
-                </p>
-                <div className="flex space-x-2">
-                  <button className="px-4 py-2 bg-blue-400/20 border border-blue-400 text-blue-400 rounded text-sm hover:bg-blue-400 hover:text-black transition-all">
-                    View Details
-                  </button>
-                  <button className="px-4 py-2 border border-cyan-400 text-cyan-400 rounded text-sm hover:bg-cyan-400 hover:text-black transition-all">
-                    GitHub
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -282,7 +185,6 @@ export default function Level3() {
               </div>
             </div>
           </div>
-        </div>
       </main>
     </>
   );
