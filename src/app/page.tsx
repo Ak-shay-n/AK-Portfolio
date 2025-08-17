@@ -5,6 +5,7 @@ import Link from 'next/link';
 import LevelCard from '@/components/LevelCard';
 import Terminal from '@/components/Terminal';
 import LightRays from '@/components/LightRays';
+import { CyberNavbar } from '@/components/CyberNavbar';
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -180,28 +181,30 @@ export default function Home() {
 
 
       {/* Navigation Header */}
-      <nav className="fixed top-0 w-full z-40 bg-black/80 backdrop-blur-sm border-b border-cyan-400/30">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold text-cyan-400 font-mono">
-              [AKSHAY_KUMAR]
-            </div>
-            <div className="flex space-x-8">
-              <Link href="#home" className="text-green-400 hover:text-cyan-400 transition-colors font-mono">
-                HOME
-              </Link>
-              <Link href="#levels" className="text-green-400 hover:text-cyan-400 transition-colors font-mono">
-                LEVELS
-              </Link>
-              <Link href="#terminal" className="text-green-400 hover:text-cyan-400 transition-colors font-mono">
-                TERMINAL
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <div className="fixed top-0 w-full z-40">
+        <CyberNavbar />
+      </div>
 
- 
+      {/* Main Content */}
+      <div className="relative z-10 pt-20">
+        {/* Hero Section */}
+        <section id="home" className="min-h-screen flex items-center justify-center relative">
+          {/* Enhanced Floating Particles */}
+          <div className="absolute inset-0">
+            {[...Array(80)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-1 h-1 bg-green-400 rounded-full opacity-40"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 5}s`,
+                  animation: `float ${5 + Math.random() * 10}s infinite ease-in-out alternate`
+                }}
+              />
+            ))}
+          </div>
+
           <div className="container mx-auto px-6 text-center relative z-10">
             <div className="mb-16">
               {/* Enhanced Glitch Effect Title */}
@@ -284,6 +287,7 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </section>
 
         {/* Security Levels Section */}
         <section id="levels" className="py-20 relative">
@@ -399,5 +403,7 @@ export default function Home() {
         <audio id="backgroundAudio" loop>
           <source src="/sounds/cyber-ambient.mp3" type="audio/mpeg" />
         </audio>
-      </div>  );
+      </div>
+    </div>
+  );
 }
