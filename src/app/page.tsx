@@ -17,22 +17,6 @@ export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
 
   const welcomeText = "Welcome to My World";
-  const terminalCommands = [
-    "sudo nmap -sS localhost",
-    ">> Starting Nmap scan...",
-    ">> Host is up (0.00050s latency)",
-    "whoami && id",
-    ">> akshay_kumar uid=1337(akshay) gid=1337(cyber)",
-    "cat /etc/portfolio-release",
-    ">> CYBER PORTFOLIO OS v2.1.0",
-    ">> BUILD: PRODUCTION-STABLE",
-    ">> SECURITY: MAXIMUM ENCRYPTION",
-    "systemctl status portfolio.service",
-    ">> ● portfolio.service - Cyber Portfolio System",
-    ">>   Loaded: loaded (/etc/systemd/system/portfolio.service; enabled)",
-    ">>   Active: active (running) since now",
-    ">>   Status: \"Ready for exploration. All systems operational.\""
-  ];
 
   const levels = [
     {
