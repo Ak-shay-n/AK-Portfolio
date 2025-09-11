@@ -163,86 +163,107 @@ export default function Home() {
 
 
 
-      {/* Navigation Header */}
-      <nav className="fixed top-0 w-full z-40 bg-black/80 backdrop-blur-sm border-b border-cyan-400/30">
-        <div className="container mx-auto px-6 py-4">
+      {/* Modern Navigation Header */}
+      <nav className="fixed top-0 w-full z-40 bg-white/10 backdrop-blur-xl border-b border-white/20">
+        <div className="container mx-auto px-8 py-6">
           <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold text-cyan-400 font-mono">
-              [AKSHAY_KUMAR]
+            <div className="text-2xl font-bold text-white tracking-tight">
+              Akshay Kumar
             </div>
-            <div className="flex space-x-8">
-              <Link href="#home" className="text-green-400 hover:text-cyan-400 transition-colors font-mono">
-                HOME
+            <div className="hidden md:flex items-center space-x-8">
+              <Link href="#home" className="text-white/80 hover:text-white transition-all duration-300 text-sm font-medium">
+                Home
               </Link>
-              <Link href="#levels" className="text-green-400 hover:text-cyan-400 transition-colors font-mono">
-                LEVELS
+              <Link href="#about" className="text-white/80 hover:text-white transition-all duration-300 text-sm font-medium">
+                About
               </Link>
-              <Link href="#terminal" className="text-green-400 hover:text-cyan-400 transition-colors font-mono">
-                TERMINAL
+              <Link href="#levels" className="text-white/80 hover:text-white transition-all duration-300 text-sm font-medium">
+                Portfolio
+              </Link>
+              <Link href="#contact" className="text-white/80 hover:text-white transition-all duration-300 text-sm font-medium">
+                Contact
+              </Link>
+              <Link href="/level1" className="bg-white/20 text-white px-4 py-2 rounded-full hover:bg-white/30 transition-all duration-300 text-sm font-medium">
+                Get Started
               </Link>
             </div>
+            
+            {/* Mobile Menu Button */}
+            <button className="md:hidden text-white">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
           </div>
         </div>
       </nav>
 
- 
-          <div className="container mx-auto px-6 text-center relative z-10">
-            <div className="mb-16">
-              {/* Enhanced Glitch Effect Title */}
-              <div className="relative inline-block mb-8">
-                <h1 className="text-6xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-cyan-400 to-blue-400 font-mono glitch-text">
-                  AKSHAY KUMAR B
-                </h1>
-                <div className="absolute inset-0 text-6xl md:text-8xl font-bold text-red-400 opacity-20 animate-pulse font-mono">
-                  AKSHAY KUMAR B
+      {/* Hero Section */}
+      <section id="home" className="min-h-screen flex items-center justify-center pt-32 pb-20">
+          <div className="container mx-auto px-8 text-center relative z-10">
+            <div className="max-w-5xl mx-auto">
+              {/* Modern Hero Title */}
+              <div className="mb-8">
+                <div className="inline-block mb-6">
+                  <span className="text-white/60 text-lg font-light tracking-wider uppercase">Hello, I'm</span>
                 </div>
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight leading-none">
+                  Akshay Kumar B
+                </h1>
+                <div className="w-24 h-1 bg-gradient-to-r from-white/60 to-transparent mx-auto mb-8"></div>
               </div>
               
-              {/* Typewriter Effect */}
-              <div className="text-2xl md:text-4xl font-mono text-green-400 mb-8 min-h-[3rem]">
+              {/* Dynamic Typewriter */}
+              <div className="text-xl md:text-2xl text-white/80 mb-8 min-h-[2.5rem] font-light">
                 <span className="inline-block">
                   {currentText}
-                  <span className={`${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity text-cyan-400`}>|</span>
+                  <span className={`${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity text-white/40 ml-1`}>|</span>
                 </span>
               </div>
 
-              <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8">
-                <span className="text-red-400 font-bold font-mono">[CLASSIFIED]</span> Cybersecurity | Network Systems | AI Model Builder
+              <p className="text-lg md:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed mb-12 font-light">
+                Cybersecurity Professional • Network Systems Engineer • AI Developer
                 <br />
-                <span className="text-cyan-400 font-mono">
-                  "Defending the digital realm, one vulnerability at a time"
+                <span className="text-white/60 italic">
+                  "Building secure digital experiences with innovative technology"
                 </span>
               </p>
 
-              {/* Enhanced System Status Cards */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-12">
-                <div className="bg-black/70 border border-green-400/30 rounded-lg p-4 backdrop-blur-sm hover:border-green-400 transition-all duration-300">
-                  <div className="text-green-400 font-bold text-sm font-mono">FIREWALL</div>
-                  <div className="text-green-400 text-xs">ACTIVE</div>
+              {/* Modern Stats Grid */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-16">
+                <div className="group">
+                  <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-500">
+                    <div className="text-3xl font-bold text-white mb-2">5+</div>
+                    <div className="text-white/60 text-sm font-light">Years Experience</div>
+                  </div>
                 </div>
-                <div className="bg-black/70 border border-blue-400/30 rounded-lg p-4 backdrop-blur-sm hover:border-blue-400 transition-all duration-300">
-                  <div className="text-blue-400 font-bold text-sm font-mono">ENCRYPTION</div>
-                  <div className="text-blue-400 text-xs font-mono">AES-256</div>
+                <div className="group">
+                  <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-500">
+                    <div className="text-3xl font-bold text-white mb-2">50+</div>
+                    <div className="text-white/60 text-sm font-light">Projects Completed</div>
+                  </div>
                 </div>
-                <div className="bg-black/70 border border-purple-400/30 rounded-lg p-4 backdrop-blur-sm hover:border-purple-400 transition-all duration-300">
-                  <div className="text-purple-400 font-bold text-sm font-mono">INTRUSION</div>
-                  <div className="text-purple-400 text-xs">DETECTED</div>
+                <div className="group">
+                  <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-500">
+                    <div className="text-3xl font-bold text-white mb-2">24/7</div>
+                    <div className="text-white/60 text-sm font-light">Security Focus</div>
+                  </div>
                 </div>
-                <div className="bg-black/70 border border-yellow-400/30 rounded-lg p-4 backdrop-blur-sm hover:border-yellow-400 transition-all duration-300">
-                  <div className="text-yellow-400 font-bold text-sm font-mono">THREAT LVL</div>
-                  <div className="text-green-400 text-xs">MINIMAL</div>
+                <div className="group">
+                  <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-500">
+                    <div className="text-3xl font-bold text-white mb-2">99.9%</div>
+                    <div className="text-white/60 text-sm font-light">Uptime Record</div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Enhanced Call to Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
-              <Link href="/level1" className="group relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-green-400 to-cyan-400 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-                <div className="relative px-8 py-4 bg-black rounded-lg text-lg font-semibold text-white border border-green-400/50 hover:border-cyan-400 transition-all duration-300 font-mono">
-                  <span className="text-green-400">[ </span>
-                  BEGIN INFILTRATION
-                  <span className="text-green-400"> ]</span>
+            {/* Modern CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
+              <Link href="/level1" className="group relative overflow-hidden">
+                <div className="bg-white text-black px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/90 transition-all duration-300 shadow-lg hover:shadow-xl">
+                  Explore My Work
+                  <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300 inline-block">→</span>
                 </div>
               </Link>
               
@@ -252,77 +273,71 @@ export default function Home() {
                   document.getElementById('levels')?.scrollIntoView({ behavior: 'smooth' });
                 }}
               >
-                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-                <div className="relative px-8 py-4 bg-black rounded-lg text-lg font-semibold text-white border border-cyan-400/50 hover:border-blue-400 transition-all duration-300 font-mono">
-                  <span className="text-cyan-400">[ </span>
-                  SCAN SYSTEMS
-                  <span className="text-cyan-400"> ]</span>
+                <div className="bg-transparent border-2 border-white/30 text-white px-8 py-4 rounded-full text-lg font-semibold hover:border-white hover:bg-white/10 transition-all duration-300">
+                  View Portfolio
+                  <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300 inline-block">↓</span>
                 </div>
               </button>
             </div>
 
-            {/* Animated Scroll Indicator */}
-            <div className="animate-bounce">
-              <div className="w-6 h-10 border-2 border-green-400 rounded-full flex justify-center mx-auto">
-                <div className="w-1 h-3 bg-green-400 rounded-full mt-2 animate-pulse"></div>
+            {/* Elegant Scroll Indicator */}
+            <div className="animate-bounce opacity-60">
+              <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center mx-auto">
+                <div className="w-1 h-3 bg-white/40 rounded-full mt-2 animate-pulse"></div>
               </div>
             </div>
           </div>
+        </section>
 
-        {/* Security Levels Section */}
-        <section id="levels" className="py-20 relative">
-          <div className="container mx-auto px-6">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 font-mono">
-              <span className="text-red-400">[</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-yellow-400">
-                SECURITY LEVELS
-              </span>
-              <span className="text-red-400">]</span>
-            </h2>
-            <p className="text-center text-gray-400 mb-16 text-lg font-mono">
-              Navigate through increasingly complex security layers
-            </p>
+        {/* Portfolio Section */}
+        <section id="levels" className="py-24 relative">
+          <div className="container mx-auto px-8">
+            <div className="text-center mb-16">
+              <div className="inline-block mb-4">
+                <span className="text-white/60 text-sm font-light tracking-wider uppercase">My Work</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tight">
+                Featured Projects
+              </h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-white/60 to-transparent mx-auto mb-8"></div>
+              <p className="text-lg text-white/70 max-w-3xl mx-auto leading-relaxed font-light">
+                Explore my journey through cybersecurity, development, and innovation
+              </p>
+            </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
               {levels.map((level, index) => (
                 <div key={level.level} className="group relative">
-                  {/* Enhanced Glow Effect */}
-                  <div className="absolute -inset-1 bg-gradient-to-r from-green-400 to-cyan-400 rounded-xl blur opacity-25 group-hover:opacity-75 transition duration-500"></div>
-                  
-                  {/* Enhanced Card Content */}
-                  <div className="relative bg-black/80 border border-green-400/30 rounded-xl p-8 backdrop-blur-sm hover:border-cyan-400/50 transition-all duration-300">
+                  <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-500 h-full">
                     <div className="flex items-start justify-between mb-6">
-                      <div>
-                        <div className="text-3xl mb-2">{level.icon}</div>
-                        <h3 className="text-2xl font-bold text-white mb-2 font-mono">
-                          LEVEL {level.level}: {level.title}
+                      <div className="flex-1">
+                        <div className="text-4xl mb-4">{level.icon}</div>
+                        <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">
+                          {level.title}
                         </h3>
-                        <div className="flex items-center space-x-4 text-sm">
-                          <span className={`px-2 py-1 rounded font-mono ${
-                            level.difficulty === 'Easy' ? 'bg-green-400/20 text-green-400' :
-                            level.difficulty === 'Medium' ? 'bg-yellow-400/20 text-yellow-400' :
-                            level.difficulty === 'Hard' ? 'bg-red-400/20 text-red-400' :
-                            'bg-purple-400/20 text-purple-400'
+                        <div className="flex items-center space-x-3 mb-4">
+                          <span className={`px-3 py-1 rounded-full text-xs font-medium border ${
+                            level.difficulty === 'Easy' ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20' :
+                            level.difficulty === 'Medium' ? 'bg-amber-500/10 text-amber-300 border-amber-500/20' :
+                            level.difficulty === 'Hard' ? 'bg-red-500/10 text-red-300 border-red-500/20' :
+                            'bg-purple-500/10 text-purple-300 border-purple-500/20'
                           }`}>
                             {level.difficulty}
                           </span>
-                          <span className="text-gray-400 font-mono">{level.estimatedTime}</span>
-                          <span className={`font-mono ${level.status === 'unlocked' ? 'text-green-400' : 'text-red-400'}`}>
-                            {level.status === 'unlocked' ? '● UNLOCKED' : '● LOCKED'}
-                          </span>
+                          <span className="text-white/50 text-xs">{level.estimatedTime}</span>
                         </div>
                       </div>
                     </div>
                     
-                    <p className="text-gray-300 mb-6 leading-relaxed">
+                    <p className="text-white/70 mb-6 leading-relaxed font-light">
                       {level.description}
                     </p>
                     
-                    <div className="mb-6">
-                      <div className="text-sm text-gray-400 mb-2 font-mono">REQUIRED SKILLS:</div>
+                    <div className="mb-8">
+                      <div className="text-sm text-white/60 mb-3 font-medium">Technologies:</div>
                       <div className="flex flex-wrap gap-2">
                         {level.skills.map(skill => (
-                          <span key={skill} className="px-2 py-1 bg-cyan-400/20 text-cyan-400 rounded text-xs font-mono">
+                          <span key={skill} className="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs border border-white/20">
                             {skill}
                           </span>
                         ))}
@@ -331,13 +346,10 @@ export default function Home() {
                     
                     <Link 
                       href={level.href}
-                      className={`inline-block px-6 py-3 rounded-lg font-semibold transition-all duration-300 font-mono ${
-                        level.status === 'unlocked' 
-                          ? 'bg-green-400/20 text-green-400 border border-green-400/50 hover:bg-green-400/30 hover:border-green-400' 
-                          : 'bg-gray-800/50 text-gray-500 border border-gray-700 cursor-not-allowed'
-                      }`}
+                      className="inline-flex items-center justify-center w-full py-3 px-6 bg-white text-black rounded-2xl font-semibold hover:bg-white/90 transition-all duration-300 group"
                     >
-                      {level.status === 'unlocked' ? '[ ACCESS LEVEL ]' : '[ LOCKED ]'}
+                      Explore Project
+                      <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
                     </Link>
                   </div>
                 </div>
