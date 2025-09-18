@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react";
+import ProfileCard from '../../components/ProfileCard';
 
 export default function Level3() {
   const [selectedContact, setSelectedContact] = useState('');
@@ -72,6 +73,30 @@ export default function Level3() {
             <div className="flex items-center justify-center mt-4 space-x-2">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
               <span className="text-sm text-green-400">ALL CHANNELS ENCRYPTED</span>
+            </div>
+          </div>
+
+          {/* Profile Card Section */}
+          <div className="flex justify-center mb-16">
+            <div className="w-full max-w-md">
+              <ProfileCard
+                name="Akshay Kumar B"
+                title="Cybersecurity Specialist"
+                handle="akshaykumar"
+                status="Available"
+                contactText="Secure Contact"
+                avatarUrl="/my-photo.png"
+                miniAvatarUrl="/my-photo.png"
+                behindGradient={undefined}
+                innerGradient={undefined}
+                showUserInfo={true}
+                enableTilt={true}
+                enableMobileTilt={false}
+                onContactClick={() => {
+                  console.log('Secure contact initiated');
+                  setSelectedContact('email');
+                }}
+              />
             </div>
           </div>
 
