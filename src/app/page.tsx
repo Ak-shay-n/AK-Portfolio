@@ -13,6 +13,8 @@ export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [windowDimensions, setWindowDimensions] = useState({ width: 0, height: 0 });
   const [isClient, setIsClient] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
 
   const welcomeText = "Welcome to My World";
@@ -122,6 +124,40 @@ export default function Home() {
     setIsClient(true);
   }, []);
 
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (isMobileMenuOpen && !target.closest('nav')) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
+
+  // Handle scroll for navbar resize
+  useEffect(() => {
+    if (!isClient) return;
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isClient]);
+
   if (!isClient) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center">
@@ -164,36 +200,114 @@ export default function Home() {
 
 
       {/* Modern Navigation Header */}
-      <nav className="fixed top-0 w-full z-40 bg-white/10 backdrop-blur-xl border-b border-white/20">
-        <div className="container mx-auto px-8 py-6">
+      <nav className="fixed top-4 left-1/2 z-40" style={{ transform: 'translateX(-50%)' }}>
+        <div className={`bg-white/10 backdrop-blur-xl border border-white/20 rounded-full transition-all duration-500 ease-in-out transform-gpu ${
+          isScrolled 
+            ? 'w-[80vw] max-w-3xl px-4 py-3'      // <-- width when scrolled
+            : 'w-[100vw] max-w-6xl px-6 py-4'      // <-- width when at top
+        }`} style={{ transformOrigin: 'center center' }}>
           <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold text-white tracking-tight">
+            <div className={`font-bold text-white tracking-tight transition-all duration-500 ${
+              isScrolled 
+                ? 'text-lg' 
+                : 'text-xl'
+            }`}>
               Akshay Kumar
             </div>
-            <div className="hidden md:flex items-center space-x-8">
-              <Link href="#home" className="text-white/80 hover:text-white transition-all duration-300 text-sm font-medium">
+            <div className={`hidden md:flex items-center transition-all duration-500 ${
+              isScrolled 
+                ? 'space-x-3' 
+                : 'space-x-6'
+            }`}>
+              <Link href="#home" className={`text-white/80 hover:text-white transition-all duration-300 font-medium px-3 py-2 rounded-full hover:bg-white/10 ${
+                isScrolled ? 'text-xs' : 'text-sm'
+              }`}>
                 Home
               </Link>
-              <Link href="#about" className="text-white/80 hover:text-white transition-all duration-300 text-sm font-medium">
+              <Link href="#about" className={`text-white/80 hover:text-white transition-all duration-300 font-medium px-3 py-2 rounded-full hover:bg-white/10 ${
+                isScrolled ? 'text-xs' : 'text-sm'
+              }`}>
                 About
               </Link>
-              <Link href="#levels" className="text-white/80 hover:text-white transition-all duration-300 text-sm font-medium">
+              <Link href="#levels" className={`text-white/80 hover:text-white transition-all duration-300 font-medium px-3 py-2 rounded-full hover:bg-white/10 ${
+                isScrolled ? 'text-xs' : 'text-sm'
+              }`}>
                 Portfolio
               </Link>
-              <Link href="#contact" className="text-white/80 hover:text-white transition-all duration-300 text-sm font-medium">
+              <Link href="#contact" className={`text-white/80 hover:text-white transition-all duration-300 font-medium px-3 py-2 rounded-full hover:bg-white/10 ${
+                isScrolled ? 'text-xs' : 'text-sm'
+              }`}>
                 Contact
               </Link>
-              <Link href="/level1" className="bg-white/20 text-white px-4 py-2 rounded-full hover:bg-white/30 transition-all duration-300 text-sm font-medium">
+              <Link href="/level1" className={`bg-white text-black rounded-full hover:bg-white/90 transition-all duration-300 font-medium ${
+                isScrolled 
+                  ? 'px-4 py-2 text-xs' 
+                  : 'px-6 py-2 text-sm'
+              }`}>
                 Get Started
               </Link>
             </div>
             
             {/* Mobile Menu Button */}
-            <button className="md:hidden text-white">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            <button 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden text-white p-2 rounded-full hover:bg-white/10 transition-all duration-300"
+            >
+              <svg className={`w-5 h-5 transform transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-90' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
               </svg>
             </button>
+          </div>
+          
+          {/* Mobile Menu Dropdown */}
+          <div className={`md:hidden mt-4 transition-all duration-300 ease-in-out ${
+            isMobileMenuOpen 
+              ? 'max-h-80 opacity-100 visible' 
+              : 'max-h-0 opacity-0 invisible'
+          } overflow-hidden`}>
+            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 space-y-2">
+              <Link 
+                href="#home" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
+              >
+                Home
+              </Link>
+              <Link 
+                href="#about" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
+              >
+                About
+              </Link>
+              <Link 
+                href="#levels" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
+              >
+                Portfolio
+              </Link>
+              <Link 
+                href="#contact" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
+              >
+                Contact
+              </Link>
+              <div className="pt-2">
+                <Link 
+                  href="/level1" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block bg-white text-black px-4 py-3 rounded-xl hover:bg-white/90 transition-all duration-300 text-base font-medium text-center"
+                >
+                  Get Started
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </nav>
