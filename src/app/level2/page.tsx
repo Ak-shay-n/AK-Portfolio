@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react";
+import { EvervaultCardDemo } from "../../components/EvervaultCardDemo";
 
 export default function Level2() {
   const [input, setInput] = useState("");
@@ -18,8 +19,33 @@ export default function Level2() {
       {/* Matrix background */}
       <div className="matrix"></div>
 
-      <main className="min-h-screen relative z-10 bg-gradient-to-br from-black via-gray-900 to-black text-green-400 font-mono p-6 flex items-center justify-center">
-        <div className="max-w-2xl w-full space-y-8 bg-black/80 p-8 rounded-lg border border-green-400/30 backdrop-blur-sm">
+      <main className="min-h-screen relative z-10 bg-gradient-to-br from-black via-gray-900 to-black text-green-400 font-mono p-6">
+        
+        {/* Header Section */}
+        <div className="text-center py-8">
+          <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-cyan-400 to-blue-400 mb-4">
+            LEVEL 2: PROJECT VAULT
+          </h1>
+          <p className="text-cyan-400 text-xl font-mono">
+            [SECURE ACCESS REQUIRED]
+          </p>
+        </div>
+
+        {/* Evervault Card Section */}
+        <div className="flex justify-center items-center py-12 mb-12">
+          <EvervaultCardDemo />
+        </div>
+
+        {/* Divider */}
+        <div className="flex items-center justify-center mb-12">
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-green-400/50 to-transparent"></div>
+          <span className="px-4 text-green-400 font-mono text-sm">DECRYPT CHALLENGE</span>
+          <div className="flex-1 h-px bg-gradient-to-l from-transparent via-green-400/50 to-transparent"></div>
+        </div>
+
+        {/* Existing Level 2 Content */}
+        <div className="flex items-center justify-center">
+          <div className="max-w-2xl w-full space-y-8 bg-black/80 p-8 rounded-lg border border-green-400/30 backdrop-blur-sm shadow-2xl">
           
           <div className="text-center mb-8">
             <div className="w-20 h-20 border-4 border-green-400 rounded-full flex items-center justify-center mx-auto mb-4 bg-green-400/10">
@@ -131,6 +157,7 @@ export default function Level2() {
           <div className="text-center text-gray-500 text-sm mt-8">
             <p>💡 Hint: This is a simple Base64 encoding challenge</p>
           </div>
+        </div>
         </div>
       </main>
     </>
