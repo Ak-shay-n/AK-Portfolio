@@ -1,32 +1,18 @@
 "use client"
 
 import { useState, useEffect, useRef } from 'react';
-import Terminal from '@/components/Terminal';
+import Link from 'next/link';
+import LightRays from '@/components/LightRays';
 
 export default function Level1() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [activeTab, setActiveTab] = useState('bio');
+  const [activeSection, setActiveSection] = useState('bio');
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [windowDimensions, setWindowDimensions] = useState({ width: 0, height: 0 });
+  const [isClient, setIsClient] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
-
-  const terminalCommands = [
-    "sudo access /user/akshay/profile --level=1",
-    ">> Authenticating credentials...",
-    ">> [████████████████████] 100%",
-    ">> Authentication successful ✓",
-    ">> Welcome to Level 1: System Access",
-    ">> Decrypting user profile data...",
-    "cat /user/akshay/bio.txt",
-    ">> Loading personal information...",
-    ">> Profile data retrieved successfully ✓",
-    "ls -la /user/akshay/",
-    ">> drwxr-xr-x  bio.txt",
-    ">> drwxr-xr-x  skills.json", 
-    ">> drwxr-xr-x  projects.md",
-    ">> -rwxr-xr-x  security_clearance.cert",
-    "echo 'Access Level: GRANTED' > /tmp/status",
-    ">> Level 1 unlocked successfully ✓"
-  ];
 
   useEffect(() => {
     setTimeout(() => setIsLoaded(true), 500);
@@ -45,9 +31,75 @@ export default function Level1() {
       }
     };
 
+    const handleResize = () => {
+      setWindowDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener('resize', handleResize);
+    
+    // Initialize dimensions
+    handleResize();
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (isMobileMenuOpen && !target.closest('nav')) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
+
+  // Handle scroll for navbar resize
+  useEffect(() => {
+    if (!isClient) return;
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+
+      if (scrollPosition <= 50) {
+        setIsScrolled(false);
+      } else {
+        setIsScrolled(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isClient]);
+
+  if (!isClient) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center">
+        <div className="text-cyan-400 text-2xl font-mono">Initializing...</div>
+      </div>
+    );
+  }
 
   const profileData = {
     bio: {
@@ -182,360 +234,278 @@ PREFERRED_CONTACT: Secure channels only`
   }
 }`
     },
-    projects: {
-      title: "PROJECT_PORTFOLIO.md",
-      icon: "🚀",
-      content: `# 🚀 ACTIVE PROJECT PORTFOLIO
-
-## 🔐 CYBERSECURITY TOOLS & FRAMEWORKS
-
-### Network Security Scanner
-**Status:** Production Ready | **Tech:** Python, Scapy, Tkinter
-- Advanced port scanner with GUI interface
-- Vulnerability detection and reporting
-- Network topology mapping
-- Features: OS detection, service enumeration, security assessment
-
-### Password Security Analyzer  
-**Status:** Beta Testing | **Tech:** Python, Matplotlib, RegEx
-- Real-time password strength assessment
-- Dictionary attack simulation
-- Entropy calculation and complexity analysis
-- Visual security metrics dashboard
-
-### OSINT Investigation Framework
-**Status:** Active Development | **Tech:** Python, APIs, Web Scraping
-- Automated information gathering toolkit
-- Social media reconnaissance
-- Domain and IP intelligence
-- Data visualization and reporting engine
-
-### Mobile Security Audit Suite
-**Status:** Alpha | **Tech:** Java, ADB, Frida
-- Android application security testing
-- Root detection bypass mechanisms  
-- Dynamic analysis and behavior monitoring
-- Automated vulnerability scanning
-
----
-
-## 🌐 WEB APPLICATIONS & PLATFORMS
-
-### E-Commerce Security Platform
-**Status:** Production | **Tech:** React, Node.js, PostgreSQL
-- Full-stack secure shopping platform
-- Implemented: JWT authentication, input validation, XSS protection
-- Payment gateway integration with encryption
-- Real-time fraud detection system
-
-### This Cyber Portfolio Website
-**Status:** Live | **Tech:** Next.js, TypeScript, Tailwind CSS
-- Interactive cyberpunk-themed portfolio
-- Advanced animations and 3D effects
-- Responsive design with accessibility features
-- Performance optimized with SEO best practices
-
-### Secure File Sharing Platform  
-**Status:** Development | **Tech:** Next.js, Express, MongoDB
-- End-to-end encrypted file transfers
-- Zero-knowledge architecture
-- Self-destructing messages
-- Multi-factor authentication
-
----
-
-## ⛓️ BLOCKCHAIN & CRYPTOCURRENCY PROJECTS
-
-### Decentralized Voting System
-**Status:** Testnet | **Tech:** Solidity, Web3.js, React
-- Transparent and tamper-proof voting
-- Smart contract security auditing
-- Gas optimization techniques
-- Integration with IPFS for data storage
-
-### NFT Marketplace with Security Focus
-**Status:** Development | **Tech:** Solidity, Next.js, ethers.js
-- Secure NFT trading platform
-- Smart contract vulnerability prevention
-- Royalty management system
-- Cross-chain compatibility planning
-
-### DeFi Yield Farming Protocol
-**Status:** Research Phase | **Tech:** Solidity, Hardhat
-- Automated liquidity provision
-- Risk assessment algorithms
-- Smart contract security analysis
-- Flash loan protection mechanisms
-
----
-
-## 🎓 LEARNING & RESEARCH PROJECTS
-
-### Capture The Flag (CTF) Solutions
-**Status:** Ongoing | **Tech:** Various
-- Web exploitation challenges
-- Cryptography puzzle solutions  
-- Binary analysis and reverse engineering
-- Network forensics investigations
-
-### Penetration Testing Laboratory
-**Status:** Personal Lab | **Tech:** VirtualBox, Kali Linux
-- Vulnerable application testing
-- Network infrastructure assessment
-- Red team simulation exercises
-- Defense mechanism evaluation
-
-### Smart Contract Security Audits
-**Status:** Academic | **Tech:** Solidity, Slither, MythX
-- Common vulnerability pattern analysis
-- Automated security testing tools
-- Gas optimization techniques
-- Best practices documentation
-
----
-
-## 🚀 UPCOMING INITIATIVES
-
-### Advanced Threat Detection System
-**Planning Phase** | **Target:** Q1 2025
-- AI-powered anomaly detection
-- Real-time threat intelligence
-- Automated incident response
-- Machine learning security models
-
-### Decentralized Identity Platform
-**Research Phase** | **Target:** Q2 2025  
-- Self-sovereign identity solution
-- Zero-knowledge proof implementation
-- Cross-platform compatibility
-- Privacy-preserving authentication
-
-### IoT Security Framework
-**Concept Development** | **Target:** Q3 2025
-- Edge device security assessment
-- Firmware analysis automation
-- Network segmentation strategies
-- Vulnerability management system
-
----
-
-## 📊 PROJECT STATISTICS
-
-- **Total Projects:** 15+ active repositories
-- **Lines of Code:** 50,000+ (across all projects)  
-- **Technologies Used:** 25+ languages and frameworks
-- **Security Vulnerabilities Fixed:** 100+ in personal projects
-- **CTF Competitions:** 10+ participated, 3 podium finishes
-- **Open Source Contributions:** 5+ repositories
-
----
-
-## 🔗 COLLABORATION OPPORTUNITIES
-
-**Currently Open For:**
-- Cybersecurity research collaborations
-- Open source security tool development
-- Blockchain security consulting
-- Educational content creation
-- Speaking engagements and workshops
-
-**Contact:** Secure channels only - See contact section for details`
-    }
   };
 
   const tabs = [
     { id: 'bio', label: 'PERSONAL BIO', icon: '👤' },
-    { id: 'skills', label: 'TECH STACK', icon: '⚡' },
-    { id: 'projects', label: 'PROJECTS', icon: '🚀' }
+    { id: 'skills', label: 'TECH STACK', icon: '⚡' }
   ];
 
   return (
-    <div className="min-h-screen py-8 px-4 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto relative" ref={contentRef}>
-        
-        {/* Enhanced Header with 3D Effects */}
-        <div className={`text-center mb-16 transition-all duration-1000 ${isLoaded ? 'fade-in' : 'opacity-0'}`}>
-          <div className="flex items-center justify-center mb-8 relative">
-            <div className="w-20 h-20 border-4 border-green-400 rounded-full flex items-center justify-center mr-6 bg-green-400/10 group cursor-pointer">
-              <span className="text-3xl group-hover:animate-spin transition-transform duration-500">🔓</span>
-            </div>
-            <div className="text-left">
-              <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400 mb-2">
-                LEVEL 1
-              </h1>
-              <p className="text-cyan-400 text-xl font-mono">SYSTEM ACCESS GRANTED</p>
-              <div className="flex items-center mt-2 space-x-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-sm text-green-400">SECURITY CLEARANCE: AUTHORIZED</span>
-              </div>
-            </div>
-          </div>
-          
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-green-400 mb-6 font-mono">
-              ACCESSING USER PROFILE DATABASE...
-            </h2>
-            <div className="bg-black/50 border border-green-400/30 p-6 rounded-lg backdrop-blur-sm">
-              <p className="text-lg text-gray-300 leading-relaxed">
-                Welcome to the first security level. Here you can explore my 
-                <span className="text-green-400 font-bold"> background</span>, 
-                <span className="text-blue-400 font-bold"> technical skills</span>, and 
-                <span className="text-purple-400 font-bold"> current projects</span>. 
-                Navigate through the tabs to uncover different aspects of my digital identity.
-              </p>
-            </div>
-          </div>
-        </div>
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+      {/* Light Rays Background */}
+      <div className="fixed inset-0 z-0">
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="#00ffff"
+          raysSpeed={1.5}
+          lightSpread={0.8}
+          rayLength={1.2}
+          followMouse={true}
+          mouseInfluence={0.1}
+          noiseAmount={0.1}
+          distortion={0.05}
+          className="custom-rays"
+        />
+      </div>
 
-        {/* Enhanced Main Content */}
-        <div className={`transition-all duration-1000 delay-600 ${isLoaded ? 'fade-in' : 'opacity-0'}`}>
-          
-          {/* Enhanced Tab Navigation */}
-          <div className="flex justify-center mb-12">
-            <div className="flex bg-black/50 rounded-xl p-2 border border-green-400/30 backdrop-blur-sm">
-              {tabs.map((tab, index) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`
-                    flex items-center space-x-3 px-8 py-4 rounded-lg font-mono transition-all duration-500 transform
-                    ${activeTab === tab.id 
-                      ? 'bg-gradient-to-r from-green-400 to-blue-400 text-black scale-105' 
-                      : 'text-green-400 hover:bg-green-400/10 hover:scale-102'
-                    }
-                  `}
-                  style={{
-                    animationDelay: `${index * 0.1}s`
-                  }}
-                >
-                  <span className="text-xl">{tab.icon}</span>
-                  <span className="font-bold">{tab.label}</span>
-                  {activeTab === tab.id && (
-                    <div className="w-2 h-2 bg-white rounded-full animate-ping"></div>
-                  )}
-                </button>
-              ))}
-            </div>
-          </div>
+      {/* Cyber Grid Pattern */}
+      <div className="fixed inset-0 z-0 opacity-5">
+        <svg className="w-full h-full">
+          <defs>
+            <pattern id="cyber-grid-level1" width="60" height="60" patternUnits="userSpaceOnUse">
+              <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#00ff41" strokeWidth="0.5"/>
+              <circle cx="30" cy="30" r="1" fill="#00ff41" opacity="0.3"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#cyber-grid-level1)" />
+        </svg>
+      </div>
 
-          {/* Enhanced Content Display */}
-          <div className="max-w-6xl mx-auto">
-            <div 
-              className="bg-black/50 border border-green-400/30 rounded-xl p-10 relative overflow-hidden backdrop-blur-sm"
-              style={{
-                background: `radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 255, 65, 0.1) 0%, transparent 50%)`
-              }}
-            >
-              
-              {/* Content Header */}
-              <div className="flex items-center justify-between mb-8">
-                <div className="flex items-center space-x-4">
-                  <div className="text-4xl">{profileData[activeTab as keyof typeof profileData].icon}</div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-green-400">
-                      {profileData[activeTab as keyof typeof profileData].title}
-                    </h3>
-                    <p className="text-cyan-400">Classification: Level 1 Clearance</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3 text-sm">
-                  <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                  <span className="text-green-400 font-bold">DECRYPTED</span>
-                  <div className="px-3 py-1 bg-green-400/20 border border-green-400/50 rounded-full">
-                    <span className="text-green-400 text-xs">SECURE</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Enhanced Content Body */}
-              <div className="bg-black border border-green-400/20 p-8 rounded-xl mb-8 relative overflow-hidden group">
-                <div className="absolute inset-0 bg-black opacity-95"></div>
-                <pre className="relative z-10 text-sm leading-relaxed whitespace-pre-wrap text-green-400 font-mono">
-                  {profileData[activeTab as keyof typeof profileData].content}
-                </pre>
-                
-                {/* Scanning Effect */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
-              </div>
-
-              {/* Enhanced Interactive Elements */}
-              <div className="flex items-center justify-between p-6 bg-black/50 rounded-lg border border-green-400/30">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm flex-1">
-                  <div className="flex items-center space-x-2">
-                    <span className="text-gray-400">FILE SIZE:</span>
-                    <span className="text-cyan-400 font-mono">
-                      {profileData[activeTab as keyof typeof profileData].content.length} bytes
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-gray-400">ENCRYPTION:</span>
-                    <span className="text-green-400">AES-256</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-gray-400">MODIFIED:</span>
-                    <span className="text-purple-400 font-mono">
-                      {new Date().toLocaleDateString()}
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-gray-400">ACCESS:</span>
-                    <span className="text-red-400">read-only</span>
-                  </div>
-                </div>
-                
-                <div className="flex space-x-3 ml-6">
-                  <button className="px-4 py-2 border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black transition-all duration-300 rounded text-xs">
-                    📁 EXPORT
-                  </button>
-                  <button className="px-4 py-2 border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-black transition-all duration-300 rounded text-xs">
-                    🔗 SHARE
-                  </button>
-                </div>
-              </div>
-
-              {/* Corner Decorations */}
-              <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-green-400/30 group-hover:border-cyan-400/50 transition-colors"></div>
-              <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-green-400/30 group-hover:border-cyan-400/50 transition-colors"></div>
-            </div>
-          </div>
-        </div>
-
-        {/* Enhanced Navigation */}
-        <div className={`mt-20 text-center transition-all duration-1000 delay-900 ${isLoaded ? 'fade-in' : 'opacity-0'}`}>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-8">
-            <a href="/" className="group">
-              <button className="px-8 py-4 border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black transition-all duration-300 rounded-lg">
-                <span className="flex items-center space-x-2">
-                  <span>🏠</span>
-                  <span>RETURN TO BASE</span>
-                </span>
-              </button>
-            </a>
-            <a href="/level2" className="group">
-              <button className="px-8 py-4 bg-gradient-to-r from-green-400 to-cyan-400 text-black hover:scale-105 transition-all duration-300 rounded-lg font-bold">
-                <span className="flex items-center space-x-2">
-                  <span>🚀</span>
-                  <span>PROCEED TO LEVEL 2</span>
-                </span>
-              </button>
-            </a>
-          </div>
-          
-          <div className="bg-black/50 border border-green-400/30 p-6 max-w-2xl mx-auto rounded-lg backdrop-blur-sm">
-            <div className="flex items-center justify-center space-x-8 text-sm">
-              <div className="flex items-center space-x-2">
-                <span className="text-gray-400">Progress:</span>
-                <span className="text-green-400 font-bold">Level 1 Complete ✓</span>
-              </div>
-              <div className="w-px h-6 bg-gray-600"></div>
-              <div className="flex items-center space-x-2">
-                <span className="text-gray-400">Next Mission:</span>
-                <span className="text-cyan-400 font-bold">Decrypt Projects 🧩</span>
-              </div>
+      {/* Modern Navigation Header */}
+      <nav
+        className="fixed top-4 left-1/2 z-40"
+        style={{ transform: 'translateX(-50%)' }}
+      >
+        <div
+          className={`bg-white/10 backdrop-blur-xl border border-white/20 rounded-full transition-all duration-500 ease-in-out transform-gpu ${
+            isScrolled
+              ? 'w-[80vw] max-w-3xl px-4 py-3'
+              : 'w-[100vw] max-w-6xl px-6 py-4'
+          }`}
+          style={{ transformOrigin: 'center center' }}
+        >
+          <div className="flex items-center justify-between">
+            <Link href="/" className={`font-bold text-white tracking-tight transition-all duration-500 hover:text-cyan-400 ${
+              isScrolled 
+                ? 'text-lg' 
+                : 'text-xl'
+            }`}>
+              Akshay Kumar
+            </Link>
+            <div className={`hidden md:flex items-center transition-all duration-500 ${
+              isScrolled 
+                ? 'space-x-3' 
+                : 'space-x-6'
+            }`}>
+              <Link href="/" className={`text-white/80 hover:text-white transition-all duration-300 font-medium px-3 py-2 rounded-full hover:bg-white/10 ${
+                isScrolled ? 'text-xs' : 'text-sm'
+              }`}>
+                Home
+              </Link>
+              <Link href="/level1" className={`text-cyan-400 hover:text-cyan-300 transition-all duration-300 font-medium px-3 py-2 rounded-full bg-cyan-400/10 ${
+                isScrolled ? 'text-xs' : 'text-sm'
+              }`}>
+                Level 1
+              </Link>
+              <Link href="/level2" className={`text-white/80 hover:text-white transition-all duration-300 font-medium px-3 py-2 rounded-full hover:bg-white/10 ${
+                isScrolled ? 'text-xs' : 'text-sm'
+              }`}>
+                Level 2
+              </Link>
+              <Link href="/level3" className={`text-white/80 hover:text-white transition-all duration-300 font-medium px-3 py-2 rounded-full hover:bg-white/10 ${
+                isScrolled ? 'text-xs' : 'text-sm'
+              }`}>
+                Level 3
+              </Link>
+              <Link href="/complete" className={`bg-white text-black rounded-full hover:bg-white/90 transition-all duration-300 font-medium ${
+                isScrolled 
+                  ? 'px-4 py-2 text-xs' 
+                  : 'px-6 py-2 text-sm'
+              }`}>
+                Complete
+              </Link>
             </div>
             
-            <div className="mt-4 w-full h-2 bg-gray-700 rounded-full overflow-hidden">
-              <div className="h-full w-1/4 bg-gradient-to-r from-green-400 to-cyan-400 animate-pulse"></div>
+            {/* Mobile Menu Button */}
+            <button 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden text-white p-2 rounded-full hover:bg-white/10 transition-all duration-300"
+            >
+              <svg className={`w-5 h-5 transform transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-90' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
+          
+          {/* Mobile Menu Dropdown */}
+          <div className={`md:hidden mt-4 transition-all duration-300 ease-in-out ${
+            isMobileMenuOpen 
+              ? 'max-h-80 opacity-100 visible' 
+              : 'max-h-0 opacity-0 invisible'
+          } overflow-hidden`}>
+            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 space-y-2">
+              <Link 
+                href="/" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
+              >
+                Home
+              </Link>
+              <Link 
+                href="/level1" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block text-cyan-400 hover:text-cyan-300 transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl bg-cyan-400/10"
+              >
+                Level 1
+              </Link>
+              <Link 
+                href="/level2" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
+              >
+                Level 2
+              </Link>
+              <Link 
+                href="/level3" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
+              >
+                Level 3
+              </Link>
+              <div className="pt-2">
+                <Link 
+                  href="/complete" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block bg-white text-black px-4 py-3 rounded-xl hover:bg-white/90 transition-all duration-300 text-base font-medium text-center"
+                >
+                  Complete
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <div className="relative z-10 pt-32 pb-20">
+        <div className="container mx-auto px-8" ref={contentRef}>
+
+          {/* Hero Section */}
+          <section className="min-h-[60vh] flex items-center justify-center mb-20">
+            <div className="max-w-5xl mx-auto text-center">
+              <div className={`transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                {/* Level Badge */}
+                <div className="inline-block mb-6">
+                  <div className="bg-gradient-to-r from-cyan-400/20 to-blue-400/20 border border-cyan-400/30 rounded-full px-6 py-3 backdrop-blur-sm">
+                    <span className="text-cyan-400 font-mono text-sm tracking-wider uppercase">Level 1: System Access</span>
+                  </div>
+                </div>
+                
+                {/* Main Title */}
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-none">
+                  About <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">Akshay</span>
+                </h1>
+                
+                {/* Divider Line */}
+                <div className="w-24 h-1 bg-gradient-to-r from-cyan-400/60 to-blue-400/60 mx-auto mb-8"></div>
+                
+                {/* Description */}
+                <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed mb-12 font-light">
+                  Explore my professional journey, technical expertise, and current projects through this interactive profile system.
+                </p>
+              </div>
+            </div>
+          </section>
+          
+          {/* Content Sections */}
+          <div className="max-w-5xl mx-auto space-y-20">
+            
+            {/* Navigation Pills */}
+            <div className="flex justify-center mb-16">
+              <div className="flex bg-white/10 backdrop-blur-xl border border-white/20 rounded-full p-1 space-x-1">
+                {tabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveSection(tab.id)}
+                    className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                      activeSection === tab.id
+                        ? 'bg-white text-black shadow-lg'
+                        : 'text-white/70 hover:text-white hover:bg-white/10'
+                    }`}
+                  >
+                    <span className="mr-2">{tab.icon}</span>
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Content Display */}
+            <div className="relative">
+              <div className={`transition-all duration-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                
+                {/* Content Card */}
+                <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12">
+                  <div className="max-w-4xl mx-auto">
+                    
+                    {/* Section Header */}
+                    <div className="text-center mb-12">
+                      <div className="text-6xl md:text-7xl mb-4">
+                        {profileData[activeSection as keyof typeof profileData].icon}
+                      </div>
+                      <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                        {profileData[activeSection as keyof typeof profileData].title}
+                      </h2>
+                      <div className="w-16 h-1 bg-gradient-to-r from-cyan-400 to-blue-400 mx-auto"></div>
+                    </div>
+
+                    {/* Section Content */}
+                    <div className="prose prose-lg prose-invert max-w-none">
+                      <div className="text-white/80 leading-relaxed whitespace-pre-line text-center md:text-left">
+                        {profileData[activeSection as keyof typeof profileData].content}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Progress Indicator */}
+            <div className="text-center">
+              <div className="inline-flex items-center space-x-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full px-6 py-3">
+                <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+                <span className="text-white/80 text-sm font-medium">Level 1: Complete</span>
+                <div className="text-white/60 text-sm">25% Progress</div>
+              </div>
+            </div>
+
+            {/* Next Level CTA */}
+            <div className="text-center">
+              <div className="bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12">
+                <div className="max-w-2xl mx-auto">
+                  <div className="text-5xl mb-6">🚀</div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                    Ready for the Next Level?
+                  </h3>
+                  <p className="text-white/70 mb-8 text-lg">
+                    Dive deeper into my professional journey and explore my projects and achievements.
+                  </p>
+                  <Link 
+                    href="/level2"
+                    className="inline-flex items-center bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition-all duration-300 transform hover:scale-105 group"
+                  >
+                    Continue to Level 2
+                    <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
