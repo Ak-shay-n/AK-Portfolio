@@ -33,13 +33,13 @@ export const EvervaultCard = ({
   return (
     <div
       className={cn(
-        "p-0.5 bg-black/50 backdrop-blur-sm border border-green-400/30 rounded-3xl aspect-square flex items-center justify-center w-full h-full relative shadow-xl",
+        "p-0.5  bg-transparent aspect-square  flex items-center justify-center w-full h-full relative",
         className
       )}
     >
       <div
         onMouseMove={onMouseMove}
-        className="group/card rounded-3xl w-full relative overflow-hidden bg-black/80 flex items-center justify-center h-full border border-green-400/20"
+        className="group/card rounded-3xl w-full relative overflow-hidden bg-transparent flex items-center justify-center h-full"
       >
         <CardPattern
           mouseX={mouseX}
@@ -47,9 +47,9 @@ export const EvervaultCard = ({
           randomString={randomString}
         />
         <div className="relative z-10 flex items-center justify-center">
-          <div className="relative h-44 w-44 rounded-full flex items-center justify-center text-green-400 font-bold text-4xl font-mono">
-            <div className="absolute w-full h-full bg-black/80 backdrop-blur-sm rounded-full border border-green-400/30" />
-            <span className="text-green-400 z-20 tracking-wider">{text}</span>
+          <div className="relative h-44 w-44  rounded-full flex items-center justify-center text-white font-bold text-4xl">
+            <div className="absolute w-full h-full bg-white/[0.8] dark:bg-black/[0.8] blur-sm rounded-full" />
+            <span className="dark:text-white text-black z-20">{text}</span>
           </div>
         </div>
       </div>
@@ -58,21 +58,21 @@ export const EvervaultCard = ({
 };
 
 export function CardPattern({ mouseX, mouseY, randomString }: any) {
-  let maskImage = useMotionTemplate`radial-gradient(300px at ${mouseX}px ${mouseY}px, white, transparent)`;
+  let maskImage = useMotionTemplate`radial-gradient(250px at ${mouseX}px ${mouseY}px, white, transparent)`;
   let style = { maskImage, WebkitMaskImage: maskImage };
 
   return (
     <div className="pointer-events-none">
-      <div className="absolute inset-0 rounded-2xl bg-black/20 [mask-image:linear-gradient(white,transparent)] group-hover/card:opacity-70"></div>
+      <div className="absolute inset-0 rounded-2xl  [mask-image:linear-gradient(white,transparent)] group-hover/card:opacity-50"></div>
       <motion.div
-        className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-400 via-cyan-400 to-blue-400 opacity-0 group-hover/card:opacity-30 backdrop-blur-xl transition duration-500"
+        className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-500 to-blue-700 opacity-0  group-hover/card:opacity-100 backdrop-blur-xl transition duration-500"
         style={style}
       />
       <motion.div
-        className="absolute inset-0 rounded-2xl opacity-0 mix-blend-overlay group-hover/card:opacity-100"
+        className="absolute inset-0 rounded-2xl opacity-0 mix-blend-overlay  group-hover/card:opacity-100"
         style={style}
       >
-        <p className="absolute inset-x-0 text-xs h-full break-words whitespace-pre-wrap text-green-400/40 font-mono font-bold transition duration-500">
+        <p className="absolute inset-x-0 text-xs h-full break-words whitespace-pre-wrap text-white font-mono font-bold transition duration-500">
           {randomString}
         </p>
       </motion.div>
