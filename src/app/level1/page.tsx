@@ -134,7 +134,7 @@ CURRENT MISSION:
   and continuously improving digital defense systems.
 
 PERSONAL MOTTO:
-  "Stay curious. Stay secure. Never stop learning."
+  "Stay curious. Stay lazy. Stay secure. Never stop learning."
   
   "In a world of constant digital evolution, security isn't just
    a feature—it's the foundation of trust."
