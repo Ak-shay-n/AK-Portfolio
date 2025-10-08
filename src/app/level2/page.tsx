@@ -235,6 +235,42 @@ export default function Level2() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
+  // Secret / access control for the Evervault flow
+  const [secretInput, setSecretInput] = useState('');
+  const [showEvervault, setShowEvervault] = useState(false);
+  const [showProjects, setShowProjects] = useState(false);
+  const [accessDenied, setAccessDenied] = useState(false);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [failedAttempts, setFailedAttempts] = useState(0);
+  const projectsRef = useRef<HTMLDivElement | null>(null);
+  const [announce, setAnnounce] = useState('');
+
+  // Handler for the "wanna find what?" action
+  function handleFind() {
+    // Always show the Evervault card (animate in)
+    setShowEvervault(true);
+    setAccessDenied(false);
+
+    // Check secret after a short delay to allow the card animation
+    setTimeout(() => {
+      if (secretInput.trim().toLowerCase() === 'cyber') {
+        setShowProjects(true);
+        setAccessDenied(false);
+        setFailedAttempts(0);
+        setAnnounce('Access granted. Projects unlocked.');
+
+        // focus the project container after a short delay so keyboard users land there
+        setTimeout(() => {
+          projectsRef.current?.focus();
+        }, 250);
+      } else {
+        setShowProjects(false);
+        setAccessDenied(true);
+        setFailedAttempts((n) => n + 1);
+        setAnnounce('Access denied. Incorrect secret.');
+      }
+    }, 350);
+  }
 
   // Project categories
   const projectCategories = {
@@ -546,15 +582,71 @@ export default function Level2() {
       {/* Evervault Card Section */}
       <section className="py-24 relative z-10">
         <div className="container mx-auto px-8">
-          <div className="flex justify-center">
-            <EvervaultCardDemo />
+          <div className="max-w-3xl mx-auto text-center mb-8">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Wanna know about my projects?</h1>
+            <p className="text-white/70 mt-3">Enter the secret key to unlock the project vault.</p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <input
+              ref={inputRef}
+              value={secretInput}
+              onChange={(e) => { setSecretInput(e.target.value); setAccessDenied(false); }}
+              onKeyDown={(e) => { if (e.key === 'Enter') handleFind(); }}
+              placeholder="Enter secret key"
+              className="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-cyan-400 w-72"
+              aria-label="Secret key"
+            />
+
+            <button
+              onClick={() => handleFind()}
+              className="px-6 py-3 bg-cyan-400 text-black rounded-xl font-semibold hover:brightness-105 transition-all duration-200"
+            >
+              wanna find what?
+            </button>
+          </div>
+
+          <div className="text-center mt-3">
+            <button
+              onClick={() => {
+                // Focus the input and clear (acts like a small "forgot" helper)
+                setSecretInput('');
+                inputRef.current?.focus();
+              }}
+              className="text-sm text-white/60 hover:text-white/80"
+            >
+              Forgot secret?
+            </button>
+          </div>
+
+          {accessDenied && (
+            <div className="mt-4 text-sm text-rose-400 text-center">Access denied — incorrect secret.</div>
+          )}
+
+          {/* ARIA live region for announcements */}
+          <div className="sr-only" role="status" aria-live="polite">{announce}</div>
+
+          <div className="flex justify-center mt-10">
+            <div
+              className={`transform will-change-transform transition-all duration-700 ${showEvervault ? 'translate-x-0 opacity-100' : 'translate-x-16 opacity-0 pointer-events-none'}`}
+              style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}
+            >
+              <EvervaultCardDemo />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Project Categories Section */}
-      <section className="py-24 relative z-10">
-        <div className="container mx-auto px-8">
+      {/* Project Categories Section (shown only after correct secret) */}
+      {showProjects ? (
+        <section className="py-24 relative z-10">
+          <div className="container mx-auto px-8">
+            {/* Focusable projects container with entrance animation */}
+            <div ref={projectsRef} tabIndex={-1} className="transform transition-all duration-500 ease-out scale-95 opacity-0" aria-label="Unlocked projects">
+              <div className="scale-100 opacity-100">
+                {/* ...existing code... */}
+              </div>
+            </div>
           {/* Category Navigation */}
           <div className="flex justify-center mb-16">
             <div className="bg-white/5 backdrop-blur-md rounded-2xl p-2 border border-white/10">
@@ -646,8 +738,13 @@ export default function Level2() {
               </Link>
             </div>
           </div>
-        </div>
-      </section>
+          </div>
+        </section>
+      ) : (
+        failedAttempts >= 3 ? (
+          <div className="mt-6 text-center text-sm text-yellow-300">Need a hint? Try the word "cyber" — it's case-insensitive.</div>
+        ) : null
+      )}
 
       {/* Footer */}
       <footer className="py-12 border-t border-white/20 bg-black/50 relative z-10">
