@@ -579,60 +579,192 @@ export default function Level2() {
         </div>
       </nav>
 
-      {/* Evervault Card Section */}
-      <section className="py-24 relative z-10">
+      {/* Hero Section with Cyber Vault */}
+      <section className="min-h-screen flex items-center justify-center relative z-10 pt-32 pb-24">
         <div className="container mx-auto px-8">
-          <div className="max-w-3xl mx-auto text-center mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Wanna know about my projects?</h1>
-            <p className="text-white/70 mt-3">Enter the secret key to unlock the project vault.</p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <input
-              ref={inputRef}
-              value={secretInput}
-              onChange={(e) => { setSecretInput(e.target.value); setAccessDenied(false); }}
-              onKeyDown={(e) => { if (e.key === 'Enter') handleFind(); }}
-              placeholder="Enter secret key"
-              className="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-cyan-400 w-72"
-              aria-label="Secret key"
-            />
-
-            <button
-              onClick={() => handleFind()}
-              className="px-6 py-3 bg-cyan-400 text-black rounded-xl font-semibold hover:brightness-105 transition-all duration-200"
-            >
-              wanna find what?
-            </button>
-          </div>
-
-          <div className="text-center mt-3">
-            <button
-              onClick={() => {
-                // Focus the input and clear (acts like a small "forgot" helper)
-                setSecretInput('');
-                inputRef.current?.focus();
-              }}
-              className="text-sm text-white/60 hover:text-white/80"
-            >
-              Forgot secret?
-            </button>
-          </div>
-
-          {accessDenied && (
-            <div className="mt-4 text-sm text-rose-400 text-center">Access denied — incorrect secret.</div>
-          )}
-
-          {/* ARIA live region for announcements */}
-          <div className="sr-only" role="status" aria-live="polite">{announce}</div>
-
-          <div className="flex justify-center mt-10">
-            <div
-              className={`transform will-change-transform transition-all duration-700 ${showEvervault ? 'translate-x-0 opacity-100' : 'translate-x-16 opacity-0 pointer-events-none'}`}
-              style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}
-            >
-              <EvervaultCardDemo />
+          <div className="max-w-5xl mx-auto">
+            
+            {/* Cyber Vault Header */}
+            <div className="text-center mb-12 space-y-4">
+              <div className="inline-flex items-center gap-3 px-6 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full mb-4">
+                <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+                <span className="text-cyan-400 text-xs font-mono tracking-wider uppercase">Level 2: Secure Project Vault</span>
+              </div>
+              <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+                <span className="bg-gradient-to-r from-cyan-400 via-green-400 to-cyan-400 bg-clip-text text-transparent animate-pulse">
+                  PROJECT VAULT
+                </span>
+              </h1>
+              <p className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed font-mono">
+                <span className="text-green-400">&gt;</span> Biometric authentication required
+              </p>
             </div>
+
+            {/* Cyber Vault Interface */}
+            <div className="max-w-3xl mx-auto mb-16 relative">
+              {/* Scanning Lines Effect */}
+              <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
+                <div className="absolute w-full h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-30 animate-scan"></div>
+              </div>
+              
+              {/* Vault Door Frame */}
+              <div className="relative bg-gradient-to-br from-black/80 via-gray-900/80 to-black/80 backdrop-blur-xl border-2 border-cyan-500/30 rounded-3xl p-1 shadow-2xl shadow-cyan-500/20">
+                {/* Corner Accents */}
+                <div className="absolute -top-1 -left-1 w-8 h-8 border-l-2 border-t-2 border-cyan-400 rounded-tl-3xl"></div>
+                <div className="absolute -top-1 -right-1 w-8 h-8 border-r-2 border-t-2 border-cyan-400 rounded-tr-3xl"></div>
+                <div className="absolute -bottom-1 -left-1 w-8 h-8 border-l-2 border-b-2 border-cyan-400 rounded-bl-3xl"></div>
+                <div className="absolute -bottom-1 -right-1 w-8 h-8 border-r-2 border-b-2 border-cyan-400 rounded-br-3xl"></div>
+                
+                <div className="bg-black/60 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-cyan-500/20">
+                  {/* Terminal Header */}
+                  <div className="flex items-center justify-between mb-8 pb-4 border-b border-cyan-500/20">
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                      <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                      <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <div className="text-cyan-400 text-xs font-mono">vault_terminal_v2.0</div>
+                  </div>
+
+                  {/* Vault Lock Icon */}
+                  <div className="flex justify-center mb-8">
+                    <div className="relative">
+                      <svg className={`w-24 h-24 transition-all duration-500 ${showEvervault ? 'text-green-400 scale-110' : 'text-cyan-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        {showEvervault ? (
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                        ) : (
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        )}
+                      </svg>
+                      {!showEvervault && (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-32 h-32 border-2 border-cyan-400/30 rounded-full animate-ping"></div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Authentication Input */}
+                  <div className="space-y-6">
+                    <div>
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                        <label htmlFor="secret-input" className="text-sm font-mono text-green-400 uppercase tracking-wider">
+                          Enter Access Code
+                        </label>
+                      </div>
+                      <div className="relative">
+                        <input
+                          id="secret-input"
+                          ref={inputRef}
+                          value={secretInput}
+                          onChange={(e) => { setSecretInput(e.target.value); setAccessDenied(false); }}
+                          onKeyDown={(e) => { if (e.key === 'Enter') handleFind(); }}
+                          placeholder="••••••••"
+                          className="w-full px-6 py-4 bg-black/50 border-2 border-cyan-500/30 rounded-xl text-green-400 text-center placeholder-cyan-400/30 focus:outline-none focus:border-cyan-400 focus:shadow-lg focus:shadow-cyan-400/20 transition-all duration-300 text-xl font-mono tracking-widest"
+                          aria-label="Secret key"
+                        />
+                        <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                          <div className={`w-3 h-3 rounded-full ${secretInput ? 'bg-cyan-400 animate-pulse' : 'bg-gray-600'}`}></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Terminal Output */}
+                    <div className="bg-black/50 border border-cyan-500/20 rounded-xl p-4 min-h-[3rem] font-mono text-sm">
+                      {accessDenied ? (
+                        <div className="flex items-center gap-2 text-red-400 animate-pulse">
+                          <span className="text-red-500">[ERROR]</span>
+                          <span>ACCESS_DENIED: Invalid credentials</span>
+                        </div>
+                      ) : secretInput ? (
+                        <div className="flex items-center gap-2 text-cyan-400">
+                          <span className="text-cyan-500">[INFO]</span>
+                          <span>Verifying access code...</span>
+                        </div>
+                      ) : (
+                        <div className="text-gray-500">
+                          <span>&gt;</span> Awaiting authentication
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-col gap-3">
+                      <button
+                        onClick={() => handleFind()}
+                        className="group relative w-full py-4 bg-gradient-to-r from-cyan-500 via-green-500 to-cyan-500 bg-size-200 bg-pos-0 hover:bg-pos-100 text-black rounded-xl font-bold text-lg transition-all duration-500 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-cyan-400/40"
+                        style={{ backgroundSize: '200% 100%' }}
+                      >
+                        <span className="relative z-10 flex items-center justify-center gap-2 font-mono">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                          </svg>
+                          AUTHENTICATE & ACCESS
+                        </span>
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          setSecretInput('');
+                          inputRef.current?.focus();
+                        }}
+                        className="text-sm text-cyan-400/70 hover:text-cyan-400 transition-all duration-300 font-mono flex items-center justify-center gap-2"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                        Reset Input
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Security Grid Overlay */}
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px] rounded-3xl"></div>
+              </div>
+            </div>
+
+            {/* ARIA live region for announcements */}
+            <div className="sr-only" role="status" aria-live="polite">{announce}</div>
+
+            {/* Evervault Card - Vault Contents Reveal */}
+            <div className="flex justify-center">
+              <div
+                className={`transform will-change-transform transition-all duration-700 ${showEvervault ? 'translate-x-0 opacity-100' : 'translate-x-16 opacity-0 pointer-events-none'}`}
+                style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}
+              >
+                <div className="relative">
+                  {/* Vault Opening Glow */}
+                  {showEvervault && (
+                    <div className="absolute -inset-4 bg-gradient-to-r from-green-500/20 via-cyan-500/20 to-green-500/20 blur-xl animate-pulse"></div>
+                  )}
+                  <EvervaultCardDemo />
+                </div>
+              </div>
+            </div>
+
+            {/* Security Hint Panel */}
+            {!showProjects && failedAttempts >= 3 && (
+              <div className="mt-12 text-center">
+                <div className="inline-block relative">
+                  <div className="absolute inset-0 bg-yellow-500/20 blur-xl"></div>
+                  <div className="relative bg-gradient-to-br from-yellow-500/10 to-orange-500/10 border-2 border-yellow-500/30 rounded-2xl px-8 py-4">
+                    <div className="flex items-center gap-3">
+                      <svg className="w-6 h-6 text-yellow-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <div className="text-left">
+                        <p className="text-yellow-300 text-sm font-bold font-mono uppercase tracking-wide">Security Hint Unlocked</p>
+                        <p className="text-yellow-400/80 text-xs font-mono mt-1">Try: "cyber" (case-insensitive)</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -641,76 +773,144 @@ export default function Level2() {
       {showProjects ? (
         <section className="py-24 relative z-10">
           <div className="container mx-auto px-8">
-            {/* Focusable projects container with entrance animation */}
-            <div ref={projectsRef} tabIndex={-1} className="transform transition-all duration-500 ease-out scale-95 opacity-0" aria-label="Unlocked projects">
-              <div className="scale-100 opacity-100">
-                {/* ...existing code... */}
+            {/* Vault Unlocked Header */}
+            <div className="text-center mb-16" ref={projectsRef} tabIndex={-1} aria-label="Unlocked projects">
+              <div className="inline-block mb-6 relative">
+                <div className="absolute inset-0 bg-green-500/20 blur-2xl animate-pulse"></div>
+                <div className="relative flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-green-500/20 via-emerald-500/20 to-green-500/20 border-2 border-green-400/40 rounded-2xl backdrop-blur-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="relative">
+                      <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <div className="absolute inset-0 bg-green-400/30 rounded-full blur-md animate-pulse"></div>
+                    </div>
+                    <div className="text-left">
+                      <div className="text-green-400 text-xs font-mono uppercase tracking-widest">Vault Status</div>
+                      <div className="text-green-300 text-lg font-bold font-mono">ACCESS GRANTED</div>
+                    </div>
+                  </div>
+                </div>
               </div>
+              <h2 className="text-5xl md:text-6xl font-bold mb-6">
+                <span className="bg-gradient-to-r from-green-400 via-cyan-400 to-green-400 bg-clip-text text-transparent font-mono">
+                  VAULT CONTENTS
+                </span>
+              </h2>
+              <p className="text-white/60 text-lg max-w-2xl mx-auto font-mono">
+                <span className="text-cyan-400">&gt;</span> Displaying classified projects database
+              </p>
             </div>
-          {/* Category Navigation */}
+
+          {/* Category Navigation - Vault Sections */}
           <div className="flex justify-center mb-16">
-            <div className="bg-white/5 backdrop-blur-md rounded-2xl p-2 border border-white/10">
+            <div className="relative bg-black/60 backdrop-blur-xl rounded-3xl p-4 border-2 border-cyan-500/30 shadow-2xl shadow-cyan-500/10">
+              {/* Scanner Line */}
+              <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-50"></div>
+              
+              <div className="flex flex-wrap justify-center gap-3">
               {Object.entries(projectCategories).map(([key, category]) => (
                 <button
                   key={key}
                   onClick={() => setActiveProject(key)}
-                  className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+                  className={`relative px-6 py-4 rounded-2xl font-bold transition-all duration-300 border-2 overflow-hidden group ${
                     activeProject === key
-                      ? `${category.bgColor} ${category.color} border ${category.borderColor}`
-                      : 'text-white/70 hover:text-white hover:bg-white/10'
+                      ? `${category.bgColor} ${category.color} ${category.borderColor} shadow-lg scale-105`
+                      : 'text-white/70 hover:text-white hover:bg-white/5 border-white/10 hover:border-white/30'
                   }`}
                 >
-                  <span className="text-lg mr-2">{category.icon}</span>
-                  {category.title}
+                  {activeProject === key && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/10 to-transparent animate-pulse"></div>
+                  )}
+                  <span className="relative z-10 flex items-center gap-2 font-mono text-sm uppercase tracking-wide">
+                    <span className="text-xl">{category.icon}</span>
+                    <span className="hidden sm:inline">{category.title}</span>
+                  </span>
                 </button>
               ))}
+              </div>
             </div>
           </div>
 
-          {/* Project Grid */}
+          {/* Project Grid - Vault Files */}
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {projectCategories[activeProject as keyof typeof projectCategories].projects.map((project, index) => (
-                <div key={index} className="group">
-                  <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-500 h-full">
-                    <div className="flex items-start justify-between mb-6">
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold text-white mb-3 tracking-tight">
-                          {project.name}
-                        </h3>
-                        <div className="flex items-center space-x-3 mb-4">
-                          <span className={`px-3 py-1 rounded-full text-xs font-medium border ${
-                            project.status === 'Production' || project.status === 'Live' 
-                              ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20' :
-                            project.status === 'Beta' || project.status === 'Development'
-                              ? 'bg-amber-500/10 text-amber-300 border-amber-500/20' :
-                              'bg-purple-500/10 text-purple-300 border-purple-500/20'
-                          }`}>
-                            {project.status}
-                          </span>
+                <div 
+                  key={index} 
+                  className="group transform transition-all duration-500 hover:scale-[1.03]"
+                  style={{ 
+                    animationDelay: `${index * 100}ms`,
+                    animation: showProjects ? 'fadeInUp 0.6s ease-out forwards' : 'none'
+                  }}
+                >
+                  <div className="relative bg-gradient-to-br from-black/80 via-gray-900/70 to-black/80 backdrop-blur-xl rounded-3xl p-8 border-2 border-cyan-500/20 hover:border-cyan-400/50 hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 h-full overflow-hidden">
+                    {/* Data Stream Effect */}
+                    <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-cyan-400/0 via-cyan-400/50 to-cyan-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    {/* Corner Brackets */}
+                    <div className="absolute top-3 left-3 w-4 h-4 border-l-2 border-t-2 border-cyan-400/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute top-3 right-3 w-4 h-4 border-r-2 border-t-2 border-cyan-400/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute bottom-3 left-3 w-4 h-4 border-l-2 border-b-2 border-cyan-400/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute bottom-3 right-3 w-4 h-4 border-r-2 border-b-2 border-cyan-400/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                    <div className="relative z-10">
+                      <div className="flex items-start justify-between mb-6">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-3">
+                            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                            <span className="text-cyan-400/70 text-xs font-mono uppercase tracking-wider">File #{index + 1}</span>
+                          </div>
+                          <h3 className="text-2xl font-bold text-white mb-3 tracking-tight group-hover:text-cyan-400 transition-colors duration-300 font-mono">
+                            {project.name}
+                          </h3>
+                          <div className="flex items-center space-x-3 mb-4">
+                            <span className={`px-4 py-1.5 rounded-full text-xs font-bold border-2 font-mono uppercase tracking-wide ${
+                              project.status === 'Production' || project.status === 'Live' 
+                                ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/50 shadow-lg shadow-emerald-500/20' :
+                              project.status === 'Beta' || project.status === 'Development'
+                                ? 'bg-amber-500/20 text-amber-300 border-amber-500/50 shadow-lg shadow-amber-500/20' :
+                                'bg-purple-500/20 text-purple-300 border-purple-500/50 shadow-lg shadow-purple-500/20'
+                            }`}>
+                              {project.status}
+                            </span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    
-                    <p className="text-white/70 mb-6 leading-relaxed font-light">
-                      {project.description}
-                    </p>
-                    
-                    <div className="mb-8">
-                      <div className="text-sm text-white/60 mb-3 font-medium">Technologies:</div>
-                      <div className="flex flex-wrap gap-2">
-                        {project.tech.map(tech => (
-                          <span key={tech} className="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs border border-white/20">
-                            {tech}
-                          </span>
-                        ))}
+                      
+                      <p className="text-white/70 mb-6 leading-relaxed text-base">
+                        {project.description}
+                      </p>
+                      
+                      <div className="mb-8">
+                        <div className="flex items-center gap-2 mb-3">
+                          <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                          </svg>
+                          <div className="text-xs text-cyan-400/70 font-mono uppercase tracking-wider">Tech Stack</div>
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {project.tech.map(tech => (
+                            <span key={tech} className="px-3 py-1.5 bg-black/40 text-green-400 rounded-lg text-xs border border-green-500/30 font-mono hover:border-green-400 hover:bg-green-500/10 transition-all duration-300">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
                       </div>
+                      
+                      <button className="w-full py-4 px-6 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 border-2 border-cyan-500/30 rounded-xl font-bold hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500 hover:text-black hover:border-cyan-400 transition-all duration-300 group/btn">
+                        <span className="flex items-center justify-center gap-2 font-mono text-sm uppercase tracking-wider">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                          </svg>
+                          Access File
+                          <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </span>
+                      </button>
                     </div>
-                    
-                    <button className="w-full py-3 px-6 bg-white/10 text-white border border-white/20 rounded-2xl font-semibold hover:bg-white hover:text-black transition-all duration-300 group">
-                      View Details
-                      <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
-                    </button>
                   </div>
                 </div>
               ))}
@@ -718,33 +918,39 @@ export default function Level2() {
           </div>
 
           {/* Navigation to Next Level */}
-          <div className="mt-20 text-center">
-            <div className="inline-block mb-6">
-              <span className="text-white/60 text-sm font-light tracking-wider uppercase">Ready for the next challenge?</span>
+          <div className="mt-24 text-center">
+            <div className="inline-block mb-8">
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl px-6 py-3">
+                <span className="text-white/60 text-sm font-light tracking-wider uppercase">Ready for the next challenge?</span>
+              </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <Link href="/level3" className="group relative overflow-hidden">
-                <div className="bg-white text-black px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/90 transition-all duration-300 shadow-lg hover:shadow-xl">
-                  Proceed to Level 3
-                  <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300 inline-block">→</span>
+                <div className="bg-gradient-to-r from-cyan-400 to-blue-500 text-black px-10 py-5 rounded-2xl text-lg font-bold hover:shadow-2xl hover:shadow-cyan-400/40 transition-all duration-300 transform hover:scale-105">
+                  <span className="flex items-center gap-2">
+                    Proceed to Level 3
+                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
                 </div>
               </Link>
               
               <Link href="/" className="group relative">
-                <div className="bg-transparent border-2 border-white/30 text-white px-8 py-4 rounded-full text-lg font-semibold hover:border-white hover:bg-white/10 transition-all duration-300">
-                  Return Home
-                  <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300 inline-block">←</span>
+                <div className="bg-transparent border-2 border-white/30 text-white px-10 py-5 rounded-2xl text-lg font-bold hover:border-white hover:bg-white/10 transition-all duration-300">
+                  <span className="flex items-center gap-2">
+                    <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Return Home
+                  </span>
                 </div>
               </Link>
             </div>
           </div>
           </div>
         </section>
-      ) : (
-        failedAttempts >= 3 ? (
-          <div className="mt-6 text-center text-sm text-yellow-300">Need a hint? Try the word "cyber" — it's case-insensitive.</div>
-        ) : null
-      )}
+      ) : null}
 
       {/* Footer */}
       <footer className="py-12 border-t border-white/20 bg-black/50 relative z-10">
