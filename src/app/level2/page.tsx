@@ -360,59 +360,43 @@ export default function Level2() {
               </p>
             </div>
 
-            {/* Cyber Vault Interface */}
-            <div className="max-w-3xl mx-auto mb-16 relative">
-              {/* Scanning Lines Effect */}
-              <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
-                <div className="absolute w-full h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-30 animate-scan"></div>
-              </div>
-              
-              {/* Vault Door Frame */}
-              <div className="relative bg-gradient-to-br from-black/80 via-gray-900/80 to-black/80 backdrop-blur-xl border-2 border-cyan-500/30 rounded-3xl p-1 shadow-2xl shadow-cyan-500/20">
-                {/* Corner Accents */}
-                <div className="absolute -top-1 -left-1 w-8 h-8 border-l-2 border-t-2 border-cyan-400 rounded-tl-3xl"></div>
-                <div className="absolute -top-1 -right-1 w-8 h-8 border-r-2 border-t-2 border-cyan-400 rounded-tr-3xl"></div>
-                <div className="absolute -bottom-1 -left-1 w-8 h-8 border-l-2 border-b-2 border-cyan-400 rounded-bl-3xl"></div>
-                <div className="absolute -bottom-1 -right-1 w-8 h-8 border-r-2 border-b-2 border-cyan-400 rounded-br-3xl"></div>
-                
-                <div className="bg-black/60 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-cyan-500/20">
-                  {/* Terminal Header */}
-                  <div className="flex items-center justify-between mb-8 pb-4 border-b border-cyan-500/20">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                      <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                      <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                    </div>
-                    <div className="text-cyan-400 text-xs font-mono">vault_terminal_v2.0</div>
-                  </div>
-
-                  {/* Vault Lock Icon */}
-                  <div className="flex justify-center mb-8">
-                    <div className="relative">
-                      <svg className={`w-24 h-24 transition-all duration-500 ${showProjects ? 'text-green-400 scale-110' : 'text-cyan-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        {showProjects ? (
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
-                        ) : (
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                        )}
-                      </svg>
-                      {!showProjects && (
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-32 h-32 border-2 border-cyan-400/30 rounded-full animate-ping"></div>
-                        </div>
+            {/* Minimal Vault Interface */}
+            <div className="max-w-2xl mx-auto mb-16 relative">
+              {/* Vault Container */}
+              <div className="relative bg-black/40 backdrop-blur-sm border border-cyan-500/20 rounded-2xl overflow-hidden">
+                {/* Top Bar - Inbox Style */}
+                <div className="flex items-center justify-between px-6 py-3 border-b border-cyan-500/20 bg-black/30">
+                  <div className="flex items-center gap-3">
+                    <svg className={`w-5 h-5 transition-colors duration-500 ${showProjects ? 'text-green-400' : 'text-cyan-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      {showProjects ? (
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      ) : (
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                       )}
-                    </div>
+                    </svg>
+                    <span className="text-sm font-mono text-cyan-400/80">Project Vault</span>
                   </div>
+                  <div className="flex items-center gap-2">
+                    {!showProjects && (
+                      <>
+                        <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></div>
+                        <span className="text-xs font-mono text-cyan-400/60">awaiting auth</span>
+                      </>
+                    )}
+                    {showProjects && (
+                      <span className="text-xs font-mono text-green-400">authenticated</span>
+                    )}
+                  </div>
+                </div>
 
+                {/* Main Content */}
+                <div className="p-8">
                   {/* Authentication Input */}
-                  <div className="space-y-6">
+                  <div className="space-y-4">
                     <div>
-                      <div className="flex items-center gap-2 mb-3">
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                        <label htmlFor="secret-input" className="text-sm font-mono text-green-400 uppercase tracking-wider">
-                          Enter Access Code
-                        </label>
-                      </div>
+                      <label htmlFor="secret-input" className="block text-xs font-mono text-cyan-400/70 mb-2 uppercase tracking-wider">
+                        Access Code
+                      </label>
                       <div className="relative">
                         <input
                           id="secret-input"
@@ -420,70 +404,56 @@ export default function Level2() {
                           value={secretInput}
                           onChange={(e) => { setSecretInput(e.target.value); setAccessDenied(false); }}
                           onKeyDown={(e) => { if (e.key === 'Enter') handleFind(); }}
-                          placeholder="••••••••"
-                          className="w-full px-6 py-4 bg-black/50 border-2 border-cyan-500/30 rounded-xl text-green-400 text-center placeholder-cyan-400/30 focus:outline-none focus:border-cyan-400 focus:shadow-lg focus:shadow-cyan-400/20 transition-all duration-300 text-xl font-mono tracking-widest"
+                          placeholder="Enter code..."
+                          className="w-full px-4 py-3 bg-black/50 border border-cyan-500/30 rounded-lg text-cyan-400 placeholder-cyan-400/20 focus:outline-none focus:border-cyan-400/60 focus:bg-black/70 transition-all duration-300 font-mono text-sm"
                           aria-label="Secret key"
                         />
-                        <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                          <div className={`w-3 h-3 rounded-full ${secretInput ? 'bg-cyan-400 animate-pulse' : 'bg-gray-600'}`}></div>
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                          {secretInput && (
+                            <svg className="w-4 h-4 text-cyan-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                          )}
                         </div>
                       </div>
                     </div>
 
-                    {/* Terminal Output */}
-                    <div className="bg-black/50 border border-cyan-500/20 rounded-xl p-4 min-h-[3rem] font-mono text-sm">
-                      {accessDenied ? (
-                        <div className="flex items-center gap-2 text-red-400 animate-pulse">
-                          <span className="text-red-500">[ERROR]</span>
-                          <span>ACCESS_DENIED: Invalid credentials</span>
-                        </div>
-                      ) : secretInput ? (
-                        <div className="flex items-center gap-2 text-cyan-400">
-                          <span className="text-cyan-500">[INFO]</span>
-                          <span>Verifying access code...</span>
-                        </div>
-                      ) : (
-                        <div className="text-gray-500">
-                          <span>&gt;</span> Awaiting authentication
-                        </div>
-                      )}
-                    </div>
+                    {/* Status Indicator */}
+                    {accessDenied && (
+                      <div className="flex items-center gap-2 px-4 py-2 bg-red-500/10 border border-red-500/30 rounded-lg">
+                        <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                        <span className="text-xs font-mono text-red-400">Access denied</span>
+                      </div>
+                    )}
 
-                    {/* Action Buttons */}
-                    <div className="flex flex-col gap-3">
-                      <button
-                        onClick={() => handleFind()}
-                        className="group relative w-full py-4 bg-gradient-to-r from-cyan-500 via-green-500 to-cyan-500 bg-size-200 bg-pos-0 hover:bg-pos-100 text-black rounded-xl font-bold text-lg transition-all duration-500 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-cyan-400/40"
-                        style={{ backgroundSize: '200% 100%' }}
-                      >
-                        <span className="relative z-10 flex items-center justify-center gap-2 font-mono">
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
-                          </svg>
-                          AUTHENTICATE & ACCESS
-                        </span>
-                      </button>
+                    {/* Action Button */}
+                    <button
+                      onClick={() => handleFind()}
+                      className="group w-full py-3 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 hover:border-cyan-400/60 text-cyan-400 rounded-lg font-mono text-sm transition-all duration-300 flex items-center justify-center gap-2"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                      </svg>
+                      Authenticate
+                    </button>
 
+                    {/* Footer Helper */}
+                    <div className="flex items-center justify-between pt-2">
                       <button
                         onClick={() => {
                           setSecretInput('');
                           inputRef.current?.focus();
                         }}
-                        className="text-sm text-cyan-400/70 hover:text-cyan-400 transition-all duration-300 font-mono flex items-center justify-center gap-2"
+                        className="text-xs text-cyan-400/50 hover:text-cyan-400/80 transition-colors duration-300 font-mono"
                       >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                        </svg>
-                        Reset Input
+                        Clear
                       </button>
+                      <span className="text-xs text-cyan-400/30 font-mono">Press Enter ↵</span>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              {/* Security Grid Overlay */}
-              <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px] rounded-3xl"></div>
               </div>
             </div>
 
