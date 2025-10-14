@@ -4,240 +4,16 @@ import React from "react";
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import LightRays from '@/components/LightRays';
-// EvervaultCard components
-function Icon({ className, ...rest }: any) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth="1.5"
-      stroke="currentColor"
-      className={className}
-      {...rest}
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
-    </svg>
-  );
-}
-
-function EvervaultCard({
-  text,
-  className,
-}: {
-  text?: string;
-  className?: string;
-}) {
-  const mouseX = useRef(0);
-  const mouseY = useRef(0);
-  const [randomString, setRandomString] = useState("");
-  const [isHovered, setIsHovered] = useState(false);
-  const [animationFrame, setAnimationFrame] = useState(0);
-
-  useEffect(() => {
-    let str = generateRandomString(2000);
-    setRandomString(str);
-  }, []);
-
-  useEffect(() => {
-    // Generate static content when hover state changes
-    if (isHovered) {
-      const str = generateStaticContent(2000);
-      setRandomString(str);
-    } else {
-      const str = generateRandomString(2000);
-      setRandomString(str);
-    }
-  }, [isHovered]);
-
-  function onMouseMove({ currentTarget, clientX, clientY }: any) {
-    let { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.current = clientX - left;
-    mouseY.current = clientY - top;
-    // Remove the constant regeneration on mouse move
-  }
-
-  function onMouseEnter() {
-    setIsHovered(true);
-  }
-
-  function onMouseLeave() {
-    setIsHovered(false);
-  }
-
-  const generateRandomString = (length: number) => {
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let result = "";
-    for (let i = 0; i < length; i++) {
-      result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return result;
-  };
-
-  const generateStaticContent = (length: number) => {
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    const binary = "01";
-    const cyberTerms = ["HACK", "CODE", "SAFE", "LOCK", "KEY", "DATA", "BYTE", "HASH", "SCAN", "PORT"];
-    let result = "";
-    let i = 0;
-    
-    // First, generate content without CYBER
-    while (i < length - 100) { // Leave space for CYBER insertions
-      const rand = Math.random();
-      
-      if (rand > 0.7 && i + 5 < length) {
-        // Insert cyber term (30% chance)
-        const term = cyberTerms[Math.floor(Math.random() * cyberTerms.length)];
-        result += term + " ";
-        i += term.length + 1;
-      } else if (rand > 0.4) {
-        // Insert binary sequence (30% chance)
-        const binaryLength = 6 + Math.floor(Math.random() * 8); // 6-13 binary digits
-        for (let j = 0; j < binaryLength && i < length; j++, i++) {
-          result += binary.charAt(Math.floor(Math.random() * binary.length));
-        }
-        if (i < length) {
-          result += " ";
-          i++;
-        }
-      } else {
-        // Insert regular characters (40% chance)
-        const charLength = 3 + Math.floor(Math.random() * 5); // 3-7 characters
-        for (let j = 0; j < charLength && i < length; j++, i++) {
-          result += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-        if (i < length) {
-          result += " ";
-          i++;
-        }
-      }
-    }
-    
-    // Now insert "CYBER" as separate words at random positions
-    const words = result.split(' ').filter(word => word.length > 0);
-    const cyberInsertions = 3 + Math.floor(Math.random() * 3); // 3-5 insertions
-    
-    for (let insertion = 0; insertion < cyberInsertions; insertion++) {
-      const randomPos = Math.floor(Math.random() * words.length);
-      // Insert "CYBER" as a separate word
-      words.splice(randomPos, 0, 'CYBER');
-    }
-    
-    // Join words back with spaces and ensure proper length
-    const finalResult = words.join(' ');
-    return finalResult.substring(0, length);
-  };
-
-  return (
-    <div
-      className={`p-0.5 bg-transparent aspect-square flex items-center justify-center w-full h-full relative ${className} transition-all duration-300`}
-      onMouseMove={onMouseMove}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-    >
-      <div
-        className={`h-full w-full relative overflow-hidden bg-black rounded-3xl flex items-center justify-center transition-all duration-300 ${
-          isHovered ? 'scale-105 shadow-2xl shadow-cyan-500/20' : ''
-        }`}
-        style={{
-          backgroundImage: `radial-gradient(
-            ${isHovered ? '350px' : '250px'} circle at ${mouseX.current}px ${mouseY.current}px,
-            ${isHovered ? 'rgba(0, 255, 255, 0.25)' : 'rgba(14, 165, 233, 0.15)'},
-            transparent 80%
-          )`,
-        }}
-      >
-        <div className={`absolute inset-0 w-full h-full transition-opacity duration-300 ${isHovered ? 'opacity-60' : 'opacity-20'}`}>
-          <div
-            className="absolute inset-0 w-full h-full"
-            style={{
-              backgroundImage: `radial-gradient(
-                circle at ${mouseX.current}px ${mouseY.current}px,
-                ${isHovered ? 'rgba(0, 255, 255, 0.3)' : 'rgba(14, 165, 233, 0.2)'} 0%,
-                transparent 50%
-              )`,
-            }}
-          />
-          <div className={`absolute inset-0 transition-opacity duration-300 ${isHovered ? 'opacity-80' : 'opacity-30'}`}>
-            <p className={`absolute inset-x-0 text-xs break-words whitespace-pre-wrap font-mono p-2 transition-all duration-300 ${
-              isHovered ? 'text-green-400/40 text-[10px] leading-3' : 'text-white/10'
-            }`}>
-              {randomString}
-            </p>
-          </div>
-        </div>
-        
-        {/* Floating CYBER text effect */}
-        {isHovered && (
-          <div className="absolute inset-0 flex items-center justify-center z-10">
-            <div className="text-cyan-400 text-2xl font-bold font-mono opacity-20 animate-pulse">
-              CYBER
-            </div>
-          </div>
-        )}
-        
-        {/* Matrix rain effect */}
-        {isHovered && (
-          <div className="absolute inset-0 overflow-hidden">
-            {[...Array(20)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute text-green-400 text-xs font-mono opacity-30 animate-pulse"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 2}s`,
-                  animationDuration: `${2 + Math.random() * 3}s`
-                }}
-              >
-                {Math.random() > 0.5 ? '1' : '0'}
-              </div>
-            ))}
-          </div>
-        )}
-        
-        {text && (
-          <div className={`flex items-center justify-center text-white z-20 text-4xl font-bold transition-all duration-300 ${
-            isHovered ? 'scale-110 text-cyan-400' : ''
-          }`}>
-            {text}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function EvervaultCardDemo() {
-  return (
-    <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-start max-w-sm mx-auto p-4 relative h-[30rem] bg-black/20 backdrop-blur-sm rounded-3xl">
-      <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-white" />
-      <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-white" />
-      <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-white" />
-      <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-white" />
-      <EvervaultCard text="hover" />
-      <h2 className="dark:text-white text-white mt-4 text-sm font-light">
-        Hover over this card to reveal an awesome effect. Experience the interactive encryption visualization.
-      </h2>
-      <p className="text-sm border font-light dark:border-white/[0.2] border-white/[0.2] rounded-full mt-4 text-white px-2 py-0.5">
-        Watch me hover
-      </p>
-    </div>
-  );
-}
 
 export default function Level2() {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [activeProject, setActiveProject] = useState('security');
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [windowDimensions, setWindowDimensions] = useState({ width: 0, height: 0 });
   const [isClient, setIsClient] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   // Secret / access control for the Evervault flow
   const [secretInput, setSecretInput] = useState('');
-  const [showEvervault, setShowEvervault] = useState(false);
+  // showEvervault removed - vault door now reflects showProjects
   const [showProjects, setShowProjects] = useState(false);
   const [accessDenied, setAccessDenied] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -247,8 +23,7 @@ export default function Level2() {
 
   // Handler for the "wanna find what?" action
   function handleFind() {
-    // Always show the Evervault card (animate in)
-    setShowEvervault(true);
+    // Trigger vault check (visuals handled by project state)
     setAccessDenied(false);
 
     // Check secret after a short delay to allow the card animation
@@ -367,37 +142,22 @@ export default function Level2() {
   };
 
   useEffect(() => {
-    setTimeout(() => setIsLoaded(true), 500);
-    
-    // Mouse tracking
+    // Mouse tracking: only update CSS variables on the content container
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-      
       if (contentRef.current) {
         const rect = contentRef.current.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width;
         const y = (e.clientY - rect.top) / rect.height;
-        
+
         contentRef.current.style.setProperty('--mouse-x', `${x * 100}%`);
         contentRef.current.style.setProperty('--mouse-y', `${y * 100}%`);
       }
     };
 
-    const handleResize = () => {
-      setWindowDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight
-      });
-    };
-
     window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('resize', handleResize);
-    
-    handleResize();
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -629,14 +389,14 @@ export default function Level2() {
                   {/* Vault Lock Icon */}
                   <div className="flex justify-center mb-8">
                     <div className="relative">
-                      <svg className={`w-24 h-24 transition-all duration-500 ${showEvervault ? 'text-green-400 scale-110' : 'text-cyan-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        {showEvervault ? (
+                      <svg className={`w-24 h-24 transition-all duration-500 ${showProjects ? 'text-green-400 scale-110' : 'text-cyan-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        {showProjects ? (
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
                         ) : (
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                         )}
                       </svg>
-                      {!showEvervault && (
+                      {!showProjects && (
                         <div className="absolute inset-0 flex items-center justify-center">
                           <div className="w-32 h-32 border-2 border-cyan-400/30 rounded-full animate-ping"></div>
                         </div>
@@ -730,21 +490,7 @@ export default function Level2() {
             {/* ARIA live region for announcements */}
             <div className="sr-only" role="status" aria-live="polite">{announce}</div>
 
-            {/* Evervault Card - Vault Contents Reveal */}
-            <div className="flex justify-center">
-              <div
-                className={`transform will-change-transform transition-all duration-700 ${showEvervault ? 'translate-x-0 opacity-100' : 'translate-x-16 opacity-0 pointer-events-none'}`}
-                style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}
-              >
-                <div className="relative">
-                  {/* Vault Opening Glow */}
-                  {showEvervault && (
-                    <div className="absolute -inset-4 bg-gradient-to-r from-green-500/20 via-cyan-500/20 to-green-500/20 blur-xl animate-pulse"></div>
-                  )}
-                  <EvervaultCardDemo />
-                </div>
-              </div>
-            </div>
+            {/* Vault visual removed. Vault state now represented by Access Granted banner and project cards. */}
 
             {/* Security Hint Panel */}
             {!showProjects && failedAttempts >= 3 && (
