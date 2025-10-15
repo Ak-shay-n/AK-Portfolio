@@ -418,15 +418,45 @@ export default function Level2() {
                       </div>
                     </div>
 
-                    {/* Status Indicator */}
-                    {accessDenied && (
-                      <div className="flex items-center gap-2 px-4 py-2 bg-red-500/10 border border-red-500/30 rounded-lg">
-                        <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                        <span className="text-xs font-mono text-red-400">Access denied</span>
-                      </div>
-                    )}
+                    {/* Status Indicator Box */}
+                    <div className="bg-black/50 border border-cyan-500/20 rounded-lg px-4 py-3 min-h-[3rem] flex items-center">
+                      {accessDenied ? (
+                        <div className="flex items-center gap-2 w-full">
+                          <svg className="w-4 h-4 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2">
+                              <span className="text-red-500 text-xs font-mono">[ERROR]</span>
+                              <span className="text-red-400 text-xs font-mono">ACCESS_DENIED: Invalid credentials</span>
+                            </div>
+                          </div>
+                        </div>
+                      ) : secretInput ? (
+                        <div className="flex items-center gap-2 w-full">
+                          <div className="flex items-center gap-1.5 flex-shrink-0">
+                            <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></div>
+                            <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                            <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2">
+                              <span className="text-cyan-500 text-xs font-mono">[INFO]</span>
+                              <span className="text-cyan-400 text-xs font-mono">Verifying access code...</span>
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-2 w-full">
+                          <div className="w-1.5 h-1.5 rounded-full bg-cyan-400/30 flex-shrink-0 animate-pulse"></div>
+                          <div className="flex-1">
+                            <span className="text-cyan-400/50 text-xs font-mono">
+                              <span className="text-cyan-400/30">&gt;</span> Awaiting authentication
+                            </span>
+                          </div>
+                        </div>
+                      )}
+                    </div>
 
                     {/* Action Button */}
                     <button
