@@ -177,7 +177,7 @@ PREFERRED_CONTACT: Secure channels only`
     "frameworks": {
       "react": {
         "version": "18+",
-        "experience": "3+ years",
+        "experience": "2+ years",
         "specialties": ["Hooks", "Context API", "Performance Optimization"]
       },
       "nextjs": {

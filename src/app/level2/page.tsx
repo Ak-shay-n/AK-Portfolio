@@ -364,17 +364,13 @@ export default function Level2() {
             <div className="max-w-2xl mx-auto mb-16 relative">
               {/* Vault Container */}
               <div className="relative bg-black/40 backdrop-blur-sm border border-cyan-500/20 rounded-2xl overflow-hidden">
-                {/* Top Bar - Inbox Style */}
+                {/* Top Bar - Warning Header */}
                 <div className="flex items-center justify-between px-6 py-3 border-b border-cyan-500/20 bg-black/30">
                   <div className="flex items-center gap-3">
-                    <svg className={`w-5 h-5 transition-colors duration-500 ${showProjects ? 'text-green-400' : 'text-cyan-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      {showProjects ? (
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      ) : (
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                      )}
+                    <svg className="w-5 h-5 text-red-500 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                     </svg>
-                    <span className="text-sm font-mono text-cyan-400/80">Project Vault</span>
+                    <span className="text-sm font-mono text-red-500 animate-pulse font-bold uppercase tracking-wider">⚠ Restricted Access</span>
                   </div>
                   <div className="flex items-center gap-2">
                     {!showProjects && (
@@ -401,10 +397,12 @@ export default function Level2() {
                         <input
                           id="secret-input"
                           ref={inputRef}
+                          type="text"
                           value={secretInput}
                           onChange={(e) => { setSecretInput(e.target.value); setAccessDenied(false); }}
                           onKeyDown={(e) => { if (e.key === 'Enter') handleFind(); }}
                           placeholder="Enter code..."
+                          autoComplete="off"
                           className="w-full px-4 py-3 bg-black/50 border border-cyan-500/30 rounded-lg text-cyan-400 placeholder-cyan-400/20 focus:outline-none focus:border-cyan-400/60 focus:bg-black/70 transition-all duration-300 font-mono text-sm"
                           aria-label="Secret key"
                         />
@@ -419,35 +417,35 @@ export default function Level2() {
                     </div>
 
                     {/* Status Indicator Box */}
-                    <div className="bg-black/50 border border-cyan-500/20 rounded-lg px-4 py-3 min-h-[3rem] flex items-center">
+                    <div className="bg-black/50 border border-cyan-500/20 rounded-lg px-4 py-3 min-h-[3rem] flex items-center overflow-hidden">
                       {accessDenied ? (
-                        <div className="flex items-center gap-2 w-full">
+                        <div className="flex items-center gap-2 w-full animate-fadeInLeft">
                           <svg className="w-4 h-4 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                           </svg>
                           <div className="flex-1">
                             <div className="flex items-center gap-2">
                               <span className="text-red-500 text-xs font-mono">[ERROR]</span>
-                              <span className="text-red-400 text-xs font-mono">ACCESS_DENIED: Invalid credentials</span>
+                              <span className="text-red-400 text-xs font-mono typing-animation">ACCESS_DENIED: Invalid credentials</span>
                             </div>
                           </div>
                         </div>
                       ) : secretInput ? (
-                        <div className="flex items-center gap-2 w-full">
+                        <div className="flex items-center gap-2 w-full animate-fadeInLeft">
                           <div className="flex items-center gap-1.5 flex-shrink-0">
                             <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></div>
                             <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" style={{ animationDelay: '0.2s' }}></div>
                             <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" style={{ animationDelay: '0.4s' }}></div>
                           </div>
-                          <div className="flex-1">
+                          <div className="flex-1 overflow-hidden">
                             <div className="flex items-center gap-2">
                               <span className="text-cyan-500 text-xs font-mono">[INFO]</span>
-                              <span className="text-cyan-400 text-xs font-mono">Verifying access code...</span>
+                              <span className="text-cyan-400 text-xs font-mono typing-animation">Analyzing secret code </span>
                             </div>
                           </div>
                         </div>
                       ) : (
-                        <div className="flex items-center gap-2 w-full">
+                        <div className="flex items-center gap-2 w-full animate-fadeInLeft">
                           <div className="w-1.5 h-1.5 rounded-full bg-cyan-400/30 flex-shrink-0 animate-pulse"></div>
                           <div className="flex-1">
                             <span className="text-cyan-400/50 text-xs font-mono">
