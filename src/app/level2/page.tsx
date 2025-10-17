@@ -360,7 +360,8 @@ export default function Level2() {
               </p>
             </div>
 
-            {/* Minimal Vault Interface */}
+            {/* Minimal Vault Interface - Hide on successful auth */}
+            {!showProjects && (
             <div className="max-w-2xl mx-auto mb-16 relative">
               {/* Vault Container */}
               <div className="relative bg-black/40 backdrop-blur-sm border border-cyan-500/20 rounded-2xl overflow-hidden">
@@ -370,7 +371,7 @@ export default function Level2() {
                     <svg className="w-5 h-5 text-red-500 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                     </svg>
-                    <span className="text-sm font-mono text-red-500 animate-pulse font-bold uppercase tracking-wider">⚠ Restricted Access</span>
+                    <span className="text-sm font-mono text-red-500 animate-pulse font-bold uppercase tracking-wider">Restricted Access</span>
                   </div>
                   <div className="flex items-center gap-2">
                     {!showProjects && (
@@ -484,6 +485,31 @@ export default function Level2() {
                 </div>
               </div>
             </div>
+            )}
+
+            {/* Success Animation on Authentication */}
+            {showProjects && (
+              <div className="max-w-4xl mx-auto mb-16 text-center animate-fadeInUp">
+                <div className="inline-block relative">
+                  <div className="absolute inset-0 bg-green-500/20 blur-3xl animate-pulse"></div>
+                  <div className="relative bg-gradient-to-r from-green-500/20 via-emerald-500/20 to-green-500/20 border-2 border-green-400/40 rounded-2xl px-12 py-8 backdrop-blur-sm">
+                    <div className="flex flex-col items-center gap-4">
+                      <div className="relative">
+                        <svg className="w-16 h-16 text-green-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <div className="absolute inset-0 bg-green-400/30 rounded-full blur-xl animate-pulse"></div>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="text-green-400 text-xs font-mono uppercase tracking-widest">Authentication Successful</div>
+                        <div className="text-green-300 text-2xl font-bold font-mono">ACCESS GRANTED</div>
+                        <div className="text-green-400/70 text-sm font-mono">Loading vault contents...</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* ARIA live region for announcements */}
             <div className="sr-only" role="status" aria-live="polite">{announce}</div>

@@ -117,6 +117,10 @@ body {
   animation: fadeInLeft 0.4s ease-out;
 }
 
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease-out;
+}
+
 .typing-animation {
   display: inline-block;
   overflow: hidden;
