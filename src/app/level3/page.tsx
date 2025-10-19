@@ -6,95 +6,181 @@ import LightRays from '@/components/LightRays';
 import ProfileCard from '../../components/ProfileCard';
 
 export default function Level3() {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [selectedContact, setSelectedContact] = useState('');
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [windowDimensions, setWindowDimensions] = useState({ width: 0, height: 0 });
   const [isClient, setIsClient] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   
-  const contactMethods = [
-    {
-      id: 'email',
-      name: 'Secure Email',
-      icon: '📧',
-      description: 'End-to-end encrypted communication',
-      value: 'akshay.kumar@secure.mail',
-      status: 'verified',
-      security: 'PGP Encrypted'
-    },
-    {
-      id: 'linkedin',
-      name: 'Professional Network',
-      icon: '💼',
-      description: 'Professional networking and collaborations',
-      value: 'linkedin.com/in/akshay-kumar-cyber',
-      status: 'active',
-      security: 'OAuth 2.0'
-    },
-    {
-      id: 'github',
-      name: 'Code Repository',
-      icon: '👨‍💻',
-      description: 'Open source projects and contributions',
-      value: 'github.com/akshaykumar-cyber',
-      status: 'public',
-      security: '2FA Enabled'
-    },
-    {
-      id: 'telegram',
-      name: 'Encrypted Messaging',
-      icon: '🔒',
-      description: 'Real-time secure communications',
-      value: '@akshay_cyber_security',
-      status: 'private',
-      security: 'MTProto 2.0'
-    }
+  // Form states
+  const [currentInput, setCurrentInput] = useState('');
+  const [terminalLines, setTerminalLines] = useState<Array<{type: string, content: string}>>([]);
+  const [currentStep, setCurrentStep] = useState<'name' | 'email' | 'message' | 'complete'>('name');
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [isTransmitting, setIsTransmitting] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date());
+  
+  const inputRef = useRef<HTMLInputElement>(null);
+  const terminalEndRef = useRef<HTMLDivElement>(null);
+
+  const socialLinks = [
+    { name: 'LinkedIn', icon: '💼', url: '#', color: 'text-blue-400' },
+    { name: 'GitHub', icon: '👨‍💻', url: '#', color: 'text-purple-400' },
+    { name: 'Email', icon: '📧', url: 'mailto:akshay@example.com', color: 'text-green-400' },
+    { name: 'Instagram', icon: '📷', url: '#', color: 'text-pink-400' }
   ];
 
-  const securityFeatures = [
-    'End-to-end encryption',
-    'Zero-knowledge architecture',
-    'Multi-factor authentication',
-    'Perfect forward secrecy',
-    'Identity verification'
-  ];
-
-  useEffect(() => {
-    setTimeout(() => setIsLoaded(true), 500);
-    
-    // Mouse tracking
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-      
-      if (contentRef.current) {
-        const rect = contentRef.current.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width;
-        const y = (e.clientY - rect.top) / rect.height;
-        
-        contentRef.current.style.setProperty('--mouse-x', `${x * 100}%`);
-        contentRef.current.style.setProperty('--mouse-y', `${y * 100}%`);
-      }
-    };
-
-    const handleResize = () => {
-      setWindowDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight
+  // Type text animation
+  const typeText = async (text: string) => {
+    for (let i = 0; i <= text.length; i++) {
+      await new Promise(resolve => setTimeout(resolve, 30));
+      setTerminalLines(prev => {
+        const newLines = [...prev];
+        if (newLines.length > 0 && newLines[newLines.length - 1].type === 'typing') {
+          newLines[newLines.length - 1].content = text.substring(0, i);
+        }
+        return newLines;
       });
-    };
+    }
+  };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('resize', handleResize);
-    
-    handleResize();
+  // Initialize terminal with welcome message
+  useEffect(() => {
+    if (isClient) {
+      const init = async () => {
+        setTerminalLines([
+          { type: 'system', content: '> SECURE TERMINAL v2.4.1 INITIALIZED' },
+          { type: 'system', content: '> ENCRYPTION: AES-256 | STATUS: ACTIVE' },
+          { type: 'system', content: '> CONNECTION TO NODE: akshay@cyber-sec.node' },
+          { type: 'divider', content: '─'.repeat(60) },
+          { type: 'info', content: '> Initiating secure message protocol...' },
+          { type: 'info', content: '> Please provide the following credentials:' },
+          { type: 'divider', content: '' },
+          { type: 'typing', content: '' }
+        ]);
+        
+        await new Promise(resolve => setTimeout(resolve, 500));
+        await typeText('root@secure-terminal:~$ ENTER_NAME');
+        
+        setTimeout(() => {
+          inputRef.current?.focus();
+        }, 100);
+      };
+      
+      init();
+    }
+  }, [isClient]);
 
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('resize', handleResize);
-    };
+  // Auto-scroll to bottom
+  useEffect(() => {
+    terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [terminalLines]);
+
+  // Handle Enter key press
+  const handleKeyPress = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && currentInput.trim()) {
+      e.preventDefault();
+      
+      // Add user input to terminal
+      setTerminalLines(prev => [
+        ...prev.slice(0, -1),
+        { type: 'prompt', content: `root@secure-terminal:~$ ${currentInput}` }
+      ]);
+
+      const input = currentInput.trim();
+      setCurrentInput('');
+
+      await new Promise(resolve => setTimeout(resolve, 200));
+
+      if (currentStep === 'name') {
+        setFormData(prev => ({ ...prev, name: input }));
+        setTerminalLines(prev => [...prev, 
+          { type: 'success', content: `✓ NAME VERIFIED: ${input}` },
+          { type: 'divider', content: '' },
+          { type: 'typing', content: '' }
+        ]);
+        await typeText('root@secure-terminal:~$ ENTER_EMAIL');
+        setCurrentStep('email');
+        
+      } else if (currentStep === 'email') {
+        // Basic email validation
+        if (!input.includes('@')) {
+          setTerminalLines(prev => [...prev,
+            { type: 'error', content: '✗ ERROR: INVALID EMAIL FORMAT' },
+            { type: 'error', content: '✗ PLEASE ENTER A VALID EMAIL ADDRESS' },
+            { type: 'typing', content: '' }
+          ]);
+          await typeText('root@secure-terminal:~$ ENTER_EMAIL');
+          return;
+        }
+        
+        setFormData(prev => ({ ...prev, email: input }));
+        setTerminalLines(prev => [...prev,
+          { type: 'success', content: `✓ EMAIL VERIFIED: ${input}` },
+          { type: 'divider', content: '' },
+          { type: 'typing', content: '' }
+        ]);
+        await typeText('root@secure-terminal:~$ ENTER_MESSAGE');
+        setCurrentStep('message');
+        
+      } else if (currentStep === 'message') {
+        setFormData(prev => ({ ...prev, message: input }));
+        setTerminalLines(prev => [...prev,
+          { type: 'success', content: `✓ MESSAGE RECEIVED: "${input.substring(0, 50)}${input.length > 50 ? '...' : ''}"` },
+          { type: 'divider', content: '─'.repeat(60) },
+          { type: 'info', content: '> PREPARING TRANSMISSION...' }
+        ]);
+        
+        setCurrentStep('complete');
+        setIsTransmitting(true);
+        
+        // Transmission sequence
+        await new Promise(resolve => setTimeout(resolve, 800));
+        setTerminalLines(prev => [...prev, { type: 'loading', content: '> ENCRYPTING MESSAGE... [AES-256]' }]);
+        
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setTerminalLines(prev => [...prev, { type: 'loading', content: '> ESTABLISHING SECURE TUNNEL... [RSA-4096]' }]);
+        
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setTerminalLines(prev => [...prev, { type: 'loading', content: '> TRANSMITTING DATA PACKETS... [0x7FA2B3C4]' }]);
+        
+        await new Promise(resolve => setTimeout(resolve, 1200));
+        setTerminalLines(prev => [...prev, 
+          { type: 'success', content: '✓ TRANSMISSION SUCCESSFUL' },
+          { type: 'success', content: '✓ MESSAGE DELIVERED TO: akshay@cyber-sec.node' },
+          { type: 'divider', content: '─'.repeat(60) },
+          { type: 'info', content: '> AWAITING RESPONSE FROM RECIPIENT...' },
+          { type: 'info', content: `> SESSION ID: ${Date.now().toString(16).toUpperCase()}` }
+        ]);
+        
+        setIsTransmitting(false);
+        
+        // Reset after 5 seconds
+        setTimeout(() => {
+          setTerminalLines([
+            { type: 'system', content: '> SESSION TERMINATED' },
+            { type: 'system', content: '> STARTING NEW SESSION...' },
+            { type: 'divider', content: '─'.repeat(60) },
+            { type: 'typing', content: '' }
+          ]);
+          
+          typeText('root@secure-terminal:~$ ENTER_NAME');
+          setFormData({ name: '', email: '', message: '' });
+          setCurrentStep('name');
+        }, 5000);
+      }
+      
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
+    }
+  };
+
+  // Update current time every second
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(timer);
   }, []);
 
   useEffect(() => {
@@ -295,83 +381,171 @@ export default function Level3() {
                 enableMobileTilt={false}
                 onContactClick={() => {
                   console.log('Secure contact initiated');
-                  setSelectedContact('email');
+                  document.getElementById('terminal-form')?.scrollIntoView({ behavior: 'smooth' });
                 }}
               />
             </div>
           </div>
 
-          {/* Security Info */}
-          <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 mb-12">
-            <h2 className="text-3xl font-bold text-white mb-6 text-center">
-              🔐 ESTABLISH SECURE COMMUNICATION
-            </h2>
-            <p className="text-white/70 text-lg text-center leading-relaxed font-light">
-              All communication channels are secured with military-grade encryption. 
-              Select your preferred method of contact for professional inquiries, 
-              collaborations, or cybersecurity discussions.
-            </p>
+          {/* Terminal Header */}
+          <div className="max-w-4xl mx-auto mb-8" id="terminal-form">
+            <div className="text-center space-y-4 animate-fadeInUp">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <span className="text-cyan-400 text-xs font-mono uppercase tracking-widest">System Status: ONLINE</span>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold font-mono tracking-tight">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-green-400 to-cyan-400">
+                  INITIATE SECURE CONNECTION
+                </span>
+              </h1>
+              <p className="text-white/60 text-lg font-mono max-w-2xl mx-auto">
+                <span className="text-green-400">&gt;</span> You've reached Akshay's encrypted node.<br />
+                <span className="text-green-400">&gt;</span> Enter your credentials to send a message.
+              </p>
+            </div>
           </div>
 
-          {/* Contact Methods Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            {contactMethods.map((method, index) => (
-              <div
-                key={method.id}
-                onClick={() => setSelectedContact(method.id)}
-                className={`
-                  bg-white/5 backdrop-blur-md border rounded-3xl p-8 cursor-pointer transition-all duration-500 transform hover:scale-105
-                  ${selectedContact === method.id 
-                    ? 'border-green-400/50 shadow-lg shadow-green-400/20 bg-green-400/10' 
-                    : 'border-white/10 hover:border-white/20 hover:bg-white/10'
-                  }
-                `}
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="flex items-start space-x-6">
-                  <div className="text-4xl">{method.icon}</div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-white mb-2">{method.name}</h3>
-                    <p className="text-white/70 mb-4 font-light">{method.description}</p>
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-white/60">Contact:</span>
-                        <span className="text-cyan-400 font-mono">{method.value}</span>
-                      </div>
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-white/60">Status:</span>
-                        <span className={`font-bold ${
-                          method.status === 'verified' ? 'text-green-400' :
-                          method.status === 'active' ? 'text-blue-400' :
-                          method.status === 'public' ? 'text-purple-400' :
-                          'text-yellow-400'
-                        }`}>
-                          {method.status.toUpperCase()}
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-white/60">Security:</span>
-                        <span className="text-green-400">{method.security}</span>
-                      </div>
-                    </div>
-                    
-                    {selectedContact === method.id && (
-                      <div className="mt-6 animate-pulse">
-                        <button className="w-full px-6 py-3 bg-white text-black font-bold rounded-2xl hover:bg-white/90 transition-all duration-300">
-                          🚀 INITIATE CONTACT
-                        </button>
-                      </div>
-                    )}
-                  </div>
+          {/* Terminal Form */}
+          <div className="max-w-3xl mx-auto mb-16">
+            <div className="bg-black/60 backdrop-blur-md border-2 border-cyan-500/30 rounded-2xl overflow-hidden shadow-2xl shadow-cyan-500/10">
+              {/* Terminal Header Bar */}
+              <div className="bg-gradient-to-r from-cyan-900/40 to-blue-900/40 border-b border-cyan-500/30 px-6 py-3 flex items-center gap-3">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
                 </div>
-                
-                {selectedContact === method.id && (
-                  <div className="absolute -top-1 -right-1">
-                    <div className="w-4 h-4 bg-green-400 rounded-full animate-ping"></div>
+                <span className="text-cyan-400 text-sm font-mono">terminal@akshay-secure-node</span>
+                <div className="ml-auto flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <span className="text-green-400 text-xs font-mono">ENCRYPTED</span>
+                </div>
+              </div>
+
+              {/* Terminal Body */}
+              <div className="p-8 font-mono min-h-[400px] max-h-[600px] overflow-y-auto">
+                {/* Terminal History */}
+                <div className="space-y-1">
+                  {terminalLines.map((line, index) => (
+                    <div key={index} className="animate-fadeInUp">
+                      {line.type === 'system' && (
+                        <div className="text-gray-400 text-sm">{line.content}</div>
+                      )}
+                      {line.type === 'info' && (
+                        <div className="text-cyan-400 text-sm">{line.content}</div>
+                      )}
+                      {line.type === 'divider' && (
+                        <div className="text-cyan-600/30 text-sm">{line.content}</div>
+                      )}
+                      {line.type === 'typing' && (
+                        <div className="text-green-400 text-sm pt-3">
+                          {line.content}<span className="animate-blink">_</span>
+                        </div>
+                      )}
+                      {line.type === 'prompt' && (
+                        <div className="flex items-center gap-2 pl-4">
+                          <span className="text-cyan-400">&gt;&gt;</span>
+                          <span className="text-white">{line.content}</span>
+                        </div>
+                      )}
+                      {line.type === 'success' && (
+                        <div className="text-green-400 text-sm flex items-center gap-2 pl-4">
+                          <span>✓</span>
+                          <span>{line.content}</span>
+                        </div>
+                      )}
+                      {line.type === 'error' && (
+                        <div className="text-red-400 text-sm flex items-center gap-2 pl-4">
+                          <span>✗</span>
+                          <span>{line.content}</span>
+                        </div>
+                      )}
+                      {line.type === 'loading' && (
+                        <div className="text-cyan-400 text-sm flex items-center gap-2 pl-4">
+                          <div className="w-2 h-2 bg-cyan-400 rounded-full animate-ping"></div>
+                          <span>{line.content}</span>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Active Input Line */}
+                {currentStep !== 'complete' && !isTransmitting && (
+                  <div className="flex items-center gap-2 pl-4 pt-2">
+                    <span className="text-cyan-400">&gt;&gt;</span>
+                    <input
+                      ref={inputRef}
+                      type="text"
+                      value={currentInput}
+                      onChange={(e) => setCurrentInput(e.target.value)}
+                      onKeyPress={handleKeyPress}
+                      placeholder=""
+                      className="flex-1 bg-transparent border-none outline-none text-green-400 placeholder-green-400/20 font-mono caret-green-400"
+                      autoComplete="off"
+                      autoFocus
+                    />
                   </div>
                 )}
+
+                {/* Auto-scroll anchor */}
+                <div ref={terminalEndRef}></div>
               </div>
-            ))}
+            </div>
+          </div>
+
+          {/* Social Links Section */}
+          <div className="max-w-3xl mx-auto mb-16">
+            <div className="bg-black/40 backdrop-blur-md border border-cyan-500/20 rounded-2xl p-8">
+              <div className="text-center mb-6">
+                <h3 className="text-xl font-bold text-cyan-400 font-mono uppercase tracking-wider mb-2">
+                  <span className="text-green-400">&gt;</span> Connect via other nodes:
+                </h3>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {socialLinks.map((link, index) => (
+                  <a
+                    key={link.name}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group bg-black/50 border border-cyan-500/20 hover:border-cyan-400/50 rounded-xl p-4 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/20"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <div className="text-center space-y-2">
+                      <div className="text-3xl group-hover:scale-110 transition-transform duration-300">{link.icon}</div>
+                      <div className={`text-sm font-mono font-bold ${link.color} group-hover:text-white transition-colors duration-300`}>
+                        {link.name}
+                      </div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* System Status Footer */}
+          <div className="max-w-3xl mx-auto mb-16">
+            <div className="bg-black/40 backdrop-blur-md border border-cyan-500/20 rounded-2xl p-6 font-mono text-sm">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center md:text-left">
+                <div>
+                  <span className="text-cyan-400/60 uppercase tracking-wider block mb-1">&gt; System status:</span>
+                  <span className="text-green-400 font-bold flex items-center justify-center md:justify-start gap-2">
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    ONLINE
+                  </span>
+                </div>
+                <div>
+                  <span className="text-cyan-400/60 uppercase tracking-wider block mb-1">&gt; Encryption protocol:</span>
+                  <span className="text-cyan-400 font-bold">AES-256</span>
+                </div>
+                <div>
+                  <span className="text-cyan-400/60 uppercase tracking-wider block mb-1">&gt; Last ping:</span>
+                  <span className="text-cyan-400 font-bold">{currentTime.toLocaleTimeString()}</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Navigation to Next Level */}
@@ -417,16 +591,18 @@ export default function Level3() {
       </main>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-white/20 bg-black/50 relative z-10">
-        <div className="container mx-auto px-6 text-center">
-          <p className="text-gray-400 font-mono">
-            <span className="text-cyan-400">[</span>
-            LEVEL 3: SECURE CONTACT - ENCRYPTED CHANNELS ACTIVE
-            <span className="text-cyan-400">]</span>
+      <footer className="py-12 border-t border-cyan-500/20 bg-black/50 relative z-10">
+        <div className="container mx-auto px-6 text-center font-mono">
+          <p className="text-cyan-400/70 text-sm mb-2">
+            <span className="text-green-400">&gt;</span> LEVEL 3: SECURE TERMINAL - ENCRYPTED CHANNEL ACTIVE
           </p>
-          <p className="text-cyan-400 text-sm mt-2 font-mono">
-            Security Level: MAXIMUM | Communication Status: SECURED
+          <p className="text-green-400 text-xs">
+            Security Level: <span className="font-bold">MAXIMUM</span> | Communication Status: <span className="font-bold">SECURED</span>
           </p>
+          <div className="mt-4 flex items-center justify-center gap-2">
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            <span className="text-green-400 text-xs">All systems operational</span>
+          </div>
         </div>
       </footer>
     </div>
