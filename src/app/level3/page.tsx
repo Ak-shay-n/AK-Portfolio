@@ -371,32 +371,38 @@ export default function Level3() {
 
       <main className="relative z-10 pb-24 pt-32">
         <div className="container mx-auto px-8">
-          {/* Profile Card Section */}
-          <div className="flex justify-center mb-16 mt-16">
-            <div className="w-full max-w-md">
-              <ProfileCard
-                name="Akshay Kumar B"
-                title="Cybersecurity Specialist"
-                handle="akshaykumar"
-                status="Available"
-                contactText="Secure Contact"
-                avatarUrl="/my-photo.png"
-                miniAvatarUrl="/my-photo.png"
-                behindGradient={undefined}
-                innerGradient={undefined}
-                showUserInfo={true}
-                enableTilt={true}
-                enableMobileTilt={false}
-                onContactClick={() => {
-                  console.log('Secure contact initiated');
-                  document.getElementById('terminal-form')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              />
+          {/* Two Column Layout */}
+          <div className="flex flex-col lg:flex-row gap-8 max-w-7xl mx-auto min-h-screen">
+            
+            {/* Left Column - Fixed Profile Card (Centered Vertically) */}
+            <div className="lg:w-1/3 lg:fixed lg:top-1/2 lg:-translate-y-1/2 lg:left-[calc((100vw-80rem)/2+2rem)] xl:left-[calc((100vw-80rem)/2+2rem)]">
+              <div className="w-full max-w-md mx-auto lg:mx-0">
+                <ProfileCard
+                  name="Akshay Kumar B"
+                  title="Cybersecurity Specialist"
+                  handle="akshaykumar"
+                  status="Available"
+                  contactText="Secure Contact"
+                  avatarUrl="/my-photo.png"
+                  miniAvatarUrl="/my-photo.png"
+                  behindGradient={undefined}
+                  innerGradient={undefined}
+                  showUserInfo={true}
+                  enableTilt={true}
+                  enableMobileTilt={false}
+                  onContactClick={() => {
+                    console.log('Secure contact initiated');
+                    document.getElementById('terminal-form')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                />
+              </div>
             </div>
-          </div>
 
+            {/* Right Column - Scrollable Content */}
+            <div className="lg:w-2/3 lg:ml-[calc(33.333333%+2rem)] space-y-16">
+              
           {/* Terminal Header */}
-          <div className="max-w-4xl mx-auto mb-8" id="terminal-form">
+          <div className="mb-8" id="terminal-form">
             <div className="text-center space-y-4 animate-fadeInUp">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
@@ -415,7 +421,7 @@ export default function Level3() {
           </div>
 
           {/* Terminal Form */}
-          <div className="max-w-3xl mx-auto mb-16">
+          <div className="mb-16">
             <div className="bg-black/60 backdrop-blur-md border-2 border-cyan-500/30 rounded-2xl overflow-hidden shadow-2xl shadow-cyan-500/10">
               {/* Terminal Header Bar */}
               <div className="bg-gradient-to-r from-cyan-900/40 to-blue-900/40 border-b border-cyan-500/30 px-6 py-3 flex items-center gap-3">
@@ -504,7 +510,7 @@ export default function Level3() {
           </div>
 
           {/* Social Links Section */}
-          <div className="max-w-3xl mx-auto mb-16">
+          <div className="mb-16">
             <div className="bg-black/40 backdrop-blur-md border border-cyan-500/20 rounded-2xl p-8">
               <div className="text-center mb-6">
                 <h3 className="text-xl font-bold text-cyan-400 font-mono uppercase tracking-wider mb-2">
@@ -534,7 +540,7 @@ export default function Level3() {
           </div>
 
           {/* System Status Footer */}
-          <div className="max-w-3xl mx-auto mb-16">
+          <div className="mb-16">
             <div className="bg-black/40 backdrop-blur-md border border-cyan-500/20 rounded-2xl p-6 font-mono text-sm">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center md:text-left">
                 <div>
@@ -595,6 +601,11 @@ export default function Level3() {
               </div>
             </div>
           </div>
+
+            </div>
+            {/* End Right Column */}
+          </div>
+          {/* End Two Column Layout */}
         </div>
       </main>
 
