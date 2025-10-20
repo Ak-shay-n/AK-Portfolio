@@ -190,47 +190,42 @@ export default function Home() {
 
       {/* Modern Navigation Header */}
       <nav className="fixed top-4 left-1/2 z-40" style={{ transform: 'translateX(-50%)' }}>
-        <div className={`bg-white/10 backdrop-blur-xl border border-white/20 rounded-full transition-all duration-500 ease-in-out transform-gpu ${
+        <div className={`bg-white/10 backdrop-blur-xl border border-white/20 rounded-full transition-all duration-300 ease-out ${
           isScrolled 
-            ? 'w-[80vw] max-w-3xl px-4 py-3'      // <-- width when scrolled
-            : 'w-[100vw] max-w-6xl px-6 py-4'      // <-- width when at top
-        }`} style={{ transformOrigin: 'center center' }}>
+            ? 'w-[85vw] max-w-4xl px-5 py-3'
+            : 'w-[95vw] max-w-6xl px-8 py-4'
+        }`}>
           <div className="flex items-center justify-between">
-            <div className={`font-bold text-white tracking-tight transition-all duration-500 ${
+            <Link href="/" className={`font-bold text-white tracking-tight transition-all duration-300 hover:text-cyan-400 ${
               isScrolled 
-                ? 'text-lg' 
-                : 'text-xl'
+                ? 'text-base' 
+                : 'text-lg'
             }`}>
               Akshay Kumar
-            </div>
-            <div className={`hidden md:flex items-center transition-all duration-500 ${
+            </Link>
+            <div className={`hidden md:flex items-center gap-2 transition-all duration-300 ${
               isScrolled 
-                ? 'space-x-3' 
-                : 'space-x-6'
+                ? 'gap-2' 
+                : 'gap-3'
             }`}>
-              <Link href="#home" className={`text-white/80 hover:text-white transition-all duration-300 font-medium px-3 py-2 rounded-full hover:bg-white/10 ${
+              <Link href="#home" className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
                 isScrolled ? 'text-xs' : 'text-sm'
               }`}>
                 Home
               </Link>
-              <Link href="#about" className={`text-white/80 hover:text-white transition-all duration-300 font-medium px-3 py-2 rounded-full hover:bg-white/10 ${
+              <Link href="#about" className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
                 isScrolled ? 'text-xs' : 'text-sm'
               }`}>
                 About
               </Link>
-              <Link href="#levels" className={`text-white/80 hover:text-white transition-all duration-300 font-medium px-3 py-2 rounded-full hover:bg-white/10 ${
+              <Link href="#levels" className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
                 isScrolled ? 'text-xs' : 'text-sm'
               }`}>
                 Portfolio
               </Link>
-              <Link href="#contact" className={`text-white/80 hover:text-white transition-all duration-300 font-medium px-3 py-2 rounded-full hover:bg-white/10 ${
-                isScrolled ? 'text-xs' : 'text-sm'
-              }`}>
-                Contact
-              </Link>
-              <Link href="/level1" className={`bg-white text-black rounded-full hover:bg-white/90 transition-all duration-300 font-medium ${
+              <Link href="/level1" className={`bg-white text-black rounded-full hover:bg-white/90 hover:scale-105 transition-all duration-200 font-semibold shadow-lg ${
                 isScrolled 
-                  ? 'px-4 py-2 text-xs' 
+                  ? 'px-5 py-2 text-xs' 
                   : 'px-6 py-2 text-sm'
               }`}>
                 Get Started

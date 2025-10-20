@@ -270,45 +270,43 @@ export default function Level3() {
 
       {/* Modern Navigation Header */}
       <nav className="fixed top-4 left-1/2 z-40" style={{ transform: 'translateX(-50%)' }}>
-        <div className={`bg-white/10 backdrop-blur-xl border border-white/20 rounded-full transition-all duration-500 ease-in-out transform-gpu ${
+        <div className={`bg-white/10 backdrop-blur-xl border border-white/20 rounded-full transition-all duration-300 ease-out ${
           isScrolled 
-            ? 'w-[80vw] max-w-3xl px-4 py-3'
-            : 'w-[100vw] max-w-6xl px-6 py-4'
-        }`} style={{ transformOrigin: 'center center' }}>
+            ? 'w-[85vw] max-w-4xl px-5 py-3'
+            : 'w-[95vw] max-w-6xl px-8 py-4'
+        }`}>
           <div className="flex items-center justify-between">
-            <div className={`font-bold text-white tracking-tight transition-all duration-500 ${
+            <Link href="/" className={`font-bold text-white tracking-tight transition-all duration-300 hover:text-cyan-400 ${
               isScrolled 
-                ? 'text-lg' 
-                : 'text-xl'
+                ? 'text-base' 
+                : 'text-lg'
             }`}>
               Level 3: Contact
-            </div>
-            <div className={`hidden md:flex items-center transition-all duration-500 ${
+            </Link>
+            <div className={`hidden md:flex items-center gap-2 transition-all duration-300 ${
               isScrolled 
-                ? 'space-x-3' 
-                : 'space-x-6'
+                ? 'gap-2' 
+                : 'gap-3'
             }`}>
-              <Link href="/" className={`text-white/80 hover:text-white transition-all duration-300 font-medium px-3 py-2 rounded-full hover:bg-white/10 ${
+              <Link href="/" className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
                 isScrolled ? 'text-xs' : 'text-sm'
               }`}>
                 Home
               </Link>
-              <Link href="/level1" className={`text-white/80 hover:text-white transition-all duration-300 font-medium px-3 py-2 rounded-full hover:bg-white/10 ${
+              <Link href="/level1" className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
                 isScrolled ? 'text-xs' : 'text-sm'
               }`}>
                 Level 1
               </Link>
-              <Link href="/level2" className={`text-white/80 hover:text-white transition-all duration-300 font-medium px-3 py-2 rounded-full hover:bg-white/10 ${
+              <Link href="/level2" className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
                 isScrolled ? 'text-xs' : 'text-sm'
               }`}>
                 Level 2
               </Link>
-              <Link href="/complete" className={`bg-white text-black rounded-full hover:bg-white/90 transition-all duration-300 font-medium ${
-                isScrolled 
-                  ? 'px-4 py-2 text-xs' 
-                  : 'px-6 py-2 text-sm'
+              <Link href="/level3" className={`text-cyan-400 bg-cyan-400/20 border border-cyan-400/30 hover:bg-cyan-400/30 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
+                isScrolled ? 'text-xs' : 'text-sm'
               }`}>
-                Complete
+                Level 3
               </Link>
             </div>
             
@@ -355,15 +353,13 @@ export default function Level3() {
               >
                 Level 2
               </Link>
-              <div className="pt-2">
-                <Link 
-                  href="/complete" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block bg-white text-black px-4 py-3 rounded-xl hover:bg-white/90 transition-all duration-300 text-base font-medium text-center"
-                >
-                  Complete
-                </Link>
-              </div>
+              <Link 
+                href="/level3" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block text-cyan-400 bg-cyan-400/20 border border-cyan-400/30 transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl"
+              >
+                Level 3
+              </Link>
             </div>
           </div>
         </div>
