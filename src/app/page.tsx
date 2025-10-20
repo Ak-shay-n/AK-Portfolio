@@ -52,17 +52,6 @@ export default function Home() {
       difficulty: "Hard" as const,
       estimatedTime: "~20 min",
       skills: ["Contact", "Network", "Verification"]
-    },
-    {
-      title: "MISSION COMPLETE",
-      description: "System fully compromised. You've successfully infiltrated all security layers.",
-      level: 4,
-      href: "/complete",
-      status: "locked" as const,
-      icon: "🏆",
-      difficulty: "Expert" as const,
-      estimatedTime: "~20 min",
-      skills: ["Achievement", "Mastery", "Elite Status"]
     }
   ];
 
@@ -482,9 +471,6 @@ export default function Home() {
                 </Link>
                 <Link href="/level3" className="bg-red-400/20 text-red-400 px-4 py-2 rounded border border-red-400/50 hover:bg-red-400/30 transition-all font-mono">
                   → LEVEL 3
-                </Link>
-                <Link href="/complete" className="bg-purple-400/20 text-purple-400 px-4 py-2 rounded border border-purple-400/50 hover:bg-purple-400/30 transition-all font-mono">
-                  → COMPLETE
                 </Link>
               </div>
             </div>

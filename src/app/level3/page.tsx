@@ -70,10 +70,16 @@ export default function Level3() {
     }
   }, [isClient]);
 
-  // Auto-scroll to bottom
-  useEffect(() => {
-    terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [terminalLines]);
+  // Controlled scroll - only scroll terminal container, not the whole page
+  const terminalContainerRef = useRef<HTMLDivElement>(null);
+  
+  const scrollToBottom = () => {
+    setTimeout(() => {
+      if (terminalContainerRef.current) {
+        terminalContainerRef.current.scrollTop = terminalContainerRef.current.scrollHeight;
+      }
+    }, 100);
+  };
 
   // Handle Enter key press
   const handleKeyPress = async (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -169,6 +175,8 @@ export default function Level3() {
         }, 5000);
       }
       
+      // Scroll after processing and refocus
+      scrollToBottom();
       setTimeout(() => {
         inputRef.current?.focus();
       }, 100);
@@ -424,7 +432,7 @@ export default function Level3() {
               </div>
 
               {/* Terminal Body */}
-              <div className="p-8 font-mono min-h-[400px] max-h-[600px] overflow-y-auto">
+              <div ref={terminalContainerRef} className="p-8 font-mono min-h-[400px] max-h-[600px] overflow-y-auto">
                 {/* Terminal History */}
                 <div className="space-y-1">
                   {terminalLines.map((line, index) => (
