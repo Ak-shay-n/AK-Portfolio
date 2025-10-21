@@ -23,9 +23,9 @@ export default function Level3() {
   const terminalEndRef = useRef<HTMLDivElement>(null);
 
   const socialLinks = [
-    { name: 'LinkedIn', icon: '💼', url: '#', color: 'text-blue-400' },
-    { name: 'GitHub', icon: '👨‍💻', url: '#', color: 'text-purple-400' },
-    { name: 'Email', icon: '📧', url: 'mailto:akshay@example.com', color: 'text-green-400' },
+    { name: 'LinkedIn', icon: '💼', url: 'https://www.linkedin.com/in/akshaykumarb17/', color: 'text-blue-400' },
+    { name: 'GitHub', icon: '👨‍💻', url: 'https://github.com/Ak-shay-n', color: 'text-purple-400' },
+    { name: 'Email', icon: '📧', url: 'mailto:personalakshay17@gmail.com', color: 'text-green-400' },
     { name: 'Instagram', icon: '📷', url: '#', color: 'text-pink-400' }
   ];
 
