@@ -22,6 +22,11 @@ export default function Level2() {
   const [announce, setAnnounce] = useState('');
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [sessionStartTime, setSessionStartTime] = useState<number | null>(null);
+  const sessionTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Session timeout (4 minutes = 240000ms)
+  const SESSION_TIMEOUT = 4 * 60 * 1000;
 
   // Handler for the "wanna find what?" action
   function handleFind() {
@@ -30,7 +35,7 @@ export default function Level2() {
 
     // Check secret after a short delay to allow the card animation
     setTimeout(() => {
-      if (secretInput.trim().toLowerCase() === 'cyber') {
+      if (secretInput.trim() === 'cyber') {
         setIsLoading(true);
         setLoadingProgress(0);
         
@@ -42,6 +47,8 @@ export default function Level2() {
               setTimeout(() => {
                 setShowProjects(true);
                 setIsLoading(false);
+                // Start session timer when projects are shown
+                setSessionStartTime(Date.now());
               }, 500); // Small delay before showing projects
               return 100;
             }
@@ -196,6 +203,33 @@ export default function Level2() {
       document.removeEventListener('click', handleClickOutside);
     };
   }, [isMobileMenuOpen]);
+
+  // Session timeout - lock after 4 minutes of inactivity
+  useEffect(() => {
+    if (sessionStartTime && showProjects) {
+      // Clear any existing timer
+      if (sessionTimerRef.current) {
+        clearTimeout(sessionTimerRef.current);
+      }
+
+      // Set new timer
+      sessionTimerRef.current = setTimeout(() => {
+        // Lock the page after 4 minutes
+        setShowProjects(false);
+        setSessionStartTime(null);
+        setSecretInput('');
+        setAccessDenied(true);
+        setAnnounce('Session expired. Please re-authenticate.');
+      }, SESSION_TIMEOUT);
+
+      // Cleanup on unmount or when dependencies change
+      return () => {
+        if (sessionTimerRef.current) {
+          clearTimeout(sessionTimerRef.current);
+        }
+      };
+    }
+  }, [sessionStartTime, showProjects]);
 
   // Handle scroll for navbar resize
   useEffect(() => {
