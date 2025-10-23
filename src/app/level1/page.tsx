@@ -378,8 +378,8 @@ PREFERRED_CONTACT: Secure channels only`
       <div className="relative z-10 pt-32 pb-20">
         <div className="container mx-auto px-8" ref={contentRef}>
 
-          {/* Hero Section */}
-          <section className="min-h-[60vh] flex items-center justify-center mb-20">
+          {/* Hero Section - Full Screen */}
+          <section className="min-h-screen flex flex-col items-center justify-center relative pb-47">
             <div className="max-w-5xl mx-auto text-center">
               <div className={`transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                 {/* Level Badge */}
@@ -403,10 +403,19 @@ PREFERRED_CONTACT: Secure channels only`
                 </p>
               </div>
             </div>
+
+            {/* Scroll Indicator */}
+            <div className="absolute bottom-35 left-1/2 -translate-x-1/2 animate-bounce">
+              <div className="flex flex-col items-center gap-2">
+                <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-2">
+                  <div className="w-1 h-3 bg-white/60 rounded-full animate-pulse"></div>
+                </div>
+              </div>
+            </div>
           </section>
           
           {/* Content Sections */}
-          <div className="max-w-5xl mx-auto space-y-20">
+          <div className="max-w-5xl mx-auto space-y-20 pt-20">
             
             {/* Navigation Pills */}
             <div className="flex justify-center mb-16">
