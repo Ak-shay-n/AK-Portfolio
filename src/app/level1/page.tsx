@@ -475,30 +475,6 @@ PREFERRED_CONTACT: Secure channels only`
                 <div className="text-white/60 text-sm">25% Progress</div>
               </div>
             </div>
-
-            {/* Next Level CTA */}
-            <div className="text-center">
-              <div className="bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12">
-                <div className="max-w-2xl mx-auto">
-                  <div className="text-5xl mb-6">🚀</div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                    Ready for the Next Level?
-                  </h3>
-                  <p className="text-white/70 mb-8 text-lg">
-                    Dive deeper into my professional journey and explore my projects and achievements.
-                  </p>
-                  <Link 
-                    href="/level2"
-                    className="inline-flex items-center bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition-all duration-300 transform hover:scale-105 group"
-                  >
-                    Continue to Level 2
-                    <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </Link>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
