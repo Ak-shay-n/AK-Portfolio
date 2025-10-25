@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import LevelCard from '@/components/LevelCard';
-import Terminal from '@/components/Terminal';
 import LightRays from '@/components/LightRays';
 
 export default function Home() {
@@ -147,6 +146,22 @@ export default function Home() {
     };
   }, [isClient]);
 
+  // Smooth scroll to section
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const navbarHeight = 100; // Account for navbar height
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - navbarHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+    setIsMobileMenuOpen(false);
+  };
+
   if (!isClient) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center">
@@ -208,22 +223,22 @@ export default function Home() {
                 ? 'gap-2' 
                 : 'gap-3'
             }`}>
-              <Link href="#home" className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
+              <button onClick={() => scrollToSection('home')} className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
                 isScrolled ? 'text-xs' : 'text-sm'
               }`}>
                 Home
-              </Link>
-              <Link href="#about" className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
+              </button>
+              <Link href="/level1" className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
                 isScrolled ? 'text-xs' : 'text-sm'
               }`}>
                 About
               </Link>
-              <Link href="#levels" className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
+              <Link href="/level2" className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
                 isScrolled ? 'text-xs' : 'text-sm'
               }`}>
                 Portfolio
               </Link>
-              <Link href="/level1" className={`bg-white text-black rounded-full hover:bg-white/90 hover:scale-105 transition-all duration-200 font-semibold shadow-lg ${
+              <Link href="/level3" className={`bg-white text-black rounded-full hover:bg-white/90 hover:scale-105 transition-all duration-200 font-semibold shadow-lg ${
                 isScrolled 
                   ? 'px-5 py-2 text-xs' 
                   : 'px-6 py-2 text-sm'
@@ -254,37 +269,29 @@ export default function Home() {
               : 'max-h-0 opacity-0 invisible'
           } overflow-hidden`}>
             <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 space-y-2">
-              <Link 
-                href="#home" 
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
+              <button 
+                onClick={() => scrollToSection('home')}
+                className="block w-full text-left text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
               >
                 Home
-              </Link>
+              </button>
               <Link 
-                href="#about" 
+                href="/level1"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
+                className="block w-full text-left text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
               >
                 About
               </Link>
               <Link 
-                href="#levels" 
+                href="/level2"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
+                className="block w-full text-left text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
               >
                 Portfolio
               </Link>
-              <Link 
-                href="#contact" 
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
-              >
-                Contact
-              </Link>
               <div className="pt-2">
                 <Link 
-                  href="/level1" 
+                  href="/level3" 
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="block bg-white text-black px-4 py-3 rounded-xl hover:bg-white/90 transition-all duration-300 text-base font-medium text-center"
                 >
