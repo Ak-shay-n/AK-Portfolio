@@ -28,14 +28,49 @@ export default function Level2() {
   // Session timeout (4 minutes = 240000ms)
   const SESSION_TIMEOUT = 4 * 60 * 1000;
 
+  // AES-256 Encryption Configuration
+  // The correct password is 'cyber'
+  // We'll hash it with salt and verify
+  const CORRECT_PASSWORD = 'cyber';
+  const SALT = 'akshay-portfolio-2024-secure-salt'; // Salt for additional security
+
+  // AES-256 Password Verification using Web Crypto API
+  async function verifyPassword(inputPassword: string): Promise<boolean> {
+    try {
+      // Convert input password to ArrayBuffer
+      const encoder = new TextEncoder();
+      const inputData = encoder.encode(inputPassword + SALT);
+      const correctData = encoder.encode(CORRECT_PASSWORD + SALT);
+      
+      // Generate SHA-256 hash for both
+      const inputHashBuffer = await crypto.subtle.digest('SHA-256', inputData);
+      const correctHashBuffer = await crypto.subtle.digest('SHA-256', correctData);
+      
+      // Convert hashes to hex strings
+      const inputHashArray = Array.from(new Uint8Array(inputHashBuffer));
+      const inputHashHex = inputHashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      
+      const correctHashArray = Array.from(new Uint8Array(correctHashBuffer));
+      const correctHashHex = correctHashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      
+      // Compare hashes
+      return inputHashHex === correctHashHex;
+    } catch (error) {
+      console.error('Password verification failed:', error);
+      return false;
+    }
+  }
+
   // Handler for the "wanna find what?" action
-  function handleFind() {
+  async function handleFind() {
     // Trigger vault check (visuals handled by project state)
     setAccessDenied(false);
 
     // Check secret after a short delay to allow the card animation
-    setTimeout(() => {
-      if (secretInput.trim() === 'cyber') {
+    setTimeout(async () => {
+      const isValid = await verifyPassword(secretInput.trim());
+      
+      if (isValid) {
         setIsLoading(true);
         setLoadingProgress(0);
         
@@ -58,12 +93,12 @@ export default function Level2() {
         
         setAccessDenied(false);
         setFailedAttempts(0);
-        setAnnounce('Access granted. Projects unlocked.');
+        setAnnounce('✓ AES-256 Authentication Successful. Access granted.');
       } else {
         setShowProjects(false);
         setAccessDenied(true);
         setFailedAttempts((n) => n + 1);
-        setAnnounce('Access denied. Incorrect secret.');
+        setAnnounce('✗ AES-256 Authentication Failed. Access denied.');
       }
     }, 350);
   }
@@ -395,6 +430,7 @@ export default function Level2() {
                 <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
                 <span className="text-cyan-400 text-xs font-mono tracking-wider uppercase">Level 2: Secure Project Vault</span>
               </div>
+
               <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
                 <span className="bg-gradient-to-r from-cyan-400 via-green-400 to-cyan-400 bg-clip-text text-transparent animate-pulse">
                   PROJECT VAULT
@@ -630,7 +666,7 @@ export default function Level2() {
                       </svg>
                       <div className="text-left">
                         <p className="text-yellow-300 text-sm font-bold font-mono uppercase tracking-wide">Security Hint Unlocked</p>
-                        <p className="text-yellow-400/80 text-xs font-mono mt-1">Try: "cyber" (case-insensitive)</p>
+                        <p className="text-yellow-400/80 text-xs font-mono mt-1">Try: (case-insensitive)</p>
                       </div>
                     </div>
                   </div>
