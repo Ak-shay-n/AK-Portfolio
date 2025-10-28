@@ -23,10 +23,10 @@ export default function Level3() {
   const terminalEndRef = useRef<HTMLDivElement>(null);
 
   const socialLinks = [
-    { name: 'LinkedIn', icon: '💼', url: 'https://www.linkedin.com/in/akshaykumarb17/', color: 'text-blue-400' },
-    { name: 'GitHub', icon: '👨‍💻', url: 'https://github.com/Ak-shay-n', color: 'text-purple-400' },
-    { name: 'Email', icon: '📧', url: 'mailto:personalakshay17@gmail.com', color: 'text-green-400' },
-    { name: 'Instagram', icon: '📷', url: '#', color: 'text-pink-400' }
+    { name: 'LinkedIn', icon: '/social media icons/linkedin.png', url: 'https://www.linkedin.com/in/akshaykumarb17/', color: 'text-blue-400' },
+    { name: 'GitHub', icon: '/social media icons/github.png', url: 'https://github.com/Ak-shay-n', color: 'text-purple-400' },
+    { name: 'Email', icon: '/social media icons/email.png', url: 'mailto:personalakshay17@gmail.com', color: 'text-green-400' },
+    { name: 'X', icon: '/social media icons/x.png', url: '#', color: 'text-pink-400' }
   ];
 
   // Type text animation
@@ -524,7 +524,9 @@ export default function Level3() {
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <div className="text-center space-y-2">
-                      <div className="text-3xl group-hover:scale-110 transition-transform duration-300">{link.icon}</div>
+                      <div className="flex justify-center group-hover:scale-110 transition-transform duration-300">
+                        <img src={link.icon} alt={link.name} className="w-8 h-8" />
+                      </div>
                       <div className={`text-sm font-mono font-bold ${link.color} group-hover:text-white transition-colors duration-300`}>
                         {link.name}
                       </div>
