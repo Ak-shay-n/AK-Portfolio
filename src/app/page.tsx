@@ -7,6 +7,9 @@ import LightRays from '@/components/LightRays';
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showLoading, setShowLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [loadingPhase, setLoadingPhase] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -17,6 +20,15 @@ export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
 
   const welcomeText = "Welcome to My World";
+
+  const loadingPhases = [
+    { text: 'INITIALIZING SECURE CONNECTION', icon: '🔐', color: 'from-cyan-400 to-blue-500' },
+    { text: 'AUTHENTICATING CREDENTIALS', icon: '🔑', color: 'from-blue-500 to-purple-500' },
+    { text: 'ESTABLISHING AES-256 ENCRYPTION', icon: '🛡️', color: 'from-purple-500 to-pink-500' },
+    { text: 'SCANNING SECURITY PROTOCOLS', icon: '📡', color: 'from-pink-500 to-red-500' },
+    { text: 'VERIFYING DIGITAL SIGNATURE', icon: '✅', color: 'from-red-500 to-orange-500' },
+    { text: 'ACCESS GRANTED', icon: '🎯', color: 'from-green-400 to-cyan-400' }
+  ];
 
   const levels = [
     {
@@ -112,6 +124,37 @@ export default function Home() {
     setIsClient(true);
   }, []);
 
+  // Loading screen progression
+  useEffect(() => {
+    if (!showLoading) return;
+
+    const duration = 3500; // 3.5 seconds total
+    const interval = 30; // Update every 30ms
+    const increment = (100 / duration) * interval;
+
+    const timer = setInterval(() => {
+      setLoadingProgress(prev => {
+        const next = prev + increment;
+        
+        // Update phase based on progress
+        if (next >= 83.33 && loadingPhase < 5) setLoadingPhase(5);
+        else if (next >= 66.67 && loadingPhase < 4) setLoadingPhase(4);
+        else if (next >= 50 && loadingPhase < 3) setLoadingPhase(3);
+        else if (next >= 33.33 && loadingPhase < 2) setLoadingPhase(2);
+        else if (next >= 16.67 && loadingPhase < 1) setLoadingPhase(1);
+        
+        if (next >= 100) {
+          clearInterval(timer);
+          setTimeout(() => setShowLoading(false), 400);
+          return 100;
+        }
+        return next;
+      });
+    }, interval);
+
+    return () => clearInterval(timer);
+  }, [showLoading, loadingPhase]);
+
   // Close mobile menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -165,7 +208,91 @@ export default function Home() {
   if (!isClient) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center">
-        <div className="text-green-400 text-2xl font-mono">Initializing...</div>
+        <div className="text-cyan-400">Loading...</div>
+      </div>
+    );
+  }
+
+  // Advanced loading screen
+  if (showLoading) {
+    return (
+      <div className="fixed inset-0 z-[9999] bg-black overflow-hidden">
+        {/* Animated cyber grid background */}
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
+            linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px',
+          animation: 'gridMove 20s linear infinite'
+        }} />
+        
+        {/* Scanning line effect */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div 
+            className="absolute h-[2px] w-full bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-50"
+            style={{
+              animation: 'scan 2s ease-in-out infinite',
+              boxShadow: '0 0 20px rgba(0, 255, 255, 0.5)'
+            }}
+          />
+        </div>
+
+        {/* Main content */}
+        <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4">
+          {/* Current phase */}
+          <div className="mb-8 flex items-center gap-3">
+            <div className="text-4xl animate-pulse">{loadingPhases[loadingPhase].icon}</div>
+            <div>
+              <div className="text-cyan-400 font-semibold text-2xl tracking-wide uppercase">
+                {loadingPhases[loadingPhase].text}
+              </div>
+              <div className="text-cyan-300/40 text-sm mt-1">Phase {loadingPhase + 1} of {loadingPhases.length}</div>
+            </div>
+          </div>
+
+          {/* Progress bar */}
+          <div className="w-full max-w-2xl">
+            <div className="h-2 bg-gray-800/50 rounded-full overflow-hidden backdrop-blur-sm border border-cyan-900/30">
+              <div 
+                className="h-full bg-gradient-to-r transition-all duration-300 ease-out relative"
+                style={{
+                  width: `${loadingProgress}%`,
+                  background: `linear-gradient(90deg, ${loadingPhases[loadingPhase].color})`,
+                  boxShadow: `0 0 20px ${loadingPhases[loadingPhase].color.split(',')[0]}`
+                }}
+              >
+                {/* Shimmer effect */}
+                <div 
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                  style={{ animation: 'shimmer 1.5s infinite' }}
+                />
+              </div>
+            </div>
+            <div className="text-center mt-3 text-cyan-400 font-mono text-xl">
+              {Math.floor(loadingProgress)}%
+            </div>
+          </div>
+        </div>
+
+        {/* CSS Animations */}
+        <style jsx>{`
+          @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+          }
+          
+          @keyframes scan {
+            0% { top: -10%; }
+            50% { top: 110%; }
+            100% { top: -10%; }
+          }
+          
+          @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+          }
+        `}</style>
       </div>
     );
   }
