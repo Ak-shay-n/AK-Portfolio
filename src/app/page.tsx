@@ -10,6 +10,7 @@ export default function Home() {
   const [showLoading, setShowLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [loadingPhase, setLoadingPhase] = useState(0);
+  const [randomCode, setRandomCode] = useState('');
   const [currentText, setCurrentText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -155,6 +156,42 @@ export default function Home() {
     return () => clearInterval(timer);
   }, [showLoading, loadingPhase]);
 
+  // Random code generation for loading screen
+  useEffect(() => {
+    if (!showLoading) return;
+
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ01';
+    const generateRandomCode = (length: number) => {
+      let result = '';
+      for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+      }
+      return result;
+    };
+
+    // Initialize code
+    setRandomCode(generateRandomCode(140));
+
+    // Update random positions in code
+    const codeInterval = setInterval(() => {
+      setRandomCode(prev => {
+        if (!prev) return generateRandomCode(140);
+        
+        const numChanges = Math.floor(Math.random() * 3) + 1;
+        let newCodeString = prev.split('');
+        
+        for (let i = 0; i < numChanges; i++) {
+          const pos = Math.floor(Math.random() * newCodeString.length);
+          newCodeString[pos] = characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        
+        return newCodeString.join('');
+      });
+    }, 80);
+
+    return () => clearInterval(codeInterval);
+  }, [showLoading]);
+
   // Close mobile menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -216,79 +253,56 @@ export default function Home() {
   // Advanced loading screen
   if (showLoading) {
     return (
-      <div className="fixed inset-0 z-[9999] bg-black overflow-hidden">
-        {/* Animated cyber grid background */}
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px',
-          animation: 'gridMove 20s linear infinite'
-        }} />
-        
-        {/* Scanning line effect */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div 
-            className="absolute h-[2px] w-full bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-50"
-            style={{
-              animation: 'scan 2s ease-in-out infinite',
-              boxShadow: '0 0 20px rgba(0, 255, 255, 0.5)'
-            }}
-          />
-        </div>
+      <div className="fixed inset-0 z-[9999] bg-black overflow-hidden flex items-center justify-center">
+        <div className="w-[90%] max-w-[700px]">
+          {/* LOADING text */}
+          <div className="text-center mb-[30px]">
+            <h1 
+              className="text-white text-4xl font-bold uppercase tracking-[16px]"
+              style={{ fontFamily: "'Arial Black', sans-serif" }}
+            >
+              LOADING
+            </h1>
+          </div>
 
-        {/* Main content */}
-        <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4">
-          {/* Current phase */}
-          <div className="mb-8 flex items-center gap-3">
-            <div className="text-4xl animate-pulse">{loadingPhases[loadingPhase].icon}</div>
-            <div>
-              <div className="text-cyan-400 font-semibold text-2xl tracking-wide uppercase">
-                {loadingPhases[loadingPhase].text}
-              </div>
-              <div className="text-cyan-300/40 text-sm mt-1">Phase {loadingPhase + 1} of {loadingPhases.length}</div>
+          {/* Top decoration: hyphen - thin line - hyphen */}
+          <div className="flex items-center mb-[5px] gap-0">
+            <div className="w-[40px] h-[5px] bg-white flex-shrink-0" />
+            <div className="flex-grow h-[2px] bg-white" />
+            <div className="w-[40px] h-[5px] bg-white flex-shrink-0" />
+          </div>
+
+          {/* Main progress bar */}
+          <div className="relative bg-[#1a1a1a] h-[30px] border border-white shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+            <div 
+              className="h-full bg-white transition-all duration-100 ease-linear relative overflow-hidden"
+              style={{ width: `${loadingProgress}%` }}
+            >
+              {/* Shine effect */}
+              <div 
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+                style={{ animation: 'shine 1.5s infinite' }}
+              />
             </div>
           </div>
 
-          {/* Progress bar */}
-          <div className="w-full max-w-2xl">
-            <div className="h-2 bg-gray-800/50 rounded-full overflow-hidden backdrop-blur-sm border border-cyan-900/30">
+          {/* Bottom decoration: hyphen - code text - hyphen */}
+          <div className="flex items-center mt-[5px] gap-0">
+            <div className="w-[40px] h-[5px] bg-white flex-shrink-0" />
+            <div className="flex-grow overflow-hidden whitespace-nowrap px-2">
               <div 
-                className="h-full bg-gradient-to-r transition-all duration-300 ease-out relative"
-                style={{
-                  width: `${loadingProgress}%`,
-                  background: `linear-gradient(90deg, ${loadingPhases[loadingPhase].color})`,
-                  boxShadow: `0 0 20px ${loadingPhases[loadingPhase].color.split(',')[0]}`
-                }}
+                className="text-[#888] text-[9px] tracking-[0.5px] font-mono"
               >
-                {/* Shimmer effect */}
-                <div 
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                  style={{ animation: 'shimmer 1.5s infinite' }}
-                />
+                {randomCode}
               </div>
             </div>
-            <div className="text-center mt-3 text-cyan-400 font-mono text-xl">
-              {Math.floor(loadingProgress)}%
-            </div>
+            <div className="w-[40px] h-[5px] bg-white flex-shrink-0" />
           </div>
         </div>
 
         {/* CSS Animations */}
         <style jsx>{`
-          @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-          }
-          
-          @keyframes scan {
-            0% { top: -10%; }
-            50% { top: 110%; }
-            100% { top: -10%; }
-          }
-          
-          @keyframes shimmer {
+          @keyframes shine {
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100%); }
           }
