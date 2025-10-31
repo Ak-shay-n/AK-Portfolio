@@ -254,26 +254,26 @@ export default function Home() {
   if (showLoading) {
     return (
       <div className="fixed inset-0 z-[9999] bg-black overflow-hidden flex items-center justify-center">
-        <div className="w-[90%] max-w-[700px]">
+        <div className="w-[80%] max-w-[500px]">
           {/* LOADING text */}
-          <div className="text-center mb-[30px]">
+          <div className="text-center mb-[20px]">
             <h1 
-              className="text-white text-4xl font-bold uppercase tracking-[16px]"
-              style={{ fontFamily: "'Arial Black', sans-serif" }}
+              className="text-white text-2xl font-bold uppercase tracking-[12px]"
+              style={{ fontFamily: "'Horizon', 'Arial Black', sans-serif" }}
             >
               LOADING
             </h1>
           </div>
 
           {/* Top decoration: hyphen - thin line - hyphen */}
-          <div className="flex items-center mb-[5px] gap-0">
-            <div className="w-[40px] h-[5px] bg-white flex-shrink-0" />
-            <div className="flex-grow h-[2px] bg-white" />
-            <div className="w-[40px] h-[5px] bg-white flex-shrink-0" />
+          <div className="flex items-center mb-[4px] gap-0">
+            <div className="w-[30px] h-[4px] bg-white flex-shrink-0" />
+            <div className="flex-grow h-[1.5px] bg-white" />
+            <div className="w-[30px] h-[4px] bg-white flex-shrink-0" />
           </div>
 
           {/* Main progress bar */}
-          <div className="relative bg-[#1a1a1a] h-[30px] border border-white shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+          <div className="relative bg-[#1a1a1a] h-[20px] border border-white shadow-[0_0_15px_rgba(255,255,255,0.2)]">
             <div 
               className="h-full bg-white transition-all duration-100 ease-linear relative overflow-hidden"
               style={{ width: `${loadingProgress}%` }}
@@ -287,16 +287,16 @@ export default function Home() {
           </div>
 
           {/* Bottom decoration: hyphen - code text - hyphen */}
-          <div className="flex items-center mt-[5px] gap-0">
-            <div className="w-[40px] h-[5px] bg-white flex-shrink-0" />
+          <div className="flex items-center mt-[4px] gap-0">
+            <div className="w-[30px] h-[4px] bg-white flex-shrink-0" />
             <div className="flex-grow overflow-hidden whitespace-nowrap px-2">
               <div 
-                className="text-[#888] text-[9px] tracking-[0.5px] font-mono"
+                className="text-[#888] text-[8px] tracking-[0.3px] font-mono"
               >
                 {randomCode}
               </div>
             </div>
-            <div className="w-[40px] h-[5px] bg-white flex-shrink-0" />
+            <div className="w-[30px] h-[4px] bg-white flex-shrink-0" />
           </div>
         </div>
 

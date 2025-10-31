@@ -581,23 +581,6 @@ export default function Level3() {
               </Link>
             </div>
             
-            <div className="bg-white/5 backdrop-blur-md border border-white/10 p-6 max-w-2xl mx-auto rounded-3xl">
-              <div className="flex items-center justify-center space-x-8 text-sm">
-                <div className="flex items-center space-x-2">
-                  <span className="text-white/60">Progress:</span>
-                  <span className="text-green-400 font-bold">Level 3 Complete ✓</span>
-                </div>
-                <div className="w-px h-6 bg-white/20"></div>
-                <div className="flex items-center space-x-2">
-                  <span className="text-white/60">Final Stage:</span>
-                  <span className="text-yellow-400 font-bold">Mission Complete 🏆</span>
-                </div>
-              </div>
-              
-              <div className="mt-4 w-full h-2 bg-white/10 rounded-full overflow-hidden">
-                <div className="h-full w-3/4 bg-gradient-to-r from-green-400 to-cyan-400 animate-pulse"></div>
-              </div>
-            </div>
           </div>
 
             </div>
