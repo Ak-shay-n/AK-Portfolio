@@ -312,24 +312,6 @@ textarea:focus {
   z-index: 1000;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #000;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #00ff41;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #00ffff;
-}
-
 /* Selection Styles */
 ::selection {
   background: rgba(0, 255, 65, 0.3);

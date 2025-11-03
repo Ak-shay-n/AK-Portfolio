@@ -11,6 +11,7 @@ export default function Home() {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [loadingPhase, setLoadingPhase] = useState(0);
   const [randomCode, setRandomCode] = useState('');
+  const [dataLoaded, setDataLoaded] = useState(false);
   const [currentText, setCurrentText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -125,36 +126,87 @@ export default function Home() {
     setIsClient(true);
   }, []);
 
-  // Loading screen progression
+  // Simulate data fetching (replace with your actual API calls)
   useEffect(() => {
-    if (!showLoading) return;
+    if (!isClient || !showLoading) return;
 
-    const duration = 3500; // 3.5 seconds total
-    const interval = 30; // Update every 30ms
-    const increment = (100 / duration) * interval;
+    let animationFrameId: number;
+    let cancelled = false;
 
-    const timer = setInterval(() => {
-      setLoadingProgress(prev => {
-        const next = prev + increment;
-        
-        // Update phase based on progress
-        if (next >= 83.33 && loadingPhase < 5) setLoadingPhase(5);
-        else if (next >= 66.67 && loadingPhase < 4) setLoadingPhase(4);
-        else if (next >= 50 && loadingPhase < 3) setLoadingPhase(3);
-        else if (next >= 33.33 && loadingPhase < 2) setLoadingPhase(2);
-        else if (next >= 16.67 && loadingPhase < 1) setLoadingPhase(1);
-        
-        if (next >= 100) {
-          clearInterval(timer);
-          setTimeout(() => setShowLoading(false), 400);
-          return 100;
+    const fetchData = async () => {
+      try {
+        // Simulate fetching multiple data sources
+        // Replace these with your actual API calls
+        const fetchOperations = [
+          new Promise(resolve => setTimeout(resolve, 600)),  // Simulated fetch 1
+          new Promise(resolve => setTimeout(resolve, 900)),  // Simulated fetch 2
+          new Promise(resolve => setTimeout(resolve, 1200)), // Simulated fetch 3
+        ];
+
+        const total = fetchOperations.length;
+        let completed = 0;
+        let currentProgress = 0;
+        let targetProgress = 0;
+
+        // Smooth animation loop
+        const smoothAnimate = () => {
+          if (cancelled) return;
+
+          // Lerp (linear interpolation) for smooth animation
+          const lerp = (start: number, end: number, factor: number) => {
+            return start + (end - start) * factor;
+          };
+
+          // Smooth catch-up to target (slower = smoother)
+          currentProgress = lerp(currentProgress, targetProgress, 0.1);
+
+          setLoadingProgress(currentProgress);
+
+          // Update phase based on progress
+          if (currentProgress >= 80) setLoadingPhase(5);
+          else if (currentProgress >= 60) setLoadingPhase(4);
+          else if (currentProgress >= 45) setLoadingPhase(3);
+          else if (currentProgress >= 30) setLoadingPhase(2);
+          else if (currentProgress >= 15) setLoadingPhase(1);
+
+          // Keep animating if not close enough to target
+          if (Math.abs(targetProgress - currentProgress) > 0.1 || targetProgress < 100) {
+            animationFrameId = requestAnimationFrame(smoothAnimate);
+          } else if (targetProgress >= 100) {
+            // Finished loading
+            setDataLoaded(true);
+            setTimeout(() => setShowLoading(false), 300);
+          }
+        };
+
+        // Start smooth animation loop
+        animationFrameId = requestAnimationFrame(smoothAnimate);
+
+        // Process fetch operations
+        for (const operation of fetchOperations) {
+          await operation;
+          completed++;
+          targetProgress = (completed / total) * 100;
         }
-        return next;
-      });
-    }, interval);
 
-    return () => clearInterval(timer);
-  }, [showLoading, loadingPhase]);
+      } catch (error) {
+        console.error('Error loading data:', error);
+        setTimeout(() => {
+          setDataLoaded(true);
+          setShowLoading(false);
+        }, 2000);
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      cancelled = true;
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
+  }, [isClient, showLoading]);
 
   // Random code generation for loading screen
   useEffect(() => {
@@ -275,8 +327,11 @@ export default function Home() {
           {/* Main progress bar */}
           <div className="relative bg-[#1a1a1a] h-[20px] border border-white shadow-[0_0_15px_rgba(255,255,255,0.2)]">
             <div 
-              className="h-full bg-white transition-all duration-100 ease-linear relative overflow-hidden"
-              style={{ width: `${loadingProgress}%` }}
+              className="h-full bg-white relative overflow-hidden will-change-[width]"
+              style={{ 
+                width: `${loadingProgress}%`,
+                transition: 'none'
+              }}
             >
               {/* Shine effect */}
               <div 

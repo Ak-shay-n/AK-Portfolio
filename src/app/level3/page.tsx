@@ -560,29 +560,6 @@ export default function Level3() {
             </div>
           </div>
 
-          {/* Navigation to Next Level */}
-          <div className="mt-20 text-center">
-            <div className="inline-block mb-6">
-              <span className="text-white/60 text-sm font-light tracking-wider uppercase">Final Challenge Awaits</span>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
-              <Link href="/complete" className="group relative overflow-hidden">
-                <div className="bg-white text-black px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/90 transition-all duration-300 shadow-lg hover:shadow-xl">
-                  🏆 Mission Complete
-                  <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300 inline-block">→</span>
-                </div>
-              </Link>
-              
-              <Link href="/" className="group relative">
-                <div className="bg-transparent border-2 border-white/30 text-white px-8 py-4 rounded-full text-lg font-semibold hover:border-white hover:bg-white/10 transition-all duration-300">
-                  Return Home
-                  <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300 inline-block">←</span>
-                </div>
-              </Link>
-            </div>
-            
-          </div>
-
             </div>
             {/* End Right Column */}
           </div>
