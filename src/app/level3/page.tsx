@@ -368,21 +368,24 @@ export default function Level3() {
       <main className="relative z-10 pb-24 pt-32">
         <div className="container mx-auto px-8">
           {/* Two Column Layout */}
-          <div className="flex flex-col lg:flex-row gap-8 max-w-7xl mx-auto min-h-screen">
+          <div className="flex flex-col lg:flex-row gap-12 max-w-7xl mx-auto min-h-screen">
             
             {/* Left Column - Fixed Profile Card (Centered Vertically) */}
             <div className="lg:w-1/3 lg:fixed lg:top-1/2 lg:-translate-y-1/2 lg:left-[calc((100vw-80rem)/2+2rem)] xl:left-[calc((100vw-80rem)/2+2rem)]">
               <div className="w-full max-w-md mx-auto lg:mx-0">
                 <ProfileCard
                   name="Akshay Kumar B"
-                  title="Cybersecurity Specialist"
+                  title="Cybersecurity Enthusiast"
                   handle="akshaykumar"
                   status="Available"
                   contactText="Secure Contact"
                   avatarUrl="/my-photo.png"
                   miniAvatarUrl="/my-photo.png"
+                  iconUrl="/holographic-pattern.svg"
+                  grainUrl="/noise-texture.svg"
                   behindGradient={undefined}
                   innerGradient={undefined}
+                  showBehindGradient={true}
                   showUserInfo={true}
                   enableTilt={true}
                   enableMobileTilt={false}
@@ -395,7 +398,7 @@ export default function Level3() {
             </div>
 
             {/* Right Column - Scrollable Content */}
-            <div className="lg:w-2/3 lg:ml-[calc(33.333333%+2rem)] space-y-16">
+            <div className="lg:w-2/3 lg:ml-[calc(33.333333%+7rem)] space-y-16">
               
           {/* Terminal Header */}
           <div className="mb-8" id="terminal-form">

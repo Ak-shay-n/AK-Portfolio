@@ -28,11 +28,28 @@
   --card-radius: 30px;
 }
 
+/* 
+  PARALLAX DEPTH LAYERS (when hovering/tilting the card):
+  
+  Layer 1 (Foreground - MINIMAL movement):
+  - .pc-content (text/name): 5px range (moves OPPOSITE to pointer)
+  - .pc-avatar-content (photo): 5px range (moves OPPOSITE to pointer)
+  
+  Layer 2 (Background - DRAMATIC movement):
+  - .pc-glare (light effect): 50px range (moves WITH pointer)
+  - .pc-shine (holographic symbols): 60px range (moves WITH pointer)
+  
+  This creates a 12:1 ratio (60px vs 5px) for extreme parallax depth.
+  Background moves in SAME direction as pointer, foreground moves OPPOSITE.
+  This makes the holographic symbols appear to float FAR behind the content!
+*/
+
 .pc-card-wrapper {
   perspective: 500px;
   transform: translate3d(0, 0, 0.1px);
   position: relative;
   touch-action: none;
+  overflow: visible;
 }
 
 .pc-card-wrapper::before {
@@ -47,6 +64,8 @@
   transform: scale(0.8) translate3d(0, 0, 0.1px);
   background-size: 100% 100%;
   background-image: var(--behind-gradient);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .pc-card-wrapper:hover,
@@ -56,8 +75,9 @@
 
 .pc-card-wrapper:hover::before,
 .pc-card-wrapper.active::before {
-  filter: contrast(1.2) saturate(1.5) blur(30px) opacity(0.8);
-  transform: scale(0.95) translate3d(0, 0, 0.1px);
+  filter: contrast(1) saturate(2) blur(40px);
+  transform: scale(0.9) translate3d(0, 0, 0.1px);
+  opacity: 1;
 }
 
 .pc-card {
@@ -67,70 +87,154 @@
   aspect-ratio: 0.718;
   border-radius: var(--card-radius);
   position: relative;
-  background-blend-mode: normal;
-  box-shadow: 
-    rgba(0, 0, 0, 0.3) calc((var(--pointer-from-left) * 8px) - 4px)
-    calc((var(--pointer-from-top) * 12px) - 6px) 25px -5px,
-    rgba(255, 255, 255, 0.1) 0 0 0 1px inset;
-  transition: all 0.3s ease;
+  background-blend-mode: color-dodge, normal, normal, normal;
+  animation: glow-bg 12s linear infinite;
+  box-shadow: rgba(0, 0, 0, 0.8) calc((var(--pointer-from-left) * 10px) - 3px)
+    calc((var(--pointer-from-top) * 20px) - 6px) 20px -5px;
+  transition: transform 1s ease;
   transform: translate3d(0, 0, 0.1px) rotateX(0deg) rotateY(0deg);
-  background: 
-    linear-gradient(145deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%),
-    radial-gradient(circle at var(--pointer-x) var(--pointer-y), 
-      rgba(255, 255, 255, 0.15) 0%, 
-      rgba(255, 255, 255, 0.05) 50%, 
-      transparent 100%);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-size: 100% 100%;
+  background-position:
+    0 0,
+    0 0,
+    50% 50%,
+    0 0;
+  background-image:
+    radial-gradient(
+      farthest-side circle at var(--pointer-x) var(--pointer-y),
+      hsla(266, 100%, 90%, var(--card-opacity)) 4%,
+      hsla(266, 50%, 80%, calc(var(--card-opacity) * 0.75)) 10%,
+      hsla(266, 25%, 70%, calc(var(--card-opacity) * 0.5)) 50%,
+      hsla(266, 0%, 60%, 0) 100%
+    ),
+    radial-gradient(35% 52% at 55% 20%, #00ffaac4 0%, #073aff00 100%),
+    radial-gradient(100% 100% at 50% 50%, #00c1ffff 1%, #073aff00 76%),
+    conic-gradient(from 124deg at 50% 50%, #c137ffff 0%, #07c6ffff 40%, #07c6ffff 60%, #c137ffff 100%);
   overflow: hidden;
+  isolation: isolate;
 }
 
 .pc-card:hover,
 .pc-card.active {
-  transition: transform 0.1s ease;
+  transition: none;
   transform: translate3d(0, 0, 0.1px) rotateX(var(--rotate-y)) rotateY(var(--rotate-x));
-  box-shadow: 
-    rgba(0, 0, 0, 0.4) calc((var(--pointer-from-left) * 10px) - 5px)
-    calc((var(--pointer-from-top) * 15px) - 8px) 30px -3px,
-    rgba(255, 255, 255, 0.2) 0 0 0 1px inset,
-    rgba(255, 255, 255, 0.1) 0 0 20px 0;
-  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .pc-card * {
   display: grid;
   grid-area: 1/-1;
   border-radius: var(--card-radius);
-  transform: translate3d(0, 0, 0.1px);
   pointer-events: none;
+}
+
+/* Allow specific elements to break out of grid for parallax */
+.pc-shine,
+.pc-glare,
+.pc-content,
+.pc-avatar-content {
+  display: block !important;
 }
 
 .pc-inside {
   inset: 1px;
   position: absolute;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(20px);
-  transform: translate3d(0, 0, 0.01px);
+  background-image: var(--inner-gradient);
+  background-color: rgba(0, 0, 0, 0.9);
+  display: grid !important;
+  grid-area: 1/-1;
+  border-radius: var(--card-radius);
+  overflow: hidden;
 }
 
 .pc-shine {
-  background: transparent;
-  transition: opacity 0.3s ease;
-  opacity: 0;
-  transform: translate3d(0, 0, 1px);
-  overflow: hidden;
-  z-index: 3;
+  position: absolute;
+  /* Make it LARGER to prevent blank spaces when moving */
+  inset: -100px;
+  mask-image: var(--icon);
+  mask-mode: luminance;
+  mask-repeat: no-repeat;
+  mask-size: cover;
+  mask-position: center center;
+  transition: filter 0.15s ease, opacity 0.15s ease;
+  filter: brightness(0.66) contrast(1.33) saturate(0.33);
+  opacity: 0.5;
+  animation: holo-bg 18s linear infinite;
+  mix-blend-mode: color-dodge;
+  will-change: transform, mask-position, filter, opacity;
+  pointer-events: none;
 }
 
 .pc-card:hover .pc-shine,
 .pc-card.active .pc-shine {
+  filter: brightness(1.5) contrast(2) saturate(1.2);
   opacity: 1;
-  background: radial-gradient(
-    circle at var(--pointer-x) var(--pointer-y),
-    rgba(255, 255, 255, 0.15) 0%,
-    rgba(255, 255, 255, 0.05) 40%,
-    transparent 70%
+  animation: none;
+  /* BACKGROUND LAYER - Moves DRAMATICALLY with pointer (80px) */
+  transform: translate(
+    calc((var(--pointer-from-left) - 0.5) * 80px),
+    calc((var(--pointer-from-top) - 0.5) * 80px)
   );
+  mask-position: calc(50% + (var(--pointer-from-left) - 0.5) * 40px) calc(50% + (var(--pointer-from-top) - 0.5) * 40px);
+}
+
+.pc-shine,
+.pc-shine::after {
+  --space: 5%;
+  --angle: -45deg;
+  overflow: hidden;
+  z-index: 3;
+  background: transparent;
+  background-size: cover;
+  background-position: center;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      var(--sunpillar-clr-1) calc(var(--space) * 1),
+      var(--sunpillar-clr-2) calc(var(--space) * 2),
+      var(--sunpillar-clr-3) calc(var(--space) * 3),
+      var(--sunpillar-clr-4) calc(var(--space) * 4),
+      var(--sunpillar-clr-5) calc(var(--space) * 5),
+      var(--sunpillar-clr-6) calc(var(--space) * 6),
+      var(--sunpillar-clr-1) calc(var(--space) * 7)
+    ),
+    repeating-linear-gradient(
+      var(--angle),
+      #0e152e 0%,
+      hsl(180, 10%, 60%) 3.8%,
+      hsl(180, 29%, 66%) 4.5%,
+      hsl(180, 10%, 60%) 5.2%,
+      #0e152e 10%,
+      #0e152e 12%
+    ),
+    radial-gradient(
+      farthest-corner circle at var(--pointer-x) var(--pointer-y),
+      hsla(0, 0%, 0%, 0.1) 12%,
+      hsla(0, 0%, 0%, 0.15) 20%,
+      hsla(0, 0%, 0%, 0.25) 120%
+    );
+  background-position:
+    0 var(--background-y),
+    var(--background-x) var(--background-y),
+    center;
+  background-blend-mode: color, hard-light;
+  background-size:
+    500% 500%,
+    300% 300%,
+    200% 200%;
+  background-repeat: repeat;
+}
+
+.pc-card:hover .pc-shine,
+.pc-card.active .pc-shine {
+  filter: brightness(1.5) contrast(2) saturate(1.2);
+  opacity: 1;
+  animation: none;
+  /* BACKGROUND LAYER - Moves DRAMATICALLY with pointer (80px) */
+  transform: translate(
+    calc((var(--pointer-from-left) - 0.5) * 80px),
+    calc((var(--pointer-from-top) - 0.5) * 80px)
+  );
+  mask-position: calc(50% + (var(--pointer-from-left) - 0.5) * 40px) calc(50% + (var(--pointer-from-top) - 0.5) * 40px);
 }
 
 .pc-shine::before,
@@ -140,50 +244,108 @@
   background-size: cover;
   grid-area: 1/1;
   opacity: 0;
-  transition: opacity 0.3s ease;
 }
 
 .pc-card:hover .pc-shine::before,
-.pc-card.active .pc-shine::before {
-  opacity: 0.3;
-  background: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.2) 50%,
-    rgba(255, 255, 255, 0.1) 100%
-  );
+.pc-card.active .pc-shine::before,
+.pc-card:hover .pc-shine::after,
+.pc-card.active .pc-shine::after {
+  opacity: 1;
+}
+
+.pc-shine::before {
+  background-image:
+    linear-gradient(
+      45deg,
+      var(--sunpillar-4),
+      var(--sunpillar-5),
+      var(--sunpillar-6),
+      var(--sunpillar-1),
+      var(--sunpillar-2),
+      var(--sunpillar-3)
+    ),
+    radial-gradient(circle at var(--pointer-x) var(--pointer-y), hsl(0, 0%, 70%) 0%, hsla(0, 0%, 30%, 0.2) 90%),
+    var(--grain);
+  background-size:
+    250% 250%,
+    100% 100%,
+    220px 220px;
+  background-position:
+    var(--pointer-x) var(--pointer-y),
+    center,
+    calc(var(--pointer-x) * 0.01) calc(var(--pointer-y) * 0.01);
+  background-blend-mode: color-dodge;
+  filter: brightness(calc(2 - var(--pointer-from-center))) contrast(calc(var(--pointer-from-center) + 2))
+    saturate(calc(0.5 + var(--pointer-from-center)));
+  mix-blend-mode: luminosity;
+}
+
+.pc-shine::after {
+  background-position:
+    0 var(--background-y),
+    calc(var(--background-x) * 0.4) calc(var(--background-y) * 0.5),
+    center;
+  background-size:
+    200% 300%,
+    700% 700%,
+    100% 100%;
+  mix-blend-mode: difference;
+  filter: brightness(0.8) contrast(1.5);
 }
 
 .pc-glare {
-  transform: translate3d(0, 0, 1.1px);
+  position: absolute;
+  /* Make it LARGER to prevent blank spaces when moving */
+  inset: -80px;
   overflow: hidden;
-  background: radial-gradient(
-    circle at var(--pointer-x) var(--pointer-y),
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.05) 50%,
-    transparent 100%
+  background-image: radial-gradient(
+    farthest-corner circle at var(--pointer-x) var(--pointer-y),
+    hsl(248, 25%, 80%) 12%,
+    hsla(207, 40%, 30%, 0.8) 90%
   );
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  mix-blend-mode: overlay;
+  filter: brightness(0.8) contrast(1.2);
   z-index: 4;
+  transition: transform 0.15s ease;
+  will-change: transform;
+  pointer-events: none;
 }
 
 .pc-card:hover .pc-glare,
 .pc-card.active .pc-glare {
-  opacity: 1;
+  /* BACKGROUND LAYER - Moves dramatically (60px) */
+  transform: translate(
+    calc((var(--pointer-from-left) - 0.5) * 60px),
+    calc((var(--pointer-from-top) - 0.5) * 60px)
+  );
 }
 
 .pc-avatar-content {
+  position: absolute;
+  inset: 0;
   mix-blend-mode: screen;
   overflow: hidden;
+  transition: transform 0.15s ease;
+  will-change: transform;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.pc-card:hover .pc-avatar-content,
+.pc-card.active .pc-avatar-content {
+  /* FOREGROUND LAYER - Moves minimally, OPPOSITE direction (10px) */
+  transform: translate(
+    calc((var(--pointer-from-left) - 0.5) * -10px),
+    calc((var(--pointer-from-top) - 0.5) * -10px)
+  );
 }
 
 .pc-avatar-content .avatar {
   width: 100%;
   position: absolute;
   left: 50%;
-  transform: translateX(-50%) scale(1.5);
-  bottom: -90px;
+  transform: translateX(-50%) scale(1);
+  bottom: 2px;
   opacity: calc(1.75 - var(--pointer-from-center));
 }
 
@@ -208,7 +370,7 @@
   bottom: 20px;
   left: 20px;
   right: 20px;
-  z-index: 2;
+  z-index: 8;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -217,7 +379,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 15px;
   padding: 12px 14px;
-  pointer-events: auto;
+  pointer-events: auto !important;
 }
 
 .pc-user-details {
@@ -281,17 +443,25 @@
 }
 
 .pc-content {
+  position: absolute;
+  inset: 0;
   max-height: 100%;
   overflow: hidden;
   text-align: center;
-  position: relative;
-  transform: translate3d(
-    calc(var(--pointer-from-left) * -6px + 3px),
-    calc(var(--pointer-from-top) * -6px + 3px),
-    0.1px
-  ) !important;
-  z-index: 5;
+  transition: transform 0.15s ease;
+  z-index: 7;
   mix-blend-mode: luminosity;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.pc-card:hover .pc-content,
+.pc-card.active .pc-content {
+  /* FOREGROUND LAYER - Moves minimally, OPPOSITE direction (10px) */
+  transform: translate(
+    calc((var(--pointer-from-left) - 0.5) * -10px),
+    calc((var(--pointer-from-top) - 0.5) * -10px)
+  );
 }
 
 .pc-details {
@@ -329,21 +499,31 @@
   -webkit-background-clip: text;
 }
 
-@keyframes subtle-glow {
-  0%, 100% {
-    box-shadow: 
-      rgba(0, 0, 0, 0.3) 0 5px 15px,
-      rgba(255, 255, 255, 0.1) 0 0 0 1px inset;
+@keyframes glow-bg {
+  0% {
+    --bgrotate: 0deg;
   }
-  50% {
-    box-shadow: 
-      rgba(0, 0, 0, 0.4) 0 8px 25px,
-      rgba(255, 255, 255, 0.15) 0 0 0 1px inset,
-      rgba(255, 255, 255, 0.05) 0 0 10px 0;
+
+  100% {
+    --bgrotate: 360deg;
   }
 }
 
-/* Remove the old complex animations */
+@keyframes holo-bg {
+  0% {
+    background-position:
+      0 var(--background-y),
+      0 0,
+      center;
+  }
+
+  100% {
+    background-position:
+      0 var(--background-y),
+      90% 90%,
+      center;
+  }
+}
 
 @media (max-width: 768px) {
   .pc-card {
