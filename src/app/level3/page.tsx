@@ -12,12 +12,15 @@ export default function Level3() {
   const contentRef = useRef<HTMLDivElement>(null);
   
   // Form states
+  // Form states
   const [currentInput, setCurrentInput] = useState('');
   const [terminalLines, setTerminalLines] = useState<Array<{type: string, content: string}>>([]);
   const [currentStep, setCurrentStep] = useState<'name' | 'email' | 'message' | 'complete'>('name');
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isTransmitting, setIsTransmitting] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [userLocation, setUserLocation] = useState<string>('Detecting...');
+  const [showSecurityCompromised, setShowSecurityCompromised] = useState(false);
   
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalEndRef = useRef<HTMLDivElement>(null);
@@ -47,16 +50,33 @@ export default function Level3() {
   useEffect(() => {
     if (isClient) {
       const init = async () => {
+        const now = new Date();
+        setCurrentTime(now);
+        
         setTerminalLines([
-          { type: 'system', content: '> SECURE TERMINAL v2.4.1 INITIALIZED' },
-          { type: 'system', content: '> ENCRYPTION: AES-256 | STATUS: ACTIVE' },
-          { type: 'system', content: '> CONNECTION TO NODE: akshay@cyber-sec.node' },
-          { type: 'divider', content: '─'.repeat(60) },
-          { type: 'info', content: '> Initiating secure message protocol...' },
-          { type: 'info', content: '> Please provide the following credentials:' },
-          { type: 'divider', content: '' },
           { type: 'typing', content: '' }
         ]);
+        
+        // Get user location
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            async (position) => {
+              try {
+                const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${position.coords.latitude}&lon=${position.coords.longitude}`);
+                const data = await response.json();
+                const location = data.address.suburb || data.address.city || data.address.town || data.address.village || 'Unknown Location';
+                setUserLocation(location);
+              } catch (error) {
+                setUserLocation('Location unavailable');
+              }
+            },
+            () => {
+              setUserLocation('Location access denied');
+            }
+          );
+        } else {
+          setUserLocation('Geolocation not supported');
+        }
         
         await new Promise(resolve => setTimeout(resolve, 500));
         await typeText('root@secure-terminal:~$ ENTER_NAME');
@@ -99,6 +119,7 @@ export default function Level3() {
 
       if (currentStep === 'name') {
         setFormData(prev => ({ ...prev, name: input }));
+        setShowSecurityCompromised(true);
         setTerminalLines(prev => [...prev, 
           { type: 'success', content: `✓ NAME VERIFIED: ${input}` },
           { type: 'divider', content: '' },
@@ -403,19 +424,20 @@ export default function Level3() {
           {/* Terminal Header */}
           <div className="mb-8" id="terminal-form">
             <div className="text-center space-y-4 animate-fadeInUp">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-cyan-400 text-xs font-mono uppercase tracking-widest">System Status: ONLINE</span>
-              </div>
               <h1 className="text-4xl md:text-5xl font-bold font-mono tracking-tight">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-green-400 to-cyan-400">
                   INITIATE SECURE CONNECTION
                 </span>
               </h1>
-              <p className="text-white/60 text-lg font-mono max-w-2xl mx-auto">
-                <span className="text-green-400">&gt;</span> You've reached Akshay's encrypted node.<br />
-                <span className="text-green-400">&gt;</span> Enter your credentials to send a message.
-              </p>
+              {/* Location and Scan Time - Outside Terminal */}
+              <div className="text-left max-w-3xl mx-auto font-mono text-sm space-y-1 pt-4">
+                <div className="text-cyan-400">
+                  Location: {userLocation}
+                </div>
+                <div className="text-green-400">
+                  Starting scan at {currentTime.toDateString()} {currentTime.toLocaleTimeString('en-US', { hour12: false })}
+                </div>
+              </div>
             </div>
           </div>
 
@@ -438,6 +460,13 @@ export default function Level3() {
 
               {/* Terminal Body */}
               <div ref={terminalContainerRef} className="p-8 font-mono min-h-[400px] max-h-[600px] overflow-y-auto">
+                {/* Security Compromised Message - Shows after name is entered */}
+                {showSecurityCompromised && (
+                  <div className="text-red-500 text-sm mb-2 animate-pulse font-bold">
+                    System Security: COMPROMISED
+                  </div>
+                )}
+                
                 {/* Terminal History */}
                 <div className="space-y-1">
                   {terminalLines.map((line, index) => (
