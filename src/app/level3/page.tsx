@@ -22,7 +22,7 @@ export default function Level3() {
   const [userLocation, setUserLocation] = useState<string>('Detecting...');
   const [showSecurityCompromised, setShowSecurityCompromised] = useState(false);
   
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
   const terminalEndRef = useRef<HTMLDivElement>(null);
 
   const socialLinks = [
@@ -102,14 +102,19 @@ export default function Level3() {
   };
 
   // Handle Enter key press
-  const handleKeyPress = async (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && currentInput.trim()) {
+  const handleKeyPress = async (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey && currentInput.trim()) {
       e.preventDefault();
+      
+      // Reset textarea height
+      if (inputRef.current) {
+        inputRef.current.style.height = 'auto';
+      }
       
       // Add user input to terminal
       setTerminalLines(prev => [
         ...prev.slice(0, -1),
-        { type: 'prompt', content: `root@secure-terminal:~$ ${currentInput}` }
+        { type: 'prompt', content: currentInput }
       ]);
 
       const input = currentInput.trim();
@@ -153,30 +158,21 @@ export default function Level3() {
         setFormData(prev => ({ ...prev, message: input }));
         setTerminalLines(prev => [...prev,
           { type: 'success', content: `✓ MESSAGE RECEIVED: "${input.substring(0, 50)}${input.length > 50 ? '...' : ''}"` },
-          { type: 'divider', content: '─'.repeat(60) },
-          { type: 'info', content: '> PREPARING TRANSMISSION...' }
+          { type: 'divider', content: '─'.repeat(60) }
         ]);
         
         setCurrentStep('complete');
         setIsTransmitting(true);
         
-        // Transmission sequence
-        await new Promise(resolve => setTimeout(resolve, 800));
-        setTerminalLines(prev => [...prev, { type: 'loading', content: '> ENCRYPTING MESSAGE... [AES-256]' }]);
-        
+        // Single transmission message
         await new Promise(resolve => setTimeout(resolve, 1000));
-        setTerminalLines(prev => [...prev, { type: 'loading', content: '> ESTABLISHING SECURE TUNNEL... [RSA-4096]' }]);
-        
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        setTerminalLines(prev => [...prev, { type: 'loading', content: '> TRANSMITTING DATA PACKETS... [0x7FA2B3C4]' }]);
-        
-        await new Promise(resolve => setTimeout(resolve, 1200));
         setTerminalLines(prev => [...prev, 
-          { type: 'success', content: '✓ TRANSMISSION SUCCESSFUL' },
-          { type: 'success', content: '✓ MESSAGE DELIVERED TO: akshay@cyber-sec.node' },
-          { type: 'divider', content: '─'.repeat(60) },
-          { type: 'info', content: '> AWAITING RESPONSE FROM RECIPIENT...' },
-          { type: 'info', content: `> SESSION ID: ${Date.now().toString(16).toUpperCase()}` }
+          { type: 'loading', content: '> INITIATING SECURE TRANSMISSION PROTOCOL [0x7FA2B3C4]...' }
+        ]);
+        
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        setTerminalLines(prev => [...prev, 
+          { type: 'success', content: '✓ PAYLOAD DELIVERED TO: akshay@cyber-sec.node' }
         ]);
         
         setIsTransmitting(false);
@@ -469,9 +465,9 @@ export default function Level3() {
               </div>
 
               {/* Terminal Body */}
-              <div ref={terminalContainerRef} className="p-8 font-mono min-h-[400px] max-h-[600px] overflow-y-auto">
+              <div ref={terminalContainerRef} className="p-8 font-mono min-h-[400px] max-h-[600px] overflow-y-auto transition-all duration-300 ease-in-out scroll-smooth">
                 {/* Terminal History */}
-                <div className="space-y-1">
+                <div className="space-y-1 transition-all duration-300 ease-in-out">
                   {terminalLines.map((line, index) => (
                     <div key={index} className="animate-fadeInUp">
                       {line.type === 'system' && (
@@ -489,9 +485,9 @@ export default function Level3() {
                         </div>
                       )}
                       {line.type === 'prompt' && (
-                        <div className="flex items-center gap-2 pl-4">
-                          <span className="text-cyan-400">&gt;&gt;</span>
-                          <span className="text-white">{line.content}</span>
+                        <div className="flex items-start gap-2 pl-4 transition-all duration-300 ease-in-out">
+                          <span className="text-cyan-400 mt-0.5">&gt;&gt;</span>
+                          <span className="text-white whitespace-pre-wrap break-words flex-1">{line.content}</span>
                         </div>
                       )}
                       {line.type === 'success' && (
@@ -518,16 +514,26 @@ export default function Level3() {
 
                 {/* Active Input Line */}
                 {currentStep !== 'complete' && !isTransmitting && (
-                  <div className="flex items-center gap-2 pl-4 pt-2">
-                    <span className="text-cyan-400">&gt;&gt;</span>
-                    <input
+                  <div className="flex items-start gap-2 pl-4 pt-2 transition-all duration-300 ease-in-out">
+                    <span className="text-cyan-400 mt-0.5">&gt;&gt;</span>
+                    <textarea
                       ref={inputRef}
-                      type="text"
                       value={currentInput}
                       onChange={(e) => setCurrentInput(e.target.value)}
                       onKeyPress={handleKeyPress}
                       placeholder=""
-                      className="flex-1 bg-transparent border-none outline-none text-green-400 placeholder-green-400/20 font-mono caret-green-400"
+                      rows={1}
+                      className="flex-1 bg-transparent border-none outline-none text-green-400 placeholder-green-400/20 font-mono caret-green-400 resize-none overflow-hidden transition-all duration-200 ease-in-out"
+                      style={{
+                        height: 'auto',
+                        minHeight: '1.5rem',
+                        maxHeight: '200px'
+                      }}
+                      onInput={(e) => {
+                        const target = e.target as HTMLTextAreaElement;
+                        target.style.height = 'auto';
+                        target.style.height = target.scrollHeight + 'px';
+                      }}
                       autoComplete="off"
                       autoFocus
                     />
@@ -587,7 +593,7 @@ export default function Level3() {
 
               {/* X (Twitter) */}
               <a
-                href="https://twitter.com/yourusername"
+                href="https://twitter.com/Akshay1726n"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link twitter"
