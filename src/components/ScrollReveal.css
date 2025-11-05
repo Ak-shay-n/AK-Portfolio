@@ -1,0 +1,42 @@
+.scroll-reveal-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll-reveal-wrapper.calibri-font .scroll-reveal-text {
+  font-family: 'Calibri', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.scroll-reveal {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.scroll-reveal-text {
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  letter-spacing: -0.02em;
+  word-spacing: 0.05em;
+}
+
+.letter {
+  display: inline-block;
+  will-change: color;
+  color: rgba(255, 255, 255, 0.02);
+  transition: color 0.05s ease-out;
+  font-size: x-large;
+  margin: 0 -0.01em;
+}
+
+.space {
+  display: inline-block;
+  width: 0.4em;
+}

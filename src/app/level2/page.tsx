@@ -426,11 +426,6 @@ export default function Level2() {
             {/* Cyber Vault Header */}
             {!showProjects && (
             <div className="text-center mb-12 space-y-4">
-              <div className="inline-flex items-center gap-3 px-6 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full mb-4">
-                <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
-                <span className="text-cyan-400 text-xs font-mono tracking-wider uppercase">Level 2: Secure Project Vault</span>
-              </div>
-
               <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
                 <span className="bg-gradient-to-r from-cyan-400 via-green-400 to-cyan-400 bg-clip-text text-transparent animate-pulse">
                   PROJECT VAULT

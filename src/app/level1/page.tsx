@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import LightRays from '@/components/LightRays';
+import ScrollReveal from '@/components/ScrollReveal';
 
 export default function Level1() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -378,16 +379,10 @@ PREFERRED_CONTACT: Secure channels only`
       <div className="relative z-10 pt-32 pb-20">
         <div className="container mx-auto px-8" ref={contentRef}>
 
-          {/* Hero Section - Full Screen */}
-          <section className="min-h-screen flex flex-col items-center justify-center relative pb-47">
+          {/* Hero Section - Full Screen - PINNED DURING ANIMATION */}
+          <section id="hero-section" className="min-h-screen flex flex-col items-center justify-center relative pb-47">
             <div className="max-w-5xl mx-auto text-center">
               <div className={`transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                {/* Level Badge */}
-                <div className="inline-block mb-6">
-                  <div className="bg-gradient-to-r from-cyan-400/20 to-blue-400/20 border border-cyan-400/30 rounded-full px-6 py-3 backdrop-blur-sm">
-                    <span className="text-cyan-400 font-mono text-sm tracking-wider uppercase">Level 1: System Access</span>
-                  </div>
-                </div>
                 
                 {/* Main Title */}
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-none">
@@ -397,10 +392,18 @@ PREFERRED_CONTACT: Secure channels only`
                 {/* Divider Line */}
                 <div className="w-24 h-1 bg-gradient-to-r from-cyan-400/60 to-blue-400/60 mx-auto mb-8"></div>
                 
-                {/* Description */}
-                <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed mb-12 font-light">
+                {/* Description with ScrollReveal Animation */}
+                <ScrollReveal
+                  baseOpacity={0.1}
+                  enableBlur={false}
+                  baseRotation={0}
+                  blurStrength={0}
+                  pinContainer={true}
+                  textClassName="text-3xl md:text-4xl lg:text-6xl xl:text-7xl leading-relaxed font-light max-w-5xl mx-auto"
+                  containerClassName="calibri-font"
+                >
                   Explore my professional journey, technical expertise, and current projects through this interactive profile system.
-                </p>
+                </ScrollReveal>
               </div>
             </div>
 
@@ -415,7 +418,7 @@ PREFERRED_CONTACT: Secure channels only`
           </section>
           
           {/* Content Sections */}
-          <div className="max-w-5xl mx-auto space-y-20 pt-20">
+          <div className="max-w-7xl mx-auto space-y-20 pt-20">
             
             {/* Navigation Pills */}
             <div className="flex justify-center mb-16">
