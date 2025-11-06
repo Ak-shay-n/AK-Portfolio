@@ -6,8 +6,9 @@ import LightRays from '@/components/LightRays';
 import ScrollReveal from '@/components/ScrollReveal';
 
 export default function Level1() {
+  console.log('🚀 Level1 component loaded!');
+  
   const [isLoaded, setIsLoaded] = useState(false);
-  const [activeSection, setActiveSection] = useState('bio');
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [windowDimensions, setWindowDimensions] = useState({ width: 0, height: 0 });
   const [isClient, setIsClient] = useState(false);
@@ -416,69 +417,7 @@ PREFERRED_CONTACT: Secure channels only`
               </div>
             </div>
           </section>
-          
-          {/* Content Sections */}
-          <div className="max-w-7xl mx-auto space-y-20 pt-20">
-            
-            {/* Navigation Pills */}
-            <div className="flex justify-center mb-16">
-              <div className="flex bg-white/10 backdrop-blur-xl border border-white/20 rounded-full p-1 space-x-1">
-                {tabs.map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveSection(tab.id)}
-                    className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
-                      activeSection === tab.id
-                        ? 'bg-white text-black shadow-lg'
-                        : 'text-white/70 hover:text-white hover:bg-white/10'
-                    }`}
-                  >
-                    <span className="mr-2">{tab.icon}</span>
-                    {tab.label}
-                  </button>
-                ))}
-              </div>
-            </div>
 
-            {/* Content Display */}
-            <div className="relative">
-              <div className={`transition-all duration-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                
-                {/* Content Card */}
-                <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12">
-                  <div className="max-w-4xl mx-auto">
-                    
-                    {/* Section Header */}
-                    <div className="text-center mb-12">
-                      <div className="text-6xl md:text-7xl mb-4">
-                        {profileData[activeSection as keyof typeof profileData].icon}
-                      </div>
-                      <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                        {profileData[activeSection as keyof typeof profileData].title}
-                      </h2>
-                      <div className="w-16 h-1 bg-gradient-to-r from-cyan-400 to-blue-400 mx-auto"></div>
-                    </div>
-
-                    {/* Section Content */}
-                    <div className="prose prose-lg prose-invert max-w-none">
-                      <div className="text-white/80 leading-relaxed whitespace-pre-line text-center md:text-left">
-                        {profileData[activeSection as keyof typeof profileData].content}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Progress Indicator */}
-            <div className="text-center">
-              <div className="inline-flex items-center space-x-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full px-6 py-3">
-                <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
-                <span className="text-white/80 text-sm font-medium">Level 1: Complete</span>
-                <div className="text-white/60 text-sm">25% Progress</div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

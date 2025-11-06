@@ -21,7 +21,7 @@ export default function RootLayout({
         <link href="https://fonts.cdnfonts.com/css/horizon" rel="stylesheet" />
       </head>
       <body className="antialiased">
-        <SecurityLayer />
+        {/* <SecurityLayer /> */}
         {children}
       </body>
     </html>

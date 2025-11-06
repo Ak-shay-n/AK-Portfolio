@@ -443,3 +443,48 @@ html {
     @apply bg-background text-foreground;
   }
 }
+
+/* Tech Preview Styling */
+.tech-preview {
+  font-size: 3rem;
+  padding: 2rem;
+  background: rgba(0, 255, 255, 0.1);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  animation: float-tech 3s ease-in-out infinite;
+}
+
+.tech-preview:hover {
+  background: rgba(0, 255, 255, 0.2);
+  border-color: rgba(0, 255, 255, 0.6);
+  transform: scale(1.1);
+}
+
+.tech-preview:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.tech-preview:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.tech-preview:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.tech-preview:nth-child(4) {
+  animation-delay: 1.5s;
+}
+
+@keyframes float-tech {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
