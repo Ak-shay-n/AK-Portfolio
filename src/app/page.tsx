@@ -523,7 +523,7 @@ export default function Home() {
               </div>
 
               <p className="text-lg md:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed mb-12 font-light">
-                Cybersecurity Professional • Network Systems Engineer • AI Developer
+                Cybersecurity Professional • AI Developer
                 <br />
                 <span className="text-white/60 italic">
                   "Building secure digital experiences with innovative technology"
