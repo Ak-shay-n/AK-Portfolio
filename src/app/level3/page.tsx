@@ -689,10 +689,6 @@ export default function Level3() {
           <p className="text-green-400 text-xs">
             Security Level: <span className="font-bold">MAXIMUM</span> | Communication Status: <span className="font-bold">SECURED</span>
           </p>
-          <div className="mt-4 flex items-center justify-center gap-2">
-            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            <span className="text-green-400 text-xs">All systems operational</span>
-          </div>
         </div>
       </footer>
     </div>
