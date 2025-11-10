@@ -656,22 +656,6 @@ export default function Home() {
                 </div>
               ))}
             </div>
-
-            {/* Quick Access Navigation */}
-            <div className="mt-16 text-center">
-              <h3 className="text-2xl font-bold text-cyan-400 mb-8 font-mono">QUICK ACCESS NAVIGATION</h3>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link href="/level1" className="bg-green-400/20 text-green-400 px-4 py-2 rounded border border-green-400/50 hover:bg-green-400/30 transition-all font-mono">
-                  → LEVEL 1
-                </Link>
-                <Link href="/level2" className="bg-blue-400/20 text-blue-400 px-4 py-2 rounded border border-blue-400/50 hover:bg-blue-400/30 transition-all font-mono">
-                  → LEVEL 2
-                </Link>
-                <Link href="/level3" className="bg-red-400/20 text-red-400 px-4 py-2 rounded border border-red-400/50 hover:bg-red-400/30 transition-all font-mono">
-                  → LEVEL 3
-                </Link>
-              </div>
-            </div>
           </div>
         </section>
 
