@@ -18,6 +18,9 @@ export default function Level2() {
   const [accessDenied, setAccessDenied] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [failedAttempts, setFailedAttempts] = useState(0);
+  // Password masking - standard behavior (show last char briefly)
+  const [displayPassword, setDisplayPassword] = useState('');
+  const hideTimerRef = useRef<NodeJS.Timeout | null>(null);
   const projectsRef = useRef<HTMLDivElement | null>(null);
   const [announce, setAnnounce] = useState('');
   const [loadingProgress, setLoadingProgress] = useState(0);
@@ -60,6 +63,39 @@ export default function Level2() {
       return false;
     }
   }
+
+  // Handle password input - standard behavior (show last character briefly for 500ms)
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    const oldValue = secretInput;
+    
+    // Clear any existing hide timer
+    if (hideTimerRef.current) {
+      clearTimeout(hideTimerRef.current);
+      hideTimerRef.current = null;
+    }
+    
+    setSecretInput(newValue);
+    setAccessDenied(false);
+    
+    if (newValue.length === 0) {
+      // Empty password
+      setDisplayPassword('');
+    } else if (newValue.length > oldValue.length) {
+      // Character added - show last character, hide rest
+      const maskedPart = '*'.repeat(newValue.length - 1);
+      const lastChar = newValue[newValue.length - 1];
+      setDisplayPassword(maskedPart + lastChar);
+      
+      // Hide last character after 500ms (standard practice)
+      hideTimerRef.current = setTimeout(() => {
+        setDisplayPassword('*'.repeat(newValue.length));
+      }, 500);
+    } else {
+      // Character removed - show all as asterisks
+      setDisplayPassword('*'.repeat(newValue.length));
+    }
+  };
 
   // Handler for the "wanna find what?" action
   async function handleFind() {
@@ -253,6 +289,12 @@ export default function Level2() {
         setShowProjects(false);
         setSessionStartTime(null);
         setSecretInput('');
+        setDisplayPassword('');
+        // Clear hide timer if exists
+        if (hideTimerRef.current) {
+          clearTimeout(hideTimerRef.current);
+          hideTimerRef.current = null;
+        }
         setAccessDenied(true);
         setAnnounce('Session expired. Please re-authenticate.');
       }, SESSION_TIMEOUT);
@@ -265,6 +307,15 @@ export default function Level2() {
       };
     }
   }, [sessionStartTime, showProjects]);
+
+  // Cleanup hide timer on unmount
+  useEffect(() => {
+    return () => {
+      if (hideTimerRef.current) {
+        clearTimeout(hideTimerRef.current);
+      }
+    };
+  }, []);
 
   // Handle scroll for navbar resize
   useEffect(() => {
@@ -472,16 +523,24 @@ export default function Level2() {
                         Access Code
                       </label>
                       <div className="relative">
+                        {/* Hidden input to capture real password */}
+                        <input
+                          type="password"
+                          value={secretInput}
+                          onChange={handlePasswordChange}
+                          onKeyDown={(e) => { if (e.key === 'Enter') handleFind(); }}
+                          className="absolute inset-0 opacity-0 w-full h-full z-10 cursor-text"
+                          autoComplete="off"
+                          ref={inputRef}
+                        />
+                        {/* Visible display input (shows masked password) */}
                         <input
                           id="secret-input"
-                          ref={inputRef}
                           type="text"
-                          value={secretInput}
-                          onChange={(e) => { setSecretInput(e.target.value); setAccessDenied(false); }}
-                          onKeyDown={(e) => { if (e.key === 'Enter') handleFind(); }}
+                          value={displayPassword}
+                          readOnly
                           placeholder="Enter code..."
-                          autoComplete="off"
-                          className="w-full px-4 py-3 bg-black/50 border border-cyan-500/30 rounded-lg text-cyan-400 placeholder-cyan-400/20 focus:outline-none focus:border-cyan-400/60 focus:bg-black/70 transition-all duration-300 font-mono text-sm"
+                          className="w-full px-4 py-3 bg-black/50 border border-cyan-500/30 rounded-lg text-cyan-400 placeholder-cyan-400/20 focus:outline-none focus:border-cyan-400/60 focus:bg-black/70 transition-all duration-300 font-mono text-sm pointer-events-none"
                           aria-label="Secret key"
                         />
                         <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
@@ -550,6 +609,12 @@ export default function Level2() {
                       <button
                         onClick={() => {
                           setSecretInput('');
+                          setDisplayPassword('');
+                          // Clear hide timer if exists
+                          if (hideTimerRef.current) {
+                            clearTimeout(hideTimerRef.current);
+                            hideTimerRef.current = null;
+                          }
                           inputRef.current?.focus();
                         }}
                         className="text-xs text-cyan-400/50 hover:text-cyan-400/80 transition-colors duration-300 font-mono"
@@ -649,25 +714,6 @@ export default function Level2() {
 
             {/* Vault visual removed. Vault state now represented by Access Granted banner and project cards. */}
 
-            {/* Security Hint Panel */}
-            {!showProjects && failedAttempts >= 3 && (
-              <div className="mt-12 text-center">
-                <div className="inline-block relative">
-                  <div className="absolute inset-0 bg-yellow-500/20 blur-xl"></div>
-                  <div className="relative bg-gradient-to-br from-yellow-500/10 to-orange-500/10 border-2 border-yellow-500/30 rounded-2xl px-8 py-4">
-                    <div className="flex items-center gap-3">
-                      <svg className="w-6 h-6 text-yellow-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <div className="text-left">
-                        <p className="text-yellow-300 text-sm font-bold font-mono uppercase tracking-wide">Security Hint Unlocked</p>
-                        <p className="text-yellow-400/80 text-xs font-mono mt-1">Try: (case-insensitive)</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </section>
