@@ -815,7 +815,7 @@ export default function Level2() {
                       {/* View Button */}
                       <button 
                         onClick={() => setExpandedProject(`${activeProject}-${index}`)}
-                        className="w-full py-3 bg-white/5 hover:bg-white text-white/80 hover:text-black border border-white/10 hover:border-white rounded-xl font-medium transition-all duration-300 group/btn"
+                        className="w-full py-3 bg-white/5 hover:bg-white text-white/80 hover:text-black border border-white/10 hover:border-white rounded-xl font-medium transition-all duration-300 group/btn cursor-pointer"
                       >
                         <span className="flex items-center justify-center gap-2 text-sm">
                           View Project
@@ -831,7 +831,7 @@ export default function Level2() {
                       {/* Close Button */}
                       <button 
                         onClick={() => setExpandedProject(null)}
-                        className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 group/close z-10"
+                        className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 group/close z-10 cursor-pointer"
                       >
                         <svg className="w-5 h-5 text-white group-hover/close:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -852,10 +852,10 @@ export default function Level2() {
 
                       {/* Action Buttons */}
                       <div className="flex gap-3 mt-auto">
-                        <button className="flex-1 py-3 bg-cyan-500 hover:bg-cyan-400 text-black rounded-xl font-medium transition-all duration-300 text-sm">
+                        <button className="flex-1 py-3 bg-cyan-500 hover:bg-cyan-400 text-black rounded-xl font-medium transition-all duration-300 text-sm cursor-pointer">
                           View Live
                         </button>
-                        <button className="flex-1 py-3 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-xl font-medium transition-all duration-300 text-sm">
+                        <button className="flex-1 py-3 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-xl font-medium transition-all duration-300 text-sm cursor-pointer">
                           Source Code
                         </button>
                       </div>
