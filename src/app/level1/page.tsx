@@ -292,7 +292,7 @@ PREFERRED_CONTACT: Secure channels only`
                 ? 'text-base' 
                 : 'text-lg'
             }`}>
-              Level 1: About
+              Akshay Kumar
             </Link>
             <div className={`hidden md:flex items-center gap-2 transition-all duration-300 ${
               isScrolled 
@@ -304,20 +304,22 @@ PREFERRED_CONTACT: Secure channels only`
               }`}>
                 Home
               </Link>
-              <Link href="/level1" className={`text-cyan-400 bg-cyan-400/20 border border-cyan-400/30 hover:bg-cyan-400/30 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
+              <Link href="/level1" className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
                 isScrolled ? 'text-xs' : 'text-sm'
               }`}>
-                Level 1
+                About
               </Link>
               <Link href="/level2" className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
                 isScrolled ? 'text-xs' : 'text-sm'
               }`}>
-                Level 2
+                Portfolio
               </Link>
-              <Link href="/level3" className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
-                isScrolled ? 'text-xs' : 'text-sm'
+              <Link href="/level3" className={`bg-white text-black rounded-full hover:bg-white/90 hover:scale-105 transition-all duration-200 font-semibold shadow-lg ${
+                isScrolled 
+                  ? 'px-5 py-2 text-xs' 
+                  : 'px-6 py-2 text-sm'
               }`}>
-                Level 3
+                Get Started
               </Link>
             </div>
             
@@ -344,33 +346,35 @@ PREFERRED_CONTACT: Secure channels only`
           } overflow-hidden`}>
             <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 space-y-2">
               <Link 
-                href="/" 
+                href="/"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
+                className="block w-full text-left text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
               >
                 Home
               </Link>
               <Link 
-                href="/level1" 
+                href="/level1"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block text-cyan-400 hover:text-cyan-300 transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl bg-cyan-400/10"
+                className="block w-full text-left text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
               >
-                Level 1
+                About
               </Link>
               <Link 
-                href="/level2" 
+                href="/level2"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
+                className="block w-full text-left text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
               >
-                Level 2
+                Portfolio
               </Link>
-              <Link 
-                href="/level3" 
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
-              >
-                Level 3
-              </Link>
+              <div className="pt-2">
+                <Link 
+                  href="/level3" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block bg-white text-black px-4 py-3 rounded-xl hover:bg-white/90 transition-all duration-300 text-base font-medium text-center"
+                >
+                  Get Started
+                </Link>
+              </div>
             </div>
           </div>
         </div>
