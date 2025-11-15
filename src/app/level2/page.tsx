@@ -487,9 +487,6 @@ export default function Level2() {
                   PROJECT VAULT
                 </span>
               </h1>
-              <p className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed font-mono">
-                <span className="text-green-400">&gt;</span> Biometric authentication required
-              </p>
             </div>
             )}
 
