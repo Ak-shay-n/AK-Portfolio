@@ -21,7 +21,8 @@ export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
 
-  const welcomeText = "Welcome to My World";
+  const word1 = "World";
+  const word2 = "Portfolio";
 
   const loadingPhases = [
     { text: 'INITIALIZING SECURE CONNECTION', icon: '🔐', color: 'from-cyan-400 to-blue-500' },
@@ -68,22 +69,83 @@ export default function Home() {
     }
   ];
 
-  // Typewriter effect
+  // Advanced Typewriter effect - only animate "World" and "Portfolio"
   useEffect(() => {
     if (!isClient) return;
     
-    let i = 0;
-    const typingInterval = setInterval(() => {
-      if (i < welcomeText.length) {
-        setCurrentText(welcomeText.slice(0, i + 1));
-        i++;
-      } else {
-        clearInterval(typingInterval);
-        setIsLoaded(true);
-      }
-    }, 100);
+    let timeoutId: NodeJS.Timeout;
+    let isCancelled = false;
+    const typeSpeed = 100;
+    const eraseSpeed = 50;
+    const pauseDuration = 1500;
 
-    return () => clearInterval(typingInterval);
+    const sequence = async () => {
+      while (!isCancelled) {
+        // Phase 1: Type "World"
+        for (let i = 0; i <= word1.length; i++) {
+          if (isCancelled) return;
+          await new Promise(resolve => {
+            timeoutId = setTimeout(() => {
+              setCurrentText(word1.slice(0, i));
+              resolve(null);
+            }, typeSpeed);
+          });
+        }
+
+        // Phase 2: Pause after "World"
+        await new Promise(resolve => {
+          timeoutId = setTimeout(resolve, pauseDuration);
+        });
+        if (isCancelled) return;
+
+        // Phase 3: Erase "World"
+        for (let i = word1.length; i >= 0; i--) {
+          if (isCancelled) return;
+          await new Promise(resolve => {
+            timeoutId = setTimeout(() => {
+              setCurrentText(word1.slice(0, i));
+              resolve(null);
+            }, eraseSpeed);
+          });
+        }
+
+        // Phase 4: Type "Portfolio"
+        for (let i = 0; i <= word2.length; i++) {
+          if (isCancelled) return;
+          await new Promise(resolve => {
+            timeoutId = setTimeout(() => {
+              setCurrentText(word2.slice(0, i));
+              resolve(null);
+            }, typeSpeed);
+          });
+        }
+
+        // Phase 5: Pause after "Portfolio"
+        await new Promise(resolve => {
+          timeoutId = setTimeout(resolve, pauseDuration);
+        });
+        if (isCancelled) return;
+
+        // Phase 6: Erase "Portfolio"
+        for (let i = word2.length; i >= 0; i--) {
+          if (isCancelled) return;
+          await new Promise(resolve => {
+            timeoutId = setTimeout(() => {
+              setCurrentText(word2.slice(0, i));
+              resolve(null);
+            }, eraseSpeed);
+          });
+        }
+      }
+    };
+
+    sequence();
+    setIsLoaded(true);
+
+    return () => {
+      isCancelled = true;
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, [isClient]);
 
   // Cursor blinking effect
@@ -517,8 +579,9 @@ export default function Home() {
               {/* Dynamic Typewriter */}
               <div className="text-xl md:text-2xl text-white/80 mb-8 min-h-[2.5rem] font-light">
                 <span className="inline-block">
-                  {currentText}
-                  <span className={`${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity text-white/40 ml-1`}>|</span>
+                  <span>Welcome to My </span>
+                  <span className="inline-block min-w-[150px] text-left">{currentText}</span>
+                  <span className={`${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity text-white/40`}>|</span>
                 </span>
               </div>
 
