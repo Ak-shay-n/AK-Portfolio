@@ -40,9 +40,7 @@ export default function Home() {
       level: 1,
       href: "/level1",
       status: "unlocked" as const,
-      icon: "🔓",
       difficulty: "Easy" as const,
-      estimatedTime: "~10 min",
       skills: ["Bio", "Skills", "Experience"]
     },
     {
@@ -51,9 +49,7 @@ export default function Home() {
       level: 2,
       href: "/level2",
       status: "unlocked" as const,
-      icon: "📊",
       difficulty: "Medium" as const,
-      estimatedTime: "~20 min",
       skills: ["Web Apps", "Tools", "Demonstrations"]
     },
     {
@@ -62,9 +58,7 @@ export default function Home() {
       level: 3,
       href: "/level3",
       status: "unlocked" as const,
-      icon: "🛡️",
       difficulty: "Hard" as const,
-      estimatedTime: "~20 min",
       skills: ["Contact", "Network", "Verification"]
     }
   ];
@@ -675,7 +669,6 @@ export default function Home() {
                   <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-500 h-full">
                     <div className="flex items-start justify-between mb-6">
                       <div className="flex-1">
-                        <div className="text-4xl mb-4">{level.icon}</div>
                         <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">
                           {level.title}
                         </h3>
