@@ -681,7 +681,6 @@ export default function Home() {
                           }`}>
                             {level.difficulty}
                           </span>
-                          <span className="text-white/50 text-xs">{level.estimatedTime}</span>
                         </div>
                       </div>
                     </div>
