@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import SecurityLayer from "@/components/SecurityLayer";
 
 export const metadata: Metadata = {
-  title: "Akshay Kumar - Cybersecurity Portfolio",
-  description: "Cybersecurity Specialist | Frontend Developer | Blockchain Enthusiast",
+  title: "Akshay Sandbox",
 };
 
 export default function RootLayout({

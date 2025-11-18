@@ -19,6 +19,7 @@ export default function Home() {
   const [windowDimensions, setWindowDimensions] = useState({ width: 0, height: 0 });
   const [isClient, setIsClient] = useState(false);
   const [educationProgress, setEducationProgress] = useState(0);
+  const [showContent, setShowContent] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const educationRef = useRef<HTMLDivElement>(null);
   const education1Ref = useRef<HTMLDivElement>(null);
@@ -27,15 +28,6 @@ export default function Home() {
 
   const word1 = "World";
   const word2 = "Portfolio";
-
-  const loadingPhases = [
-    { text: 'INITIALIZING SECURE CONNECTION', icon: '🔐', color: 'from-cyan-400 to-blue-500' },
-    { text: 'AUTHENTICATING CREDENTIALS', icon: '🔑', color: 'from-blue-500 to-purple-500' },
-    { text: 'ESTABLISHING AES-256 ENCRYPTION', icon: '🛡️', color: 'from-purple-500 to-pink-500' },
-    { text: 'SCANNING SECURITY PROTOCOLS', icon: '📡', color: 'from-pink-500 to-red-500' },
-    { text: 'VERIFYING DIGITAL SIGNATURE', icon: '✅', color: 'from-red-500 to-orange-500' },
-    { text: 'ACCESS GRANTED', icon: '🎯', color: 'from-green-400 to-cyan-400' }
-  ];
 
   const levels = [
     {
@@ -146,15 +138,6 @@ export default function Home() {
     };
   }, [isClient]);
 
-  // Cursor blinking effect
-  useEffect(() => {
-    const cursorInterval = setInterval(() => {
-      setShowCursor(prev => !prev);
-    }, 530);
-
-    return () => clearInterval(cursorInterval);
-  }, []);
-
   // Mouse tracking
   useEffect(() => {
     if (!isClient) return;
@@ -185,6 +168,14 @@ export default function Home() {
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  // Trigger content animations after loading
+  useEffect(() => {
+    if (!showLoading && isClient) {
+      const timer = setTimeout(() => setShowContent(true), 100);
+      return () => clearTimeout(timer);
+    }
+  }, [showLoading, isClient]);
 
   // Simulate data fetching (replace with your actual API calls)
   useEffect(() => {
@@ -400,7 +391,7 @@ export default function Home() {
   // Advanced loading screen
   if (showLoading) {
     return (
-      <div className="fixed inset-0 z-[9999] bg-black overflow-hidden flex items-center justify-center">
+      <div className="fixed inset-0 z-[9999] bg-black overflow-hidden flex items-center justify-center px-8">
         <div className="w-[80%] max-w-[500px]">
           {/* LOADING text */}
           <div className="text-center mb-[20px]">
@@ -438,15 +429,15 @@ export default function Home() {
 
           {/* Bottom decoration: hyphen - code text - hyphen */}
           <div className="flex items-center mt-[4px] gap-0">
-            <div className="w-[30px] h-[4px] bg-white flex-shrink-0" />
-            <div className="flex-grow overflow-hidden whitespace-nowrap px-2">
+            <div className="w-[30px] h-[4px] bg-white flex-shrink-0 mt-0.5" />
+            <div className="flex-grow overflow-hidden whitespace-nowrap pt-1 pl-2 pr-8">
               <div 
-                className="text-[#888] text-[8px] tracking-[0.3px] font-mono"
+                className="text-[#888] text-[8px]  tracking-[0.3px] font-mono"
               >
                 {randomCode}
               </div>
             </div>
-            <div className="w-[30px] h-[4px] bg-white flex-shrink-0" />
+            <div className="w-[30px] h-[4px] ml-2 bg-white flex-shrink-0 mt-1" />
           </div>
         </div>
 
@@ -501,53 +492,55 @@ export default function Home() {
             <div className="max-w-5xl mx-auto">
               {/* Modern Hero Title */}
               <div className="mb-8">
-                <div className="inline-block mb-6">
+                <div className={`inline-block mb-6 transition-all duration-1000 ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
                   <span className="text-white/60 text-lg font-light tracking-wider uppercase">Hello, I'm</span>
                 </div>
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight leading-none">
+                <h1 className={`text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight leading-none transition-all duration-1000 delay-200 ${showContent ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
                   Akshay Kumar B
                 </h1>
-                <div className="w-24 h-1 bg-gradient-to-r from-white/60 to-transparent mx-auto mb-8"></div>
+                <div className={`w-24 h-1 bg-gradient-to-r from-white/60 to-transparent mx-auto mb-8 transition-all duration-1000 delay-300 ${showContent ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}`}></div>
               </div>
               
               {/* Dynamic Typewriter */}
-              <div className="text-xl md:text-2xl text-white/80 mb-8 min-h-[2.5rem] font-light">
+              <div className={`text-xl md:text-2xl text-white/80 mb-8 min-h-[2.5rem] font-light transition-all duration-1000 delay-500 ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <span className="inline-block">
                   <span>Welcome to My </span>
-                  <span className="inline-block min-w-[150px] text-left">{currentText}</span>
-                  <span className={`${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity text-white/40`}>|</span>
-                </span>
+                  <span className="inline-block min-w-[150px] text-left">{currentText}</span>                </span>
               </div>
 
-              <p className="text-lg md:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed mb-12 font-light">
-                Cybersecurity Professional • AI Developer
+              <p className={`text-lg md:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed mb-12 font-light transition-all duration-1000 delay-700 ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                <span className="font-serif font-semibold text-white text-xl tracking-wide">Cybersecurity | Networking | AI Model Developer</span>
                 <br />
-                <span className="text-white/60 italic">
-                  "Building secure digital experiences with innovative technology"
+                <span className="relative inline-block mt-4 group">
+                  <span className="text-white font-mono text-lg font-semibold tracking-wider italic relative">
+                    "If it's Smart, it's Vulnerable"
+                    <span className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-green-400/20 to-cyan-400/20 blur-xl group-hover:blur-2xl transition-all duration-500"></span>
+                  </span>
+                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent group-hover:via-cyan-400 transition-all duration-300"></span>
                 </span>
               </p>
 
               {/* Modern Stats Grid */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-16">
-                <div className="group">
+                <div className={`group transition-all duration-1000 delay-[900ms] ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-500">
                     <div className="text-3xl font-bold text-white mb-2">5+</div>
                     <div className="text-white/60 text-sm font-light">Years Experience</div>
                   </div>
                 </div>
-                <div className="group">
+                <div className={`group transition-all duration-1000 delay-[1000ms] ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-500">
                     <div className="text-3xl font-bold text-white mb-2">50+</div>
                     <div className="text-white/60 text-sm font-light">Projects Completed</div>
                   </div>
                 </div>
-                <div className="group">
+                <div className={`group transition-all duration-1000 delay-[1100ms] ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-500">
                     <div className="text-3xl font-bold text-white mb-2">24/7</div>
                     <div className="text-white/60 text-sm font-light">Security Focus</div>
                   </div>
                 </div>
-                <div className="group">
+                <div className={`group transition-all duration-1000 delay-[1200ms] ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-500">
                     <div className="text-3xl font-bold text-white mb-2">99.9%</div>
                     <div className="text-white/60 text-sm font-light">Uptime Record</div>
@@ -557,7 +550,7 @@ export default function Home() {
             </div>
 
             {/* Modern CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
+            <div className={`flex flex-col sm:flex-row gap-6 justify-center items-center mb-20 transition-all duration-1000 delay-[1400ms] ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <Link href="/level1" className="group relative overflow-hidden">
                 <div className="bg-white text-black px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/90 transition-all duration-300 shadow-lg hover:shadow-xl">
                   Explore My Work
@@ -579,7 +572,7 @@ export default function Home() {
             </div>
 
             {/* Elegant Scroll Indicator */}
-            <div className="animate-bounce opacity-60">
+            <div className={`animate-bounce transition-all duration-1000 delay-[1600ms] ${showContent ? 'opacity-60' : 'opacity-0'}`}>
               <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center mx-auto">
                 <div className="w-1 h-3 bg-white/40 rounded-full mt-2 animate-pulse"></div>
               </div>
