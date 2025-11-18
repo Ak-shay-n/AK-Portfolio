@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
 import LightRays from '@/components/LightRays';
 import ScrollReveal from '@/components/ScrollReveal';
+import Header from '@/components/Header';
 
 export default function Level1() {
   console.log('🚀 Level1 component loaded!');
@@ -12,8 +12,6 @@ export default function Level1() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [windowDimensions, setWindowDimensions] = useState({ width: 0, height: 0 });
   const [isClient, setIsClient] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -56,45 +54,6 @@ export default function Level1() {
     setIsClient(true);
   }, []);
 
-  // Close mobile menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Element;
-      if (isMobileMenuOpen && !target.closest('nav')) {
-        setIsMobileMenuOpen(false);
-      }
-    };
-
-    if (isMobileMenuOpen) {
-      document.addEventListener('click', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [isMobileMenuOpen]);
-
-  // Handle scroll for navbar resize
-  useEffect(() => {
-    if (!isClient) return;
-
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-
-      if (scrollPosition <= 50) {
-        setIsScrolled(false);
-      } else {
-        setIsScrolled(true);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [isClient]);
-
   if (!isClient) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center">
@@ -103,148 +62,9 @@ export default function Level1() {
     );
   }
 
-  const profileData = {
-    bio: {
-      title: "PERSONAL_BIO.txt",
-      icon: "👤",
-      content: `USER: Akshay Kumar B
-ROLE: Cybersecurity Enthusiast | Frontend Designer | Blockchain Learner
-STATUS: Active | Learning | Building
-CLEARANCE: Level 1 - System Access ✓
-
-═══════════════════════════════════════════════════════════════
-
-PERSONAL PROFILE:
-  A passionate cybersecurity student with a strong interest in ethical 
-  hacking, network security, and penetration testing. I combine my love 
-  for security with modern web development to create secure, interactive 
-  applications that protect and serve.
-
-  Currently exploring the intersection of cybersecurity and blockchain 
-  technology while building real-world projects that make a difference.
-  
-SPECIALIZATIONS:
-  • Network Security & Penetration Testing
-  • Secure Web Application Development  
-  • Blockchain Security & Smart Contract Auditing
-  • OSINT & Digital Forensics
-  • Ethical Hacking & Vulnerability Assessment
-
-CURRENT MISSION:
-  Building secure, innovative solutions while learning advanced 
-  cybersecurity techniques. Always staying one step ahead of threats
-  and continuously improving digital defense systems.
-
-PERSONAL MOTTO:
-  "Stay curious. Stay lazy. Stay secure. Never stop learning."
-  
-  "In a world of constant digital evolution, security isn't just
-   a feature—it's the foundation of trust."
-
-═══════════════════════════════════════════════════════════════
-
-LOCATION: India 🇮🇳
-TIMEZONE: UTC+5:30 (IST)
-AVAILABILITY: Open to collaborations and learning opportunities
-PREFERRED_CONTACT: Secure channels only`
-    },
-    skills: {
-      title: "TECH_STACK.json",
-      icon: "⚡",
-      content: `{
-  "cybersecurity": {
-    "penetration_testing": {
-      "tools": ["Wireshark", "Burp Suite", "Nmap", "Metasploit", "OWASP ZAP"],
-      "techniques": ["Network Scanning", "Web App Testing", "Social Engineering"],
-      "experience": "2+ years hands-on practice"
-    },
-    "network_security": {
-      "protocols": ["TCP/IP", "HTTP/HTTPS", "SSH", "VPN", "TLS/SSL"],
-      "monitoring": ["Wireshark", "tcpdump", "Snort", "pfSense"],
-      "analysis": ["Traffic Analysis", "Intrusion Detection", "Log Analysis"]
-    },
-    "mobile_security": {
-      "android": ["ADB", "Frida", "APK Analysis", "Root Detection Bypass"],
-      "tools": ["Android Studio", "Genymotion", "MobSF"],
-      "expertise": "Mobile App Security Assessment"
-    },
-    "certifications": {
-      "in_progress": ["CEH (Certified Ethical Hacker)"],
-      "planned": ["CISSP", "OSCP", "Security+"],
-      "completed": ["Various CTF competitions"]
-    }
-  },
-  
-  "frontend_development": {
-    "frameworks": {
-      "react": {
-        "version": "18+",
-        "experience": "2+ years",
-        "specialties": ["Hooks", "Context API", "Performance Optimization"]
-      },
-      "nextjs": {
-        "version": "13+", 
-        "features": ["App Router", "Server Components", "API Routes"],
-        "deployment": ["Vercel", "Netlify", "AWS"]
-      },
-      "vue": {
-        "version": "3+",
-        "experience": "Learning",
-        "focus": ["Composition API", "Pinia State Management"]
-      }
-    },
-    "styling": {
-      "tailwind_css": "Expert level - Component architecture",
-      "styled_components": "Intermediate - Dynamic theming",
-      "css3": "Advanced - Animations & Grid/Flexbox"
-    },
-    "tools": ["TypeScript", "JavaScript ES6+", "Webpack", "Vite", "Babel"]
-  },
-  
-  "backend_development": {
-    "languages": {
-      "nodejs": "Express.js, Socket.io, RESTful APIs",
-      "python": "Django, Flask, Security Scripts",
-      "java": "Spring Boot, Servlet API"
-    },
-    "databases": {
-      "sql": ["PostgreSQL", "MySQL", "SQLite"],
-      "nosql": ["MongoDB", "Redis", "Firebase"],
-      "orm": ["Prisma", "TypeORM", "Mongoose"]
-    },
-    "apis": ["REST", "GraphQL", "WebSocket", "gRPC"]
-  },
-  
-  "blockchain_technology": {
-    "platforms": {
-      "ethereum": "Smart Contract Development",
-      "solidity": "DeFi protocols, NFT marketplaces",
-      "web3": "dApp integration and wallet connectivity"
-    },
-    "tools": ["Ganache", "Truffle", "Hardhat", "MetaMask", "Remix IDE"],
-    "concepts": ["DeFi", "NFTs", "DAOs", "Decentralized Applications"],
-    "security": ["Smart Contract Auditing", "Reentrancy Prevention"]
-  },
-  
-  "additional_skills": {
-    "programming_languages": ["C++", "Python", "Java", "JavaScript", "Go"],
-    "version_control": ["Git", "GitHub", "GitLab", "Bitbucket"],
-    "cloud_platforms": ["AWS", "Azure", "Google Cloud", "DigitalOcean"],
-    "containerization": ["Docker", "Kubernetes", "Docker Compose"],
-    "ci_cd": ["GitHub Actions", "Jenkins", "GitLab CI"],
-    "operating_systems": ["Linux (Ubuntu, Kali)", "Windows", "macOS"]
-  }
-}`
-    },
-  };
-
-  const tabs = [
-    { id: 'bio', label: 'PERSONAL BIO', icon: '👤' },
-    { id: 'skills', label: 'TECH STACK', icon: '⚡' }
-  ];
-
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+
       {/* Light Rays Background */}
       <div className="fixed inset-0 z-0">
         <LightRays
@@ -274,111 +94,8 @@ PREFERRED_CONTACT: Secure channels only`
         </svg>
       </div>
 
-      {/* Modern Navigation Header */}
-      <nav
-        className="fixed top-4 left-1/2 z-40"
-        style={{ transform: 'translateX(-50%)' }}
-      >
-        <div
-          className={`bg-white/10 backdrop-blur-xl border border-white/20 rounded-full transition-all duration-300 ease-out ${
-            isScrolled
-              ? 'w-[85vw] max-w-4xl px-5 py-3'
-              : 'w-[95vw] max-w-6xl px-8 py-4'
-          }`}
-        >
-          <div className="flex items-center justify-between">
-            <Link href="/" className={`font-bold text-white tracking-tight transition-all duration-300 hover:text-cyan-400 ${
-              isScrolled 
-                ? 'text-base' 
-                : 'text-lg'
-            }`}>
-              Akshay Kumar
-            </Link>
-            <div className={`hidden md:flex items-center gap-2 transition-all duration-300 ${
-              isScrolled 
-                ? 'gap-2' 
-                : 'gap-3'
-            }`}>
-              <Link href="/" className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
-                isScrolled ? 'text-xs' : 'text-sm'
-              }`}>
-                Home
-              </Link>
-              <Link href="/level1" className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
-                isScrolled ? 'text-xs' : 'text-sm'
-              }`}>
-                About
-              </Link>
-              <Link href="/level2" className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
-                isScrolled ? 'text-xs' : 'text-sm'
-              }`}>
-                Portfolio
-              </Link>
-              <Link href="/level3" className={`bg-white text-black rounded-full hover:bg-white/90 hover:scale-105 transition-all duration-200 font-semibold shadow-lg ${
-                isScrolled 
-                  ? 'px-5 py-2 text-xs' 
-                  : 'px-6 py-2 text-sm'
-              }`}>
-                Get Started
-              </Link>
-            </div>
-            
-            {/* Mobile Menu Button */}
-            <button 
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden text-white p-2 rounded-full hover:bg-white/10 transition-all duration-300"
-            >
-              <svg className={`w-5 h-5 transform transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-90' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {isMobileMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
-          </div>
-          
-          {/* Mobile Menu Dropdown */}
-          <div className={`md:hidden mt-4 transition-all duration-300 ease-in-out ${
-            isMobileMenuOpen 
-              ? 'max-h-80 opacity-100 visible' 
-              : 'max-h-0 opacity-0 invisible'
-          } overflow-hidden`}>
-            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 space-y-2">
-              <Link 
-                href="/"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block w-full text-left text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
-              >
-                Home
-              </Link>
-              <Link 
-                href="/level1"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block w-full text-left text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
-              >
-                About
-              </Link>
-              <Link 
-                href="/level2"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block w-full text-left text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
-              >
-                Portfolio
-              </Link>
-              <div className="pt-2">
-                <Link 
-                  href="/level3" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block bg-white text-black px-4 py-3 rounded-xl hover:bg-white/90 transition-all duration-300 text-base font-medium text-center"
-                >
-                  Get Started
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
+      {/* Navigation Header */}
+      <Header />
 
       {/* Main Content */}
       <div className="relative z-10 pt-32 pb-20">

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import LevelCard from '@/components/LevelCard';
 import LightRays from '@/components/LightRays';
+import Header from '@/components/Header';
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -17,9 +18,12 @@ export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [windowDimensions, setWindowDimensions] = useState({ width: 0, height: 0 });
   const [isClient, setIsClient] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [educationProgress, setEducationProgress] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
+  const educationRef = useRef<HTMLDivElement>(null);
+  const education1Ref = useRef<HTMLDivElement>(null);
+  const education2Ref = useRef<HTMLDivElement>(null);
+  const education3Ref = useRef<HTMLDivElement>(null);
 
   const word1 = "World";
   const word2 = "Portfolio";
@@ -300,37 +304,73 @@ export default function Home() {
     return () => clearInterval(codeInterval);
   }, [showLoading]);
 
-  // Close mobile menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Element;
-      if (isMobileMenuOpen && !target.closest('nav')) {
-        setIsMobileMenuOpen(false);
-      }
-    };
-
-    if (isMobileMenuOpen) {
-      document.addEventListener('click', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [isMobileMenuOpen]);
-
-  // Handle scroll for navbar resize
+  // Handle education progress bar
   useEffect(() => {
     if (!isClient) return;
 
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 50);
+    const handleEducationScroll = () => {
+      // Calculate education timeline progress based on scroll position
+      if (educationRef.current && education1Ref.current && education2Ref.current) {
+        const windowHeight = window.innerHeight;
+        const viewportTrigger = windowHeight * 0.6; // Trigger point at 60% of viewport
+        
+        // Get icon positions (center of the circular icons)
+        const item1Icon = education1Ref.current.querySelector('div[class*="absolute"]') as HTMLElement;
+        const item2Icon = education2Ref.current.querySelector('div[class*="absolute"]') as HTMLElement;
+        
+        if (!item1Icon || !item2Icon) return;
+        
+        const icon1Rect = item1Icon.getBoundingClientRect();
+        const icon2Rect = item2Icon.getBoundingClientRect();
+        
+        // Calculate icon centers (accounting for the icon size)
+        const icon1Y = icon1Rect.top + (icon1Rect.height / 2);
+        const icon2Y = icon2Rect.top + (icon2Rect.height / 2);
+        
+        // Total vertical distance between the two icons
+        const totalDistance = icon2Y - icon1Y;
+        
+        // Calculate how much the timeline should be filled
+        // Start filling when first icon reaches trigger point
+        const startOffset = viewportTrigger - icon1Y;
+        
+        let progress = 0;
+        
+        if (startOffset <= 0) {
+          // First icon hasn't reached trigger point yet
+          progress = 0;
+        } else if (startOffset >= totalDistance) {
+          // Past the second icon - cap at 100%
+          progress = 1;
+        } else {
+          // Between the two icons - proportional fill
+          progress = startOffset / totalDistance;
+        }
+        
+        // Clamp progress between 0 and 1 to prevent overflow
+        progress = Math.max(0, Math.min(1, progress));
+        
+        setEducationProgress(progress);
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    // Use requestAnimationFrame for smoother updates
+    let ticking = false;
+    const optimizedScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleEducationScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', optimizedScroll, { passive: true });
+    handleEducationScroll(); // Call once on mount
     
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', optimizedScroll);
     };
   }, [isClient]);
 
@@ -347,7 +387,6 @@ export default function Home() {
         behavior: 'smooth'
       });
     }
-    setIsMobileMenuOpen(false);
   };
 
   if (!isClient) {
@@ -453,107 +492,8 @@ export default function Home() {
         </svg>
       </div>
 
-
-
-      {/* Modern Navigation Header */}
-      <nav className="fixed top-4 left-1/2 z-40" style={{ transform: 'translateX(-50%)' }}>
-        <div className={`bg-white/10 backdrop-blur-xl border border-white/20 rounded-full transition-all duration-300 ease-out ${
-          isScrolled 
-            ? 'w-[85vw] max-w-4xl px-5 py-3'
-            : 'w-[95vw] max-w-6xl px-8 py-4'
-        }`}>
-          <div className="flex items-center justify-between">
-            <Link href="/" className={`font-bold text-white tracking-tight transition-all duration-300 hover:text-cyan-400 ${
-              isScrolled 
-                ? 'text-base' 
-                : 'text-lg'
-            }`}>
-              Akshay Kumar
-            </Link>
-            <div className={`hidden md:flex items-center gap-2 transition-all duration-300 ${
-              isScrolled 
-                ? 'gap-2' 
-                : 'gap-3'
-            }`}>
-              <button onClick={() => scrollToSection('home')} className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
-                isScrolled ? 'text-xs' : 'text-sm'
-              }`}>
-                Home
-              </button>
-              <Link href="/level1" className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
-                isScrolled ? 'text-xs' : 'text-sm'
-              }`}>
-                About
-              </Link>
-              <Link href="/level2" className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
-                isScrolled ? 'text-xs' : 'text-sm'
-              }`}>
-                Portfolio
-              </Link>
-              <Link href="/level3" className={`bg-white text-black rounded-full hover:bg-white/90 hover:scale-105 transition-all duration-200 font-semibold shadow-lg ${
-                isScrolled 
-                  ? 'px-5 py-2 text-xs' 
-                  : 'px-6 py-2 text-sm'
-              }`}>
-                Get Started
-              </Link>
-            </div>
-            
-            {/* Mobile Menu Button */}
-            <button 
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden text-white p-2 rounded-full hover:bg-white/10 transition-all duration-300"
-            >
-              <svg className={`w-5 h-5 transform transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-90' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {isMobileMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
-          </div>
-          
-          {/* Mobile Menu Dropdown */}
-          <div className={`md:hidden mt-4 transition-all duration-300 ease-in-out ${
-            isMobileMenuOpen 
-              ? 'max-h-80 opacity-100 visible' 
-              : 'max-h-0 opacity-0 invisible'
-          } overflow-hidden`}>
-            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 space-y-2">
-              <button 
-                onClick={() => scrollToSection('home')}
-                className="block w-full text-left text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
-              >
-                Home
-              </button>
-              <Link 
-                href="/level1"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block w-full text-left text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
-              >
-                About
-              </Link>
-              <Link 
-                href="/level2"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block w-full text-left text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
-              >
-                Portfolio
-              </Link>
-              <div className="pt-2">
-                <Link 
-                  href="/level3" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block bg-white text-black px-4 py-3 rounded-xl hover:bg-white/90 transition-all duration-300 text-base font-medium text-center"
-                >
-                  Get Started
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
+      {/* Navigation Header */}
+      <Header />
 
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center justify-center pt-32 pb-20">
@@ -647,6 +587,63 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Education Section */}
+        <section ref={educationRef} className="py-24 relative">
+          <div className="container mx-auto px-8 max-w-5xl">
+            <div className="mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">
+                My <span className="bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent">Education</span>
+              </h2>
+            </div>
+
+            <div className="relative space-y-8">
+              {/* Background vertical line (unfilled) */}
+              <div className="absolute left-0 top-6 bottom-6 w-0.5 bg-green-400/20" />
+              
+              {/* Animated vertical progress line (fills up on scroll) */}
+              <div 
+                className="absolute left-0 top-6 w-0.5 bg-gradient-to-b from-green-400 to-cyan-400 transition-all duration-300 ease-out"
+                style={{
+                  height: `calc((100% - 3rem) * ${educationProgress})`,
+                  boxShadow: `0 0 20px rgba(34, 197, 94, ${educationProgress * 0.8})`
+                }}
+              />
+
+              {/* B.E - Computer Science */}
+              <div ref={education1Ref} className="relative pl-12 pb-16">
+                <div className="absolute left-0 top-0 w-12 h-12 -ml-6 bg-gradient-to-br from-green-400 to-cyan-400 rounded-full flex items-center justify-center transition-all duration-300 z-10">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+                  </svg>
+                </div>
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-3">
+                  <h3 className="text-2xl font-bold text-white tracking-tight">UG - B.E CSE (Cybersecurity)</h3>
+                  <span className="text-sm text-white/50 font-light">Sep 2023 - May 2027</span>
+                </div>
+                <div className="space-y-1 text-white/70">
+                  <p className="text-base font-light">Chennai Institute of Technology, Chennai</p>
+                </div>
+              </div>
+
+              {/* HSC */}
+              <div ref={education2Ref} className="relative pl-12 pb-16">
+                <div className="absolute left-0 top-0 w-12 h-12 -ml-6 bg-gradient-to-br from-green-400 to-cyan-400 rounded-full flex items-center justify-center transition-all duration-300 z-10">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+                  </svg>
+                </div>
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-3">
+                  <h3 className="text-2xl font-bold text-white tracking-tight">HSC - Math & Computer Science</h3>
+                  <span className="text-sm text-white/50 font-light">Jul 2019 - Apr 2021</span>
+                </div>
+                <div className="space-y-1 text-white/70">
+                  <p className="text-base font-light">St.Joseph's Matric Hr.Sec School, Hosur</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Portfolio Section */}
         <section id="levels" className="py-24 relative">
           <div className="container mx-auto px-8">
@@ -658,9 +655,6 @@ export default function Home() {
                 Featured Projects
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-white/60 to-transparent mx-auto mb-8"></div>
-              <p className="text-lg text-white/70 max-w-3xl mx-auto leading-relaxed font-light">
-                Explore my journey through cybersecurity, development, and innovation
-              </p>
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
