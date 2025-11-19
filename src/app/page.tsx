@@ -20,11 +20,13 @@ export default function Home() {
   const [isClient, setIsClient] = useState(false);
   const [educationProgress, setEducationProgress] = useState(0);
   const [showContent, setShowContent] = useState(false);
+  const [showFooter, setShowFooter] = useState(true);
   const heroRef = useRef<HTMLDivElement>(null);
   const educationRef = useRef<HTMLDivElement>(null);
   const education1Ref = useRef<HTMLDivElement>(null);
   const education2Ref = useRef<HTMLDivElement>(null);
   const education3Ref = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
 
   const word1 = "World";
   const word2 = "Portfolio";
@@ -365,6 +367,33 @@ export default function Home() {
     };
   }, [isClient]);
 
+  // Footer scroll animation
+  useEffect(() => {
+    if (!isClient || !footerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setShowFooter(true);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '-50px'
+      }
+    );
+
+    observer.observe(footerRef.current);
+
+    return () => {
+      if (footerRef.current) {
+        observer.unobserve(footerRef.current);
+      }
+    };
+  }, [isClient]);
+
   // Smooth scroll to section
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -453,7 +482,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+    <div className="flex flex-col min-h-screen bg-black text-white overflow-x-hidden">
       {/* Light Rays Background */}
       <div className="fixed inset-0 z-0">
         <LightRays
@@ -487,7 +516,7 @@ export default function Home() {
       <Header />
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center pt-32 pb-20">
+      <section id="home" className="min-h-screen flex items-center justify-center pt-32 pb-0">
           <div className="container mx-auto px-8 text-center relative z-10">
             <div className="max-w-5xl mx-auto">
               {/* Modern Hero Title */}
@@ -513,7 +542,7 @@ export default function Home() {
                 <br />
                 <span className="relative inline-block mt-4 group">
                   <span className="text-white font-mono text-lg font-semibold tracking-wider italic relative">
-                    "If it's Smart, it's Vulnerable"
+                    " If it's Smart, it's Vulnerable "
                     <span className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-green-400/20 to-cyan-400/20 blur-xl group-hover:blur-2xl transition-all duration-500"></span>
                   </span>
                   <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent group-hover:via-cyan-400 transition-all duration-300"></span>
@@ -521,29 +550,29 @@ export default function Home() {
               </p>
 
               {/* Modern Stats Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-16">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto mb-16">
                 <div className={`group transition-all duration-1000 delay-[900ms] ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-500">
-                    <div className="text-3xl font-bold text-white mb-2">5+</div>
+                    <div className="text-3xl font-bold text-white mb-2">2+</div>
                     <div className="text-white/60 text-sm font-light">Years Experience</div>
                   </div>
                 </div>
                 <div className={`group transition-all duration-1000 delay-[1000ms] ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-500">
-                    <div className="text-3xl font-bold text-white mb-2">50+</div>
+                    <div className="text-3xl font-bold text-white mb-2">10+</div>
                     <div className="text-white/60 text-sm font-light">Projects Completed</div>
                   </div>
                 </div>
                 <div className={`group transition-all duration-1000 delay-[1100ms] ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-500">
-                    <div className="text-3xl font-bold text-white mb-2">24/7</div>
-                    <div className="text-white/60 text-sm font-light">Security Focus</div>
+                    <div className="text-3xl font-bold text-white mb-2">95%</div>
+                    <div className="text-white/60 text-sm font-light">Automated Compliance</div>
                   </div>
                 </div>
                 <div className={`group transition-all duration-1000 delay-[1200ms] ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-500">
-                    <div className="text-3xl font-bold text-white mb-2">99.9%</div>
-                    <div className="text-white/60 text-sm font-light">Uptime Record</div>
+                    <div className="text-3xl font-bold text-white mb-2">89.9%</div>
+                    <div className="text-white/60 text-sm font-light">Model Accuracy</div>
                   </div>
                 </div>
               </div>
@@ -702,22 +731,20 @@ export default function Home() {
         </section>
 
         {/* Footer */}
-        <footer className="py-12 border-t border-green-400/30 bg-black/50">
-          <div className="container mx-auto px-6 text-center">
-            <p className="text-gray-400 font-mono">
-              <span className="text-green-400">[</span>
-              © 2025 AKSHAY KUMAR B - CYBER SECURITY SPECIALIST
-              <span className="text-green-400">]</span>
-            </p>
-            <p className="text-green-400 text-sm mt-2 font-mono">
-              System Status: OPERATIONAL | Security Level: MAXIMUM
-            </p>
+        <footer ref={footerRef} className="relative mt-auto pt-20 pb-0">
+          <div className="container mx-auto px-8 max-w-5xl">
+            {/* Quote Banner */}
+            <div className={`relative rounded-t-xl bg-white/5 backdrop-blur-sm border border-white/10 py-6 px-8 text-center transition-all duration-1000 ${
+              showFooter ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+            }`}>
+              <h2 className="text-xl md:text-2xl font-semibold text-white mb-2 italic">
+                " There is no Patch for Human Stupidity "
+              </h2>
+              <p className="text-white/60 text-sm">
+                ~ Kevin Mitnick
+              </p>
+            </div>
           </div>
         </footer>
-        
-        {/* Background Audio */}
-        <audio id="backgroundAudio" loop>
-          <source src="/sounds/cyber-ambient.mp3" type="audio/mpeg" />
-        </audio>
       </div>  );
 }

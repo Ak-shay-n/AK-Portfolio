@@ -95,12 +95,12 @@ export default function Header() {
             <Link href="/level1" className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
               isScrolled ? 'text-xs' : 'text-sm'
             }`}>
-              About
+              About Me
             </Link>
             <Link href="/level2" className={`text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 font-medium px-4 py-2 rounded-full ${
               isScrolled ? 'text-xs' : 'text-sm'
             }`}>
-              Portfolio
+              Projects
             </Link>
             <Link href="/level3" className={`bg-white text-black rounded-full hover:bg-white/90 hover:scale-105 transition-all duration-200 font-semibold shadow-lg ${
               isScrolled 
@@ -145,7 +145,7 @@ export default function Header() {
               onClick={() => setIsMobileMenuOpen(false)}
               className="block w-full text-left text-white/80 hover:text-white transition-all duration-300 text-base font-medium px-4 py-3 rounded-xl hover:bg-white/10"
             >
-              About
+              About Me
             </Link>
             <Link 
               href="/level2"
