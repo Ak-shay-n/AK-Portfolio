@@ -656,7 +656,7 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-3">
                   <h3 className="text-2xl font-bold text-white tracking-tight">HSC - Math & Computer Science</h3>
-                  <span className="text-sm text-white/50 font-light">Jul 2019 - Apr 2021</span>
+                  <span className="text-sm text-white/50 font-light">Jul 2021 - Apr 2023</span>
                 </div>
                 <div className="space-y-1 text-white/70">
                   <p className="text-base font-light">St.Joseph's Matric Hr.Sec School, Hosur</p>
