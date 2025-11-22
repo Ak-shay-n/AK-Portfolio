@@ -146,10 +146,7 @@ export default function Level1() {
               {/* Title Section */}
               <div className="relative text-center mb-12" style={{ maxWidth: '663px', margin: '0 auto 80px' }}>
                 <p className="text-[24px] leading-[31px] tracking-[0.48px] text-white mb-0 font-light">
-                  I'm currently looking to join a <span className="text-[#a362ff] font-normal">cross-functional</span> team
-                </p>
-                <p className="text-[17px] leading-[31px] text-white/70 font-light">
-                  that values improving people's lives through accessible design
+                  Skills 
                 </p>
               </div>
 
