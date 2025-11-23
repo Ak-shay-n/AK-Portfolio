@@ -549,18 +549,6 @@ export default function Level3() {
           {/* End Two Column Layout */}
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="py-12 border-t border-cyan-500/20 bg-black/50 relative z-10">
-        <div className="container mx-auto px-6 text-center font-mono">
-          <p className="text-cyan-400/70 text-sm mb-2">
-            <span className="text-green-400">&gt;</span> LEVEL 3: SECURE TERMINAL - ENCRYPTED CHANNEL ACTIVE
-          </p>
-          <p className="text-green-400 text-xs">
-            Security Level: <span className="font-bold">MAXIMUM</span> | Communication Status: <span className="font-bold">SECURED</span>
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }
