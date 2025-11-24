@@ -5,9 +5,9 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import LightRays from '@/components/LightRays';
 import Header from '@/components/Header';
+import FeaturedProject from '@/components/FeaturedProject';
 
 export default function Level2() {
-  const [activeProject, setActiveProject] = useState('security');
   const [isClient, setIsClient] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   // Secret / access control for the Evervault flow
@@ -26,7 +26,6 @@ export default function Level2() {
   const [isLoading, setIsLoading] = useState(false);
   const [sessionStartTime, setSessionStartTime] = useState<number | null>(null);
   const sessionTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const [expandedProject, setExpandedProject] = useState<string | null>(null);
 
   // Session timeout (4 minutes = 240000ms)
   const SESSION_TIMEOUT = 4 * 60 * 1000;
@@ -139,99 +138,45 @@ export default function Level2() {
     }, 350);
   }
 
-  // Project categories
-  const projectCategories = {
-    security: {
-      title: "Security & Cybersecurity",
-      icon: "🔐",
-      color: "text-green-400",
-      bgColor: "bg-green-400/10",
-      borderColor: "border-green-400/30",
-      projects: [
-        {
-          name: "Network Security Scanner",
-          description: "Advanced network vulnerability assessment tool",
-          tech: ["Python", "Nmap", "Scapy", "Flask"],
-          status: "Production",
-          link: "#"
-        },
-        {
-          name: "Password Security Analyzer",
-          description: "Real-time password strength and breach checking",
-          tech: ["React", "Node.js", "MongoDB", "HIBP API"],
-          status: "Live",
-          link: "#"
-        },
-        {
-          name: "OSINT Framework",
-          description: "Open Source Intelligence gathering toolkit",
-          tech: ["Python", "APIs", "Web Scraping", "ML"],
-          status: "Development",
-          link: "#"
-        }
-      ]
+  // Featured Projects Data
+  const featuredProjects = [
+    {
+      title: "Spotify Analytics Dashboard",
+      description: "A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.",
+      imageUrl: "https://www.figma.com/api/mcp/asset/c13e64c0-d645-4a1e-a979-f8b39928cc08",
+      technologies: ["React", "Spotify API", "Node.js", "Express", "Chart.js", "OAuth 2.0"],
+      projectUrl: "#",
+      githubUrl: "#",
+      alignment: "left" as const
     },
-    web: {
-      title: "Web Applications",
-      icon: "🌐",
-      color: "text-blue-400",
-      bgColor: "bg-blue-400/10",
-      borderColor: "border-blue-400/30",
-      projects: [
-        {
-          name: "E-Commerce Platform",
-          description: "Full-stack secure shopping platform",
-          tech: ["Next.js", "Stripe", "PostgreSQL", "Redis"],
-          status: "Production",
-          link: "#"
-        },
-        {
-          name: "Secure File Sharing",
-          description: "End-to-end encrypted file sharing service",
-          tech: ["React", "WebRTC", "Encryption", "AWS"],
-          status: "Live",
-          link: "#"
-        },
-        {
-          name: "Real-time Chat App",
-          description: "Secure messaging with E2E encryption",
-          tech: ["Socket.io", "JWT", "Crypto", "Docker"],
-          status: "Beta",
-          link: "#"
-        }
-      ]
+    {
+      title: "Network Security Scanner",
+      description: "Advanced network vulnerability assessment tool with real-time monitoring capabilities. Detects security threats, analyzes network traffic patterns, and provides comprehensive security reports. Features automated scanning schedules and customizable alert systems for enterprise environments.",
+      imageUrl: "https://www.figma.com/api/mcp/asset/c13e64c0-d645-4a1e-a979-f8b39928cc08",
+      technologies: ["Python", "Nmap", "Scapy", "Flask", "SQLAlchemy", "Redis"],
+      projectUrl: "#",
+      githubUrl: "#",
+      alignment: "right" as const
     },
-    blockchain: {
-      title: "Blockchain & DeFi",
-      icon: "⛓️",
-      color: "text-purple-400",
-      bgColor: "bg-purple-400/10",
-      borderColor: "border-purple-400/30",
-      projects: [
-        {
-          name: "Voting DApp",
-          description: "Decentralized voting system on Ethereum",
-          tech: ["Solidity", "Web3.js", "IPFS", "MetaMask"],
-          status: "Development",
-          link: "#"
-        },
-        {
-          name: "NFT Marketplace",
-          description: "Secure NFT trading platform",
-          tech: ["Smart Contracts", "React", "Polygon", "OpenSea API"],
-          status: "Planning",
-          link: "#"
-        },
-        {
-          name: "DeFi Protocol",
-          description: "Yield farming and liquidity protocol",
-          tech: ["Solidity", "Hardhat", "Chainlink", "Uniswap"],
-          status: "Research",
-          link: "#"
-        }
-      ]
+    {
+      title: "Blockchain Voting DApp",
+      description: "Decentralized voting system built on Ethereum blockchain ensuring transparent and tamper-proof elections. Features smart contract-based vote verification, anonymous voting through zero-knowledge proofs, and real-time results tracking with complete audit trails.",
+      imageUrl: "https://www.figma.com/api/mcp/asset/c13e64c0-d645-4a1e-a979-f8b39928cc08",
+      technologies: ["Solidity", "Web3.js", "IPFS", "MetaMask", "Truffle", "React"],
+      projectUrl: "#",
+      githubUrl: "#",
+      alignment: "left" as const
+    },
+    {
+      title: "AI-Powered Code Review",
+      description: "Intelligent code review assistant that analyzes pull requests using machine learning. Identifies bugs, security vulnerabilities, and suggests performance optimizations. Integrates seamlessly with GitHub and GitLab for automated code quality checks.",
+      imageUrl: "https://www.figma.com/api/mcp/asset/c13e64c0-d645-4a1e-a979-f8b39928cc08",
+      technologies: ["TypeScript", "OpenAI API", "Next.js", "PostgreSQL", "Docker", "GitHub API"],
+      projectUrl: "#",
+      githubUrl: "#",
+      alignment: "right" as const
     }
-  };
+  ];
 
   useEffect(() => {
     // Mouse tracking: only update CSS variables on the content container
@@ -589,200 +534,48 @@ export default function Level2() {
         </div>
       </section>
 
-      {/* Project Categories Section (shown only after correct secret) */}
+      {/* Featured Projects Section (shown only after correct secret) */}
       {showProjects ? (
-        <section className="py-20 relative z-10">
-          <div className="container mx-auto px-6 max-w-7xl">
+        <section className="relative z-10" ref={projectsRef} tabIndex={-1}>
             
-            {/* Modern Header */}
-            <div className="text-center mb-16" ref={projectsRef} tabIndex={-1}>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-cyan-200 to-white bg-clip-text text-transparent">
-                Project Portfolio
+          {/* Section Header */}
+          <div className="relative py-20 text-center">
+            <div className="absolute inset-0 bg-gradient-to-b from-black via-[#1a0b2e] to-transparent opacity-90"></div>
+            <div className="relative z-10 container mx-auto px-6">
+              <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-[#C791FF] to-white bg-clip-text text-transparent">
+                Featured Projects
               </h2>
+              <p className="text-[#DFDFF5]/70 text-lg max-w-2xl mx-auto leading-relaxed">
+                A collection of projects showcasing expertise across security, blockchain, and modern web development
+              </p>
             </div>
+          </div>
 
-            {/* Category Pills Navigation */}
-            <div className="flex justify-center mb-12">
-              <div className="inline-flex gap-2 p-2 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10">
-                {Object.entries(projectCategories).map(([key, category]) => (
-                  <button
-                    key={key}
-                    onClick={() => setActiveProject(key)}
-                    className={`px-5 py-2.5 rounded-xl font-medium transition-all duration-300 ${
-                      activeProject === key
-                        ? 'bg-white text-black shadow-lg'
-                        : 'text-white/60 hover:text-white hover:bg-white/5'
-                    }`}
-                  >
-                    <span className="flex items-center gap-2 text-sm">
-                      <span>{category.icon}</span>
-                      <span className="hidden sm:inline font-medium">{category.title}</span>
-                    </span>
-                  </button>
-                ))}
+          {/* Featured Projects - Full Width Sections */}
+          <div>
+            {featuredProjects.map((project, index) => (
+              <div 
+                key={index}
+                className="opacity-0 translate-y-12"
+                style={{ 
+                  animationDelay: `${index * 200}ms`,
+                  animation: showProjects ? 'fadeInUp 0.8s ease-out forwards' : 'none'
+                }}
+              >
+                <FeaturedProject
+                  title={project.title}
+                  description={project.description}
+                  imageUrl={project.imageUrl}
+                  technologies={project.technologies}
+                  projectUrl={project.projectUrl}
+                  githubUrl={project.githubUrl}
+                  alignment={project.alignment}
+                />
               </div>
-            </div>
-
-            {/* Projects Grid - Clean Modern Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {projectCategories[activeProject as keyof typeof projectCategories].projects.map((project, index) => (
-                <div 
-                  key={index} 
-                  className="group aspect-square"
-                  style={{ 
-                    animationDelay: `${index * 100}ms`,
-                    animation: showProjects ? 'fadeInUp 0.5s ease-out forwards' : 'none'
-                  }}
-                >
-                  <div className="relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-300 w-full h-full flex flex-col hover:shadow-xl hover:shadow-cyan-500/10 hover:scale-[1.02] overflow-hidden">
-                    
-                    {/* Main Content - Default View */}
-                    <div className={`transition-opacity duration-500 ${expandedProject === `${activeProject}-${index}` ? 'opacity-0 pointer-events-none' : 'opacity-100'} flex flex-col h-full`}>
-                      {/* Status Badge */}
-                      <div className="flex items-center justify-between mb-4">
-                        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ${
-                          project.status === 'Production' || project.status === 'Live' 
-                            ? 'bg-green-500/10 text-green-400 border border-green-500/20' :
-                          project.status === 'Beta' || project.status === 'Development'
-                            ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20' :
-                            'bg-purple-500/10 text-purple-400 border border-purple-500/20'
-                        }`}>
-                          <div className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></div>
-                          {project.status}
-                        </span>
-                      </div>
-                      
-                      {/* Project Name */}
-                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">
-                        {project.name}
-                      </h3>
-                      
-                      {/* Short Description */}
-                      <p className="text-white/60 text-sm mb-6 leading-relaxed flex-grow line-clamp-3">
-                        {project.description}
-                      </p>
-                      
-                      {/* Tech Stack */}
-                      <div className="mb-5">
-                        <div className="text-xs text-white/40 mb-2 uppercase tracking-wider font-medium">Tech Stack</div>
-                        <div className="flex flex-wrap gap-2">
-                          {project.tech.slice(0, 4).map(tech => (
-                            <span 
-                              key={tech} 
-                              className="px-2.5 py-1 bg-white/5 text-white/70 rounded-md text-xs font-medium border border-white/10 hover:border-cyan-400/30 hover:text-cyan-400 transition-all"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                          {project.tech.length > 4 && (
-                            <span className="px-2.5 py-1 bg-white/5 text-white/50 rounded-md text-xs font-medium border border-white/10">
-                              +{project.tech.length - 4}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                      
-                      {/* View Button */}
-                      <button 
-                        onClick={() => setExpandedProject(`${activeProject}-${index}`)}
-                        className="w-full py-3 bg-white/5 hover:bg-white text-white/80 hover:text-black border border-white/10 hover:border-white rounded-xl font-medium transition-all duration-300 group/btn cursor-pointer"
-                      >
-                        <span className="flex items-center justify-center gap-2 text-sm">
-                          View Project
-                          <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </span>
-                      </button>
-                    </div>
-
-                    {/* Expanded Content - Detailed View */}
-                    <div className={`absolute inset-0 p-6 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 backdrop-blur-md transition-opacity duration-500 ${expandedProject === `${activeProject}-${index}` ? 'opacity-100' : 'opacity-0 pointer-events-none'} flex flex-col`}>
-                      {/* Close Button */}
-                      <button 
-                        onClick={() => setExpandedProject(null)}
-                        className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 group/close z-10 cursor-pointer"
-                      >
-                        <svg className="w-5 h-5 text-white group-hover/close:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </button>
-
-                      {/* Concise Bullet Points */}
-                      <div className="flex-grow flex items-center justify-center">
-                        <ul className="space-y-3 text-white/90">
-                          {project.description.split('.').filter(point => point.trim()).map((point, i) => (
-                            <li key={i} className="flex items-start gap-3">
-                              <span className="text-cyan-400 mt-1">•</span>
-                              <span className="text-sm leading-relaxed">{point.trim()}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Action Buttons */}
-                      <div className="flex gap-3 mt-auto">
-                        <button className="flex-1 py-3 bg-cyan-500 hover:bg-cyan-400 text-black rounded-xl font-medium transition-all duration-300 text-sm cursor-pointer">
-                          View Live
-                        </button>
-                        <button className="flex-1 py-3 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-xl font-medium transition-all duration-300 text-sm cursor-pointer">
-                          Source Code
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Navigation to Next Level */}
-            <div className="mt-20 text-center">
-              <div className="inline-block mb-6">
-                <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-6 py-2">
-                  <span className="text-white/50 text-sm font-medium">Ready for the next level?</span>
-                </div>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Link href="/level3" className="group">
-                  <div className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white px-8 py-4 rounded-xl font-semibold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-300 hover:scale-105">
-                    <span className="flex items-center gap-2">
-                      Level 3: Contact
-                      <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </span>
-                  </div>
-                </Link>
-                
-                <Link href="/" className="group">
-                  <div className="bg-white/5 border border-white/20 hover:border-white/40 hover:bg-white/10 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300">
-                    <span className="flex items-center gap-2">
-                      <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                      </svg>
-                      Back to Home
-                    </span>
-                  </div>
-                </Link>
-              </div>
-            </div>
+            ))}
           </div>
         </section>
       ) : null}
-
-      {/* Footer */}
-      <footer className="py-12 border-t border-white/20 bg-black/50 relative z-10">
-        <div className="container mx-auto px-6 text-center">
-          <p className="text-gray-400 font-mono">
-            <span className="text-cyan-400">[</span>
-            LEVEL 2: PROJECT VAULT - ACCESS GRANTED
-            <span className="text-cyan-400">]</span>
-          </p>
-          <p className="text-cyan-400 text-sm mt-2 font-mono">
-            Security Level: HIGH | Projects Loaded: SUCCESS
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }
