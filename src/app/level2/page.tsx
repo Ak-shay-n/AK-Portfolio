@@ -543,11 +543,8 @@ export default function Level2() {
             <div className="absolute inset-0 bg-gradient-to-b from-black via-[#1a0b2e] to-transparent opacity-90"></div>
             <div className="relative z-10 container mx-auto px-6">
               <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-[#C791FF] to-white bg-clip-text text-transparent">
-                Featured Projects
+                Projects
               </h2>
-              <p className="text-[#DFDFF5]/70 text-lg max-w-2xl mx-auto leading-relaxed">
-                A collection of projects showcasing expertise across security, blockchain, and modern web development
-              </p>
             </div>
           </div>
 

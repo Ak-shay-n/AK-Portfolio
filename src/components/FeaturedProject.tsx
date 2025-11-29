@@ -30,14 +30,14 @@ export default function FeaturedProject({
 }: FeaturedProjectProps) {
   
   return (
-    <section className="relative w-full overflow-visible py-6 px-3">
+    <section className="relative w-full overflow-visible py-20 px-3">
       {/* Background with gradient blobs */}
       <div className="absolute inset-0 bg-[#0a021a] overflow-hidden">
         {/* Smaller, more subtle gradient blobs */}
         <div 
           className="absolute rounded-full blur-xl opacity-12"
           style={{
-            background: 'radial-gradient(circle, #9857d3 0%, transparent 55%)',
+            background: 'radial-gradient(circle, #3b82f6 0%, transparent 55%)',
             width: '240px',
             height: '280px',
             top: alignment === 'left' ? '30%' : '70%',
@@ -56,7 +56,7 @@ export default function FeaturedProject({
             
             {/* Featured Project Tag */}
             <div className="mb-1.5">
-              <p className="font-['Poppins',sans-serif] font-semibold text-[12px] text-[#9857d3] tracking-[0.24px] leading-normal m-0">
+              <p className="font-['Poppins',sans-serif] font-semibold text-[12px] text-[#3b82f6] tracking-[0.24px] leading-normal m-0">
                 Featured Project
               </p>
             </div>
