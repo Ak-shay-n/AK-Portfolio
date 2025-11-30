@@ -182,13 +182,15 @@ export default function FeaturedProject({
                 </div>
                 
                 {/* Project Screenshot */}
-                <div className="relative pt-6">
+                <div className="relative pt-6 overflow-hidden">
                   <img 
                     src={imageUrl} 
                     alt={`${title} preview`}
-                    className="w-full h-auto object-cover"
+                    className="w-full h-auto object-cover transition-all duration-500 ease-out hover:scale-105 hover:brightness-110 hover:contrast-105 cursor-pointer"
                     style={{ minHeight: '220px', maxHeight: '260px' }}
                   />
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-500/10 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 </div>
               </div>
             </div>

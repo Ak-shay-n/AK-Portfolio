@@ -540,9 +540,9 @@ export default function Level2() {
             
           {/* Section Header */}
           <div className="relative py-20 text-center">
-            <div className="absolute inset-0 bg-gradient-to-b from-black via-[#1a0b2e] to-transparent opacity-90"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0f172a] to-transparent opacity-90"></div>
             <div className="relative z-10 container mx-auto px-6">
-              <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-[#C791FF] to-white bg-clip-text text-transparent">
+              <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-[#60A5FA] to-white bg-clip-text text-transparent">
                 Projects
               </h2>
             </div>
