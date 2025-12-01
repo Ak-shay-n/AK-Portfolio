@@ -153,129 +153,322 @@ export default function Level1() {
               {/* Skills Orbital System - From Figma */}
               <div className="relative w-full mx-auto" style={{ maxWidth: '895px', height: '657px' }}>
                 
-                {/* Connection Lines from Figma */}
+                {/* Connection Lines from Figma - Subtle and refined */}
                 <div className="absolute pointer-events-none" style={{ left: '461.57px', top: '182.5px', width: '122.427px', height: '277.5px' }}>
-                  <img src="https://www.figma.com/api/mcp/asset/8ab54cdc-6367-4296-9b1c-913257c888ac" alt="" className="w-full h-full opacity-50" />
+                  <svg viewBox="0 0 122.427 277.5" className="w-full h-full opacity-25">
+                    <path d="M0,277.5 Q61,200 61,138.75 T61,0" fill="none" stroke="#7c3aed" strokeWidth="0.8" />
+                  </svg>
                 </div>
                 <div className="absolute pointer-events-none" style={{ left: '452.01px', top: '199.5px', width: '70.489px', height: '270px' }}>
-                  <img src="https://www.figma.com/api/mcp/asset/f193b84b-72e6-4134-9798-7315b6e85589" alt="" className="w-full h-full opacity-50" />
+                  <svg viewBox="0 0 70.489 270" className="w-full h-full opacity-25">
+                    <path d="M0,270 Q35,200 35,135 T35,0" fill="none" stroke="#7c3aed" strokeWidth="0.8" />
+                  </svg>
                 </div>
                 <div className="absolute pointer-events-none" style={{ left: '436.5px', top: '198px', width: '34.5px', height: '291.5px' }}>
-                  <img src="https://www.figma.com/api/mcp/asset/68225275-0692-4c2a-916e-a27c80964c28" alt="" className="w-full h-full opacity-50" />
+                  <svg viewBox="0 0 34.5 291.5" className="w-full h-full opacity-25">
+                    <line x1="17.25" y1="291.5" x2="17.25" y2="0" stroke="#7c3aed" strokeWidth="0.8" />
+                  </svg>
                 </div>
-                <div className="absolute pointer-events-none" style={{ left: '303.5px', top: '192px', width: '117.949px', height: '300.5px' }}>
-                  <div style={{ transform: 'rotateX(180deg) scaleY(-1)', width: '100%', height: '100%' }}>
-                    <img src="https://www.figma.com/api/mcp/asset/ec5b8c03-99cb-46b2-94c3-2e715f9e987d" alt="" className="w-full h-full opacity-50" />
-                  </div>
+                <div className="absolute pointer-events-none" style={{ left: '303.5px', top: '192px', width: '117.949px', height: '300.5px', transform: 'scaleX(-1)' }}>
+                  <svg viewBox="0 0 117.949 300.5" className="w-full h-full opacity-25">
+                    <path d="M0,300.5 Q59,220 59,150.25 T59,0" fill="none" stroke="#7c3aed" strokeWidth="0.8" />
+                  </svg>
                 </div>
-                <div className="absolute pointer-events-none" style={{ left: '365px', top: '192px', width: '66.11px', height: '310px' }}>
-                  <div style={{ transform: 'rotateX(180deg) scaleY(-1)', width: '100%', height: '100%' }}>
-                    <img src="https://www.figma.com/api/mcp/asset/1ec251fc-31e7-461f-94e1-867e2cb520eb" alt="" className="w-full h-full opacity-50" />
-                  </div>
+                <div className="absolute pointer-events-none" style={{ left: '365px', top: '192px', width: '66.11px', height: '310px', transform: 'scaleX(-1)' }}>
+                  <svg viewBox="0 0 66.11 310" className="w-full h-full opacity-25">
+                    <path d="M0,310 Q33,230 33,155 T33,0" fill="none" stroke="#7c3aed" strokeWidth="0.8" />
+                  </svg>
                 </div>
-                <div className="absolute pointer-events-none" style={{ left: '414px', top: '195px', width: '21px', height: '313px' }}>
-                  <div style={{ transform: 'rotateX(180deg) scaleY(-1)', width: '100%', height: '100%' }}>
-                    <img src="https://www.figma.com/api/mcp/asset/4f2da788-91f2-4bad-99f8-dbfa728a004f" alt="" className="w-full h-full opacity-50" />
-                  </div>
-                </div>
-
-                {/* Background Glow */}
-                <div className="absolute pointer-events-none" style={{ left: '181px', top: '424px', width: '542px', height: '330px' }}>
-                  <img src="https://www.figma.com/api/mcp/asset/c865ba0d-35c1-4b65-9591-88db870483e1" alt="" className="w-full h-full opacity-20" />
+                <div className="absolute pointer-events-none" style={{ left: '414px', top: '195px', width: '21px', height: '313px', transform: 'scaleX(-1)' }}>
+                  <svg viewBox="0 0 21 313" className="w-full h-full opacity-25">
+                    <line x1="10.5" y1="313" x2="10.5" y2="0" stroke="#7c3aed" strokeWidth="0.8" />
+                  </svg>
                 </div>
 
-                {/* Elliptical Orbits - 3 Concentric */}
-                <div className="absolute pointer-events-none" style={{ left: '0px', top: '457px', width: '881px', height: '269px' }}>
-                  <img src="https://www.figma.com/api/mcp/asset/571c5d46-5c80-47cc-b715-872eca04da51" alt="" className="w-full h-full opacity-60" />
-                </div>
-                <div className="absolute pointer-events-none" style={{ left: '63px', top: '457px', width: '764px', height: '269px' }}>
-                  <img src="https://www.figma.com/api/mcp/asset/dae9767a-f33d-4e6e-9700-9163daffa06f" alt="" className="w-full h-full opacity-60" />
-                </div>
-                <div className="absolute pointer-events-none" style={{ left: '108px', top: '457px', width: '695px', height: '269px' }}>
-                  <img src="https://www.figma.com/api/mcp/asset/caf51923-b20a-48f7-bb58-338772bc9fc3" alt="" className="w-full h-full opacity-60" />
+                {/* Background Glow - Larger and more diffused */}
+                <div className="absolute pointer-events-none" style={{ left: '120px', top: '400px', width: '660px', height: '380px' }}>
+                  <svg viewBox="0 0 660 380" className="w-full h-full opacity-25">
+                    <defs>
+                      <radialGradient id="bgGlow" cx="50%" cy="50%">
+                        <stop offset="0%" stopColor="#7c3aed" stopOpacity="0.9" />
+                        <stop offset="40%" stopColor="#6d28d9" stopOpacity="0.5" />
+                        <stop offset="70%" stopColor="#5b21b6" stopOpacity="0.2" />
+                        <stop offset="100%" stopColor="#4c1d95" stopOpacity="0" />
+                      </radialGradient>
+                    </defs>
+                    <ellipse cx="330" cy="190" rx="325" ry="185" fill="url(#bgGlow)" />
+                  </svg>
                 </div>
 
-                {/* Central Glow System */}
-                <div className="absolute pointer-events-none z-10" style={{ left: '292px', top: '385px', width: '306px', height: '275px' }}>
-                  <img src="https://www.figma.com/api/mcp/asset/39b113f3-2f09-4b86-acca-faa856409dd2" alt="" className="w-full h-full opacity-90" />
+                {/* Elliptical Orbits - 3 Concentric - EXACT Figma match */}
+                <div className="absolute pointer-events-none" style={{ left: '-100px', top: '430px', width: '1095px', height: '240px' }}>
+                  <svg viewBox="0 0 1095 240" className="w-full h-full opacity-40">
+                    <ellipse cx="547.5" cy="120" rx="545" ry="115" fill="none" stroke="#7c3aed" strokeWidth="1.2" />
+                  </svg>
+                </div>
+                <div className="absolute pointer-events-none" style={{ left: '0px', top: '445px', width: '895px', height: '210px' }}>
+                  <svg viewBox="0 0 895 210" className="w-full h-full opacity-40">
+                    <ellipse cx="447.5" cy="105" rx="445" ry="100" fill="none" stroke="#7c3aed" strokeWidth="1.2" />
+                  </svg>
+                </div>
+                <div className="absolute pointer-events-none" style={{ left: '90px', top: '460px', width: '715px', height: '180px' }}>
+                  <svg viewBox="0 0 715 180" className="w-full h-full opacity-40">
+                    <ellipse cx="357.5" cy="90" rx="355" ry="85" fill="none" stroke="#7c3aed" strokeWidth="1.2" />
+                  </svg>
+                </div>
+
+                {/* Central Glow System - Enhanced */}
+                <div className="absolute pointer-events-none z-10" style={{ left: '250px', top: '370px', width: '390px', height: '320px' }}>
+                  <svg viewBox="0 0 390 320" className="w-full h-full">
+                    <defs>
+                      <radialGradient id="centralGlow" cx="50%" cy="50%">
+                        <stop offset="0%" stopColor="#a78bfa" stopOpacity="0.8" />
+                        <stop offset="30%" stopColor="#8b5cf6" stopOpacity="0.6" />
+                        <stop offset="60%" stopColor="#7c3aed" stopOpacity="0.3" />
+                        <stop offset="100%" stopColor="#5b21b6" stopOpacity="0" />
+                      </radialGradient>
+                    </defs>
+                    <ellipse cx="195" cy="160" rx="190" ry="155" fill="url(#centralGlow)" />
+                  </svg>
                 </div>
                 
-                {/* Central Purple Sphere with Sigma */}
+                {/* Central Purple Sphere with Sigma - Enhanced glow */}
                 <div className="absolute z-20" style={{ left: '350px', top: '448px', width: '180px', height: '180px' }}>
-                  <img src="https://www.figma.com/api/mcp/asset/670fae2e-4561-472e-9a11-1c2dd48189d1" alt="" className="w-full h-full" />
-                  <div className="absolute" style={{ left: '52px', top: '45px', width: '76px', height: '90px' }}>
-                    <img src="https://www.figma.com/api/mcp/asset/5fa9f248-59cf-4700-9982-b0a3270932a9" alt="Σ" className="w-full h-full" />
-                  </div>
+                  <svg viewBox="0 0 180 180" className="w-full h-full">
+                    <defs>
+                      <radialGradient id="sphereGradient" cx="45%" cy="45%">
+                        <stop offset="0%" stopColor="#c4b5fd" />
+                        <stop offset="30%" stopColor="#a78bfa" />
+                        <stop offset="70%" stopColor="#7c3aed" />
+                        <stop offset="100%" stopColor="#5b21b6" />
+                      </radialGradient>
+                      <filter id="sphereGlow">
+                        <feGaussianBlur stdDeviation="12" result="coloredBlur"/>
+                        <feMerge>
+                          <feMergeNode in="coloredBlur"/>
+                          <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                      </filter>
+                    </defs>
+                    <circle cx="90" cy="90" r="85" fill="url(#sphereGradient)" filter="url(#sphereGlow)" opacity="0.95" />
+                    <text x="90" y="115" fontSize="85" fontWeight="200" fill="#ffffff" textAnchor="middle" fontFamily="system-ui, -apple-system, sans-serif">Σ</text>
+                  </svg>
                 </div>
 
-                {/* Skill Icon Circles */}
-                <div className="absolute left-1/2 top-0 -translate-x-1/2 z-30" style={{ width: '374px', marginLeft: '-187px', marginTop: '97px' }}>
-                  {/* Top Row - 7 icons */}
-                  <div className="absolute" style={{ left: '0px', top: '0px' }}>
-                    <div className="size-[44px] rounded-full" style={{ background: '#2a2438', border: '1px solid #3a3048' }}>
-                      <img src="https://www.figma.com/api/mcp/asset/150196f0-28f1-43db-83fd-091fa2ba1830" alt="Figma" className="absolute" style={{ left: '12px', top: '8px', width: '21px', height: '28px' }} />
+                {/* Skill Icon Circles - Scattered on orbital paths like Figma */}
+                <div className="absolute z-30" style={{ width: '895px', height: '657px' }}>
+                  {/* Left side icons on outer orbits */}
+                  <div className="absolute group cursor-pointer" style={{ left: '130px', top: '390px' }}>
+                    <div className="relative size-[44px]">
+                      {/* Progress Ring */}
+                      <svg className="absolute -inset-1 size-[52px] transform -rotate-90" viewBox="0 0 52 52">
+                        <circle cx="26" cy="26" r="20" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
+                        <circle cx="26" cy="26" r="20" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
+                          strokeLinecap="round" strokeDasharray="125.6" strokeDashoffset="18.84"
+                          className="transition-all duration-700 ease-out"/>
+                      </svg>
+                      {/* Icon Container */}
+                      <div className="size-[44px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.8)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" className="w-[24px] h-[24px]" />
+                      </div>
+                      {/* Progress Percentage */}
+                      <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-purple-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity">85%</div>
                     </div>
                   </div>
-                  <div className="absolute" style={{ left: '55px', top: '0px' }}>
-                    <div className="size-[44px] rounded-full" style={{ background: '#2a2438', border: '1px solid #3a3048' }}>
-                      <img src="https://www.figma.com/api/mcp/asset/5c427a26-bbb9-45d2-859b-bb35cb257518" alt="React" className="absolute" style={{ left: '6px', top: '8px', width: '32px', height: '28px' }} />
+                  {/* LinkedIn - Left outer orbit */}
+                  <div className="absolute group cursor-pointer" style={{ left: '155px', top: '185px' }}>
+                    <div className="relative size-[40px]">
+                      <svg className="absolute -inset-1 size-[48px] transform -rotate-90" viewBox="0 0 48 48">
+                        <circle cx="24" cy="24" r="18" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
+                        <circle cx="24" cy="24" r="18" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
+                          strokeLinecap="round" strokeDasharray="113" strokeDashoffset="17"
+                          className="transition-all duration-700 ease-out"/>
+                      </svg>
+                      <div className="size-[40px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" className="w-[22px] h-[22px]" />
+                      </div>
                     </div>
                   </div>
-                  <div className="absolute" style={{ left: '110px', top: '0px' }}>
-                    <div className="size-[44px] rounded-full" style={{ background: '#2a2438', border: '1px solid #3a3048' }}>
-                      <img src="https://www.figma.com/api/mcp/asset/6b73911c-2126-4b84-8e01-8704b92c5f6c" alt="C" className="absolute" style={{ left: '6px', top: '7px', width: '32px', height: '31px' }} />
+                  {/* GitHub - Left middle orbit */}
+                  <div className="absolute group cursor-pointer" style={{ left: '265px', top: '290px' }}>
+                    <div className="relative size-[38px]">
+                      <svg className="absolute -inset-1 size-[46px] transform -rotate-90" viewBox="0 0 46 46">
+                        <circle cx="23" cy="23" r="17" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
+                        <circle cx="23" cy="23" r="17" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
+                          strokeLinecap="round" strokeDasharray="107" strokeDashoffset="16"
+                          className="transition-all duration-700 ease-out"/>
+                      </svg>
+                      <div className="size-[38px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" className="w-[20px] h-[20px] invert" />
+                      </div>
                     </div>
                   </div>
-                  <div className="absolute" style={{ left: '168px', top: '0px' }}>
-                    <div className="size-[44px] rounded-full" style={{ background: '#2a2438', border: '1px solid #3a3048' }}>
-                      <img src="https://www.figma.com/api/mcp/asset/30bcdc6d-17ba-4d45-94cb-982a29486e4c" alt="Node.js" className="absolute mix-blend-lighten" style={{ left: '6px', top: '12px', width: '32px', height: '21px' }} />
+                  {/* HTML5 - Left inner orbit */}
+                  <div className="absolute group cursor-pointer" style={{ left: '135px', top: '390px' }}>
+                    <div className="relative size-[38px]">
+                      <svg className="absolute -inset-1 size-[46px] transform -rotate-90" viewBox="0 0 46 46">
+                        <circle cx="23" cy="23" r="17" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
+                        <circle cx="23" cy="23" r="17" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
+                          strokeLinecap="round" strokeDasharray="107" strokeDashoffset="11"
+                          className="transition-all duration-700 ease-out"/>
+                      </svg>
+                      <div className="size-[38px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" className="w-[20px] h-[20px]" />
+                      </div>
                     </div>
                   </div>
-                  <div className="absolute" style={{ left: '220px', top: '0px' }}>
-                    <div className="size-[44px] rounded-full" style={{ background: '#2a2438', border: '1px solid #3a3048' }}>
-                      <img src="https://www.figma.com/api/mcp/asset/67a01c1b-13e9-4224-9034-c02108747a4c" alt="HTML" className="absolute" style={{ left: '9px', top: '8px', width: '26px', height: '25px' }} />
+                  {/* Illustrator - Top center */}
+                  <div className="absolute group cursor-pointer" style={{ left: '428px', top: '310px' }}>
+                    <div className="relative size-[36px]">
+                      <svg className="absolute -inset-1 size-[44px] transform -rotate-90" viewBox="0 0 44 44">
+                        <circle cx="22" cy="22" r="16" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
+                        <circle cx="22" cy="22" r="16" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
+                          strokeLinecap="round" strokeDasharray="100" strokeDashoffset="15"
+                          className="transition-all duration-700 ease-out"/>
+                      </svg>
+                      <div className="size-[36px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" alt="Illustrator" className="w-[20px] h-[20px]" />
+                      </div>
                     </div>
                   </div>
-                  <div className="absolute" style={{ left: '275px', top: '0px' }}>
-                    <div className="size-[44px] rounded-full" style={{ background: '#2a2438', border: '1px solid #3a3048' }}>
-                      <img src="https://www.figma.com/api/mcp/asset/f5ad6b19-0715-4315-83e8-cb3ca316f522" alt="Gatsby" className="absolute" style={{ left: '9px', top: '10px', width: '26px', height: '25px' }} />
+                  {/* React - Right outer */}
+                  <div className="absolute group cursor-pointer" style={{ left: '750px', top: '400px' }}>
+                    <div className="relative size-[38px]">
+                      <svg className="absolute -inset-1 size-[46px] transform -rotate-90" viewBox="0 0 46 46">
+                        <circle cx="23" cy="23" r="17" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
+                        <circle cx="23" cy="23" r="17" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
+                          strokeLinecap="round" strokeDasharray="107" strokeDashoffset="11"
+                          className="transition-all duration-700 ease-out"/>
+                      </svg>
+                      <div className="size-[38px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" className="w-[22px] h-[22px]" />
+                      </div>
                     </div>
                   </div>
-                  <div className="absolute" style={{ left: '330px', top: '0px' }}>
-                    <div className="size-[44px] rounded-full" style={{ background: '#2a2438', border: '1px solid #3a3048' }}>
-                      <img src="https://www.figma.com/api/mcp/asset/b0beb0b0-812b-4019-82ec-4e5691e48c8c" alt="JavaScript" className="absolute" style={{ left: '9px', top: '10px', width: '26px', height: '25px' }} />
+                  {/* JavaScript - Right top */}
+                  <div className="absolute group cursor-pointer" style={{ left: '695px', top: '345px' }}>
+                    <div className="relative size-[36px]">
+                      <svg className="absolute -inset-1 size-[44px] transform -rotate-90" viewBox="0 0 44 44">
+                        <circle cx="22" cy="22" r="16" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
+                        <circle cx="22" cy="22" r="16" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
+                          strokeLinecap="round" strokeDasharray="100" strokeDashoffset="12"
+                          className="transition-all duration-700 ease-out"/>
+                      </svg>
+                      <div className="size-[36px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" className="w-[20px] h-[20px]" />
+                      </div>
                     </div>
                   </div>
-
-                  {/* Bottom Row - 6 icons */}
-                  <div className="absolute" style={{ left: '28px', top: '61px' }}>
-                    <div className="size-[44px] rounded-full" style={{ background: '#2a2438', border: '1px solid #3a3048' }}>
-                      <img src="https://www.figma.com/api/mcp/asset/bcc5211c-418f-406c-ab24-f58e4070c1e1" alt="Adobe XD" className="absolute" style={{ left: '9px', top: '10px', width: '26px', height: '25px' }} />
+                  {/* XD - Right middle */}
+                  <div className="absolute group cursor-pointer" style={{ left: '645px', top: '485px' }}>
+                    <div className="relative size-[36px]">
+                      <svg className="absolute -inset-1 size-[44px] transform -rotate-90" viewBox="0 0 44 44">
+                        <circle cx="22" cy="22" r="16" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
+                        <circle cx="22" cy="22" r="16" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
+                          strokeLinecap="round" strokeDasharray="100" strokeDashoffset="15"
+                          className="transition-all duration-700 ease-out"/>
+                      </svg>
+                      <div className="size-[36px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xd/xd-plain.svg" alt="Adobe XD" className="w-[20px] h-[20px]" />
+                      </div>
                     </div>
                   </div>
-                  <div className="absolute" style={{ left: '88px', top: '61px' }}>
-                    <div className="size-[44px] rounded-full" style={{ background: '#2a2438', border: '1px solid #3a3048' }}>
-                      <img src="https://www.figma.com/api/mcp/asset/ade7f53c-ab82-4ff0-be90-9591832f247f" alt="Gatsby" className="absolute mix-blend-lighten" style={{ left: '5px', top: '14px', width: '33px', height: '15px' }} />
+                  {/* TypeScript - Right */}
+                  <div className="absolute group cursor-pointer" style={{ left: '715px', top: '520px' }}>
+                    <div className="relative size-[36px]">
+                      <svg className="absolute -inset-1 size-[44px] transform -rotate-90" viewBox="0 0 44 44">
+                        <circle cx="22" cy="22" r="16" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
+                        <circle cx="22" cy="22" r="16" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
+                          strokeLinecap="round" strokeDasharray="100" strokeDashoffset="17"
+                          className="transition-all duration-700 ease-out"/>
+                      </svg>
+                      <div className="size-[36px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" className="w-[20px] h-[20px]" />
+                      </div>
                     </div>
                   </div>
-                  <div className="absolute" style={{ left: '140px', top: '61px' }}>
-                    <div className="size-[44px] rounded-full" style={{ background: '#2a2438', border: '1px solid #3a3048' }}>
-                      <img src="https://www.figma.com/api/mcp/asset/4268cdc6-2ddf-4140-86ee-7ba383663caf" alt="Gatsby" className="absolute" style={{ left: '9px', top: '9px', width: '26px', height: '26px' }} />
+                  {/* Node.js - Right inner */}
+                  <div className="absolute group cursor-pointer" style={{ left: '605px', top: '440px' }}>
+                    <div className="relative size-[36px]">
+                      <svg className="absolute -inset-1 size-[44px] transform -rotate-90" viewBox="0 0 44 44">
+                        <circle cx="22" cy="22" r="16" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
+                        <circle cx="22" cy="22" r="16" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
+                          strokeLinecap="round" strokeDasharray="100" strokeDashoffset="20"
+                          className="transition-all duration-700 ease-out"/>
+                      </svg>
+                      <div className="size-[36px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" className="w-[22px] h-[22px]" />
+                      </div>
                     </div>
                   </div>
-                  <div className="absolute" style={{ left: '195px', top: '61px' }}>
-                    <div className="size-[44px] rounded-full" style={{ background: '#2a2438', border: '1px solid #3a3048' }}>
-                      <img src="https://www.figma.com/api/mcp/asset/dcc8366f-2d63-4842-9c80-1f6bab333002" alt="Adobe AI" className="absolute" style={{ left: '9px', top: '10px', width: '26px', height: '25px' }} />
+                  {/* MongoDB - Bottom right */}
+                  <div className="absolute group cursor-pointer" style={{ left: '565px', top: '570px' }}>
+                    <div className="relative size-[36px]">
+                      <svg className="absolute -inset-1 size-[44px] transform -rotate-90" viewBox="0 0 44 44">
+                        <circle cx="22" cy="22" r="16" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
+                        <circle cx="22" cy="22" r="16" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
+                          strokeLinecap="round" strokeDasharray="100" strokeDashoffset="22"
+                          className="transition-all duration-700 ease-out"/>
+                      </svg>
+                      <div className="size-[36px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" className="w-[20px] h-[20px]" />
+                      </div>
                     </div>
                   </div>
-                  <div className="absolute" style={{ left: '254px', top: '61px' }}>
-                    <div className="size-[44px] rounded-full" style={{ background: '#2a2438', border: '1px solid #3a3048' }}>
-                      <img src="https://www.figma.com/api/mcp/asset/1bf512c0-fe8f-4730-b020-94ce110ac752" alt="Express.js" className="absolute mix-blend-lighten" style={{ left: '3px', top: '17px', width: '39px', height: '11px' }} />
+                  {/* Next.js - Bottom center */}
+                  <div className="absolute group cursor-pointer" style={{ left: '460px', top: '590px' }}>
+                    <div className="relative size-[36px]">
+                      <svg className="absolute -inset-1 size-[44px] transform -rotate-90" viewBox="0 0 44 44">
+                        <circle cx="22" cy="22" r="16" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
+                        <circle cx="22" cy="22" r="16" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
+                          strokeLinecap="round" strokeDasharray="100" strokeDashoffset="40"
+                          className="transition-all duration-700 ease-out"/>
+                      </svg>
+                      <div className="size-[36px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" className="w-[22px] h-[22px] invert" />
+                      </div>
                     </div>
                   </div>
-                  <div className="absolute" style={{ left: '309px', top: '61px' }}>
-                    <div className="size-[44px] rounded-full" style={{ background: '#2a2438', border: '1px solid #3a3048' }}>
-                      <img src="https://www.figma.com/api/mcp/asset/92073d5e-cd9a-4646-b103-c8956f9a11ae" alt="MongoDB" className="absolute mix-blend-lighten" style={{ left: '5px', top: '17px', width: '37px', height: '9px' }} />
+                  {/* Express - Bottom left */}
+                  <div className="absolute group cursor-pointer" style={{ left: '335px', top: '570px' }}>
+                    <div className="relative size-[36px]">
+                      <svg className="absolute -inset-1 size-[44px] transform -rotate-90" viewBox="0 0 44 44">
+                        <circle cx="22" cy="22" r="16" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
+                        <circle cx="22" cy="22" r="16" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
+                          strokeLinecap="round" strokeDasharray="100" strokeDashoffset="32"
+                          className="transition-all duration-700 ease-out"/>
+                      </svg>
+                      <div className="size-[36px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" className="w-[22px] h-[22px] invert" />
+                      </div>
+                    </div>
+                  </div>
+                  {/* Gatsby - Left outer */}
+                  <div className="absolute group cursor-pointer" style={{ left: '100px', top: '400px' }}>
+                    <div className="relative size-[36px]">
+                      <svg className="absolute -inset-1 size-[44px] transform -rotate-90" viewBox="0 0 44 44">
+                        <circle cx="22" cy="22" r="16" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
+                        <circle cx="22" cy="22" r="16" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
+                          strokeLinecap="round" strokeDasharray="100" strokeDashoffset="25"
+                          className="transition-all duration-700 ease-out"/>
+                      </svg>
+                      <div className="size-[36px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gatsby/gatsby-original.svg" alt="Gatsby" className="w-[20px] h-[20px]" />
+                      </div>
+                    </div>
+                  </div>
+                  {/* C - Top left */}
+                  <div className="absolute group cursor-pointer" style={{ left: '205px', top: '345px' }}>
+                    <div className="relative size-[36px]">
+                      <svg className="absolute -inset-1 size-[44px] transform -rotate-90" viewBox="0 0 44 44">
+                        <circle cx="22" cy="22" r="16" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
+                        <circle cx="22" cy="22" r="16" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
+                          strokeLinecap="round" strokeDasharray="100" strokeDashoffset="18"
+                          className="transition-all duration-700 ease-out"/>
+                      </svg>
+                      <div className="size-[36px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" className="w-[20px] h-[20px]" />
+                      </div>
                     </div>
                   </div>
                 </div>
