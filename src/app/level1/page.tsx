@@ -139,351 +139,96 @@ export default function Level1() {
             </div>
           </section>
 
-          {/* Skills Section - Figma Design */}
+          {/* Skills Section - Exact Figma Replication */}
           <section className="relative py-20 overflow-hidden">
             <div className="relative mx-auto px-4" style={{ maxWidth: '895px', minHeight: '754px' }}>
               
-              {/* Title Section */}
-              <div className="relative text-center mb-12" style={{ maxWidth: '663px', margin: '0 auto 80px' }}>
-                <p className="text-[24px] leading-[31px] tracking-[0.48px] text-white mb-0 font-light">
-                  Skills 
+              {/* Title Section - Exact from Figma */}
+              <div className="relative text-center mb-16">
+                <p className="text-[24px] leading-[31px] tracking-[0.48px] text-white mb-2">
+                  I'm currently looking to join a <span className="text-[#a362ff]">cross-functional</span> team
+                </p>
+                <p className="text-[17px] leading-[31px] tracking-[0.48px] text-white/70">
+                  that values improving people's lives through accessible design
                 </p>
               </div>
 
-              {/* Skills Orbital System - From Figma */}
-              <div className="relative w-full mx-auto" style={{ maxWidth: '895px', height: '657px' }}>
+              {/* Skills Orbital System - Exact Figma Design */}
+              <div className="relative w-full mx-auto" style={{ width: '895px', height: '657px' }}>
                 
-                {/* Connection Lines from Figma - Subtle and refined */}
-                <div className="absolute pointer-events-none" style={{ left: '461.57px', top: '182.5px', width: '122.427px', height: '277.5px' }}>
-                  <svg viewBox="0 0 122.427 277.5" className="w-full h-full opacity-25">
-                    <path d="M0,277.5 Q61,200 61,138.75 T61,0" fill="none" stroke="#7c3aed" strokeWidth="0.8" />
-                  </svg>
-                </div>
-                <div className="absolute pointer-events-none" style={{ left: '452.01px', top: '199.5px', width: '70.489px', height: '270px' }}>
-                  <svg viewBox="0 0 70.489 270" className="w-full h-full opacity-25">
-                    <path d="M0,270 Q35,200 35,135 T35,0" fill="none" stroke="#7c3aed" strokeWidth="0.8" />
-                  </svg>
-                </div>
-                <div className="absolute pointer-events-none" style={{ left: '436.5px', top: '198px', width: '34.5px', height: '291.5px' }}>
-                  <svg viewBox="0 0 34.5 291.5" className="w-full h-full opacity-25">
-                    <line x1="17.25" y1="291.5" x2="17.25" y2="0" stroke="#7c3aed" strokeWidth="0.8" />
-                  </svg>
-                </div>
-                <div className="absolute pointer-events-none" style={{ left: '303.5px', top: '192px', width: '117.949px', height: '300.5px', transform: 'scaleX(-1)' }}>
-                  <svg viewBox="0 0 117.949 300.5" className="w-full h-full opacity-25">
-                    <path d="M0,300.5 Q59,220 59,150.25 T59,0" fill="none" stroke="#7c3aed" strokeWidth="0.8" />
-                  </svg>
-                </div>
-                <div className="absolute pointer-events-none" style={{ left: '365px', top: '192px', width: '66.11px', height: '310px', transform: 'scaleX(-1)' }}>
-                  <svg viewBox="0 0 66.11 310" className="w-full h-full opacity-25">
-                    <path d="M0,310 Q33,230 33,155 T33,0" fill="none" stroke="#7c3aed" strokeWidth="0.8" />
-                  </svg>
-                </div>
-                <div className="absolute pointer-events-none" style={{ left: '414px', top: '195px', width: '21px', height: '313px', transform: 'scaleX(-1)' }}>
-                  <svg viewBox="0 0 21 313" className="w-full h-full opacity-25">
-                    <line x1="10.5" y1="313" x2="10.5" y2="0" stroke="#7c3aed" strokeWidth="0.8" />
-                  </svg>
-                </div>
+                {/* Connection Lines to Top Row Icons - From Figma */}
+                <img src="https://www.figma.com/api/mcp/asset/acda6e02-e96b-4ba1-8b1d-51a266203c9c" alt="" className="absolute pointer-events-none" style={{ left: '461.57px', top: '182.5px', width: '122.427px', height: '277.5px', opacity: 0.3 }} />
+                <img src="https://www.figma.com/api/mcp/asset/14f07567-8c3b-4ca7-8c0d-532a79dba33b" alt="" className="absolute pointer-events-none" style={{ left: '452.01px', top: '199.5px', width: '70.489px', height: '270px', opacity: 0.3 }} />
+                <img src="https://www.figma.com/api/mcp/asset/2dc86e96-dd0d-4854-8b27-af8d8cf18ad1" alt="" className="absolute pointer-events-none" style={{ left: '436.5px', top: '198px', width: '34.5px', height: '291.5px', opacity: 0.3 }} />
+                <img src="https://www.figma.com/api/mcp/asset/e428be46-3a7e-4425-a6b5-2c48b3ed8875" alt="" className="absolute pointer-events-none" style={{ left: '303.5px', top: '192px', width: '117.949px', height: '300.5px', opacity: 0.3, transform: 'scaleX(-1)' }} />
+                <img src="https://www.figma.com/api/mcp/asset/959cf3ee-828b-44b3-a169-3dc6537db377" alt="" className="absolute pointer-events-none" style={{ left: '365px', top: '192px', width: '66.11px', height: '310px', opacity: 0.3, transform: 'scaleX(-1)' }} />
+                <img src="https://www.figma.com/api/mcp/asset/627f5ffc-c16d-4374-8fc1-8a2d309beeeb" alt="" className="absolute pointer-events-none" style={{ left: '414px', top: '195px', width: '21px', height: '313px', opacity: 0.3, transform: 'scaleX(-1)' }} />
 
-                {/* Background Glow - Larger and more diffused */}
-                <div className="absolute pointer-events-none" style={{ left: '120px', top: '400px', width: '660px', height: '380px' }}>
-                  <svg viewBox="0 0 660 380" className="w-full h-full opacity-25">
-                    <defs>
-                      <radialGradient id="bgGlow" cx="50%" cy="50%">
-                        <stop offset="0%" stopColor="#7c3aed" stopOpacity="0.9" />
-                        <stop offset="40%" stopColor="#6d28d9" stopOpacity="0.5" />
-                        <stop offset="70%" stopColor="#5b21b6" stopOpacity="0.2" />
-                        <stop offset="100%" stopColor="#4c1d95" stopOpacity="0" />
-                      </radialGradient>
-                    </defs>
-                    <ellipse cx="330" cy="190" rx="325" ry="185" fill="url(#bgGlow)" />
-                  </svg>
-                </div>
-
-                {/* Elliptical Orbits - 3 Concentric - EXACT Figma match */}
-                <div className="absolute pointer-events-none" style={{ left: '-100px', top: '430px', width: '1095px', height: '240px' }}>
-                  <svg viewBox="0 0 1095 240" className="w-full h-full opacity-40">
-                    <ellipse cx="547.5" cy="120" rx="545" ry="115" fill="none" stroke="#7c3aed" strokeWidth="1.2" />
-                  </svg>
-                </div>
-                <div className="absolute pointer-events-none" style={{ left: '0px', top: '445px', width: '895px', height: '210px' }}>
-                  <svg viewBox="0 0 895 210" className="w-full h-full opacity-40">
-                    <ellipse cx="447.5" cy="105" rx="445" ry="100" fill="none" stroke="#7c3aed" strokeWidth="1.2" />
-                  </svg>
-                </div>
-                <div className="absolute pointer-events-none" style={{ left: '90px', top: '460px', width: '715px', height: '180px' }}>
-                  <svg viewBox="0 0 715 180" className="w-full h-full opacity-40">
-                    <ellipse cx="357.5" cy="90" rx="355" ry="85" fill="none" stroke="#7c3aed" strokeWidth="1.2" />
-                  </svg>
-                </div>
-
-                {/* Central Glow System - Enhanced */}
-                <div className="absolute pointer-events-none z-10" style={{ left: '250px', top: '370px', width: '390px', height: '320px' }}>
-                  <svg viewBox="0 0 390 320" className="w-full h-full">
-                    <defs>
-                      <radialGradient id="centralGlow" cx="50%" cy="50%">
-                        <stop offset="0%" stopColor="#a78bfa" stopOpacity="0.8" />
-                        <stop offset="30%" stopColor="#8b5cf6" stopOpacity="0.6" />
-                        <stop offset="60%" stopColor="#7c3aed" stopOpacity="0.3" />
-                        <stop offset="100%" stopColor="#5b21b6" stopOpacity="0" />
-                      </radialGradient>
-                    </defs>
-                    <ellipse cx="195" cy="160" rx="190" ry="155" fill="url(#centralGlow)" />
-                  </svg>
-                </div>
+                {/* Background Ellipse Glow - From Figma */}
+                <img src="https://www.figma.com/api/mcp/asset/66dbfd50-a9d3-4f2b-9f71-984afc8c8dce" alt="" className="absolute pointer-events-none" style={{ left: '181px', top: '424px', width: '542px', height: '330px', opacity: 0.4 }} />
                 
-                {/* Central Purple Sphere with Sigma - Enhanced glow */}
-                <div className="absolute z-20" style={{ left: '350px', top: '448px', width: '180px', height: '180px' }}>
-                  <svg viewBox="0 0 180 180" className="w-full h-full">
-                    <defs>
-                      <radialGradient id="sphereGradient" cx="45%" cy="45%">
-                        <stop offset="0%" stopColor="#c4b5fd" />
-                        <stop offset="30%" stopColor="#a78bfa" />
-                        <stop offset="70%" stopColor="#7c3aed" />
-                        <stop offset="100%" stopColor="#5b21b6" />
-                      </radialGradient>
-                      <filter id="sphereGlow">
-                        <feGaussianBlur stdDeviation="12" result="coloredBlur"/>
-                        <feMerge>
-                          <feMergeNode in="coloredBlur"/>
-                          <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                      </filter>
-                    </defs>
-                    <circle cx="90" cy="90" r="85" fill="url(#sphereGradient)" filter="url(#sphereGlow)" opacity="0.95" />
-                    <text x="90" y="115" fontSize="85" fontWeight="200" fill="#ffffff" textAnchor="middle" fontFamily="system-ui, -apple-system, sans-serif">Σ</text>
-                  </svg>
+                {/* Three Concentric Elliptical Orbits - From Figma */}
+                <img src="https://www.figma.com/api/mcp/asset/f3b2a11e-0ff5-41cc-b2ed-35346b08ac1d" alt="" className="absolute pointer-events-none" style={{ left: '0px', top: '457px', width: '881px', height: '269px', opacity: 0.5 }} />
+                <img src="https://www.figma.com/api/mcp/asset/3077c0d7-c280-4a8e-af7b-e2a91e68244f" alt="" className="absolute pointer-events-none" style={{ left: '63px', top: '457px', width: '764px', height: '269px', opacity: 0.5 }} />
+                <img src="https://www.figma.com/api/mcp/asset/cfc5028f-ed95-467c-ab77-0bb62a7bb485" alt="" className="absolute pointer-events-none" style={{ left: '108px', top: '457px', width: '695px', height: '269px', opacity: 0.5 }} />
+
+                {/* Central Glowing Sphere Group - From Figma */}
+                <img src="https://www.figma.com/api/mcp/asset/b74caefc-7e5a-48e4-a963-79259751920c" alt="" className="absolute pointer-events-none z-10" style={{ left: '292px', top: '385px', width: '306px', height: '275px' }} />
+                
+                {/* Central Purple Sphere - From Figma */}
+                <img src="https://www.figma.com/api/mcp/asset/6c2a5dad-7716-47d5-a70d-1605618afae3" alt="" className="absolute z-20" style={{ left: '350px', top: '448px', width: '180px', height: '180px' }} />
+                
+                {/* Sigma Symbol - From Figma */}
+                <img src="https://www.figma.com/api/mcp/asset/94a43170-50ff-4f1c-9bce-9e93d69a9057" alt="" className="absolute z-30" style={{ left: '402.36px', top: '493.82px', width: '76.144px', height: '90px' }} />
+
+                {/* Skill Icons - Two Rows at Top (Exact Figma Layout) */}
+                <div className="absolute z-40" style={{ left: '255px', top: '97px' }}>
+                  {/* Top Row - 7 Icons */}
+                  <img src="https://www.figma.com/api/mcp/asset/6e538132-e7b7-44ae-b883-c27c88330864" alt="Figma" className="absolute" style={{ left: '0px', top: '0px', width: '21px', height: '28px' }} />
+                  <img src="https://www.figma.com/api/mcp/asset/e27117db-d571-4f4a-b756-18672651fa92" alt="React" className="absolute" style={{ left: '49px', top: '0px', width: '32px', height: '28px' }} />
+                  <img src="https://www.figma.com/api/mcp/asset/1c47badc-12a1-4cca-979c-c22d96a191e9" alt="C" className="absolute" style={{ left: '104px', top: '0px', width: '32px', height: '31px' }} />
+                  <img src="https://www.figma.com/api/mcp/asset/e6d2a819-47a9-4fd1-b44e-f6a1fab73856" alt="Node.js" className="absolute" style={{ left: '162px', top: '4px', width: '32px', height: '21px' }} />
+                  <img src="https://www.figma.com/api/mcp/asset/c456d780-6eaf-4652-b909-780c66a99626" alt="JavaScript" className="absolute" style={{ left: '272px', top: '2px', width: '26px', height: '25px' }} />
+                  <img src="https://www.figma.com/api/mcp/asset/bca0a93f-57ca-4764-a5fc-5bdd26766487" alt="CSS3" className="absolute" style={{ left: '327px', top: '2px', width: '26px', height: '25px' }} />
+                  <img src="https://www.figma.com/api/mcp/asset/485b1d87-5056-4799-87ab-05c6b882897c" alt="HTML5" className="absolute" style={{ left: '217px', top: '0px', width: '26px', height: '25px' }} />
+                  
+                  {/* Bottom Row - 6 Icons */}
+                  <img src="https://www.figma.com/api/mcp/asset/142d3681-fad8-4911-bcfa-b8c974781998" alt="GitHub" className="absolute" style={{ left: '25px', top: '63px', width: '26px', height: '25px' }} />
+                  <img src="https://www.figma.com/api/mcp/asset/ca54cb8b-1ae7-4ad5-a7a1-10863ae44148" alt="Gatsby" className="absolute" style={{ left: '81px', top: '67px', width: '33px', height: '15px' }} />
+                  <img src="https://www.figma.com/api/mcp/asset/ea3bc858-c44d-477e-b805-c9ad46b7de2f" alt="TypeScript" className="absolute" style={{ left: '137px', top: '62px', width: '26px', height: '26px' }} />
+                  <img src="https://www.figma.com/api/mcp/asset/11ce063d-1f97-44d7-8c8b-e3b93957df42" alt="Illustrator" className="absolute" style={{ left: '192px', top: '63px', width: '26px', height: '25px' }} />
+                  <img src="https://www.figma.com/api/mcp/asset/8fdf84b2-f4ba-4318-bb7e-60ca27d9a62e" alt="Express" className="absolute" style={{ left: '245px', top: '70px', width: '39px', height: '11px' }} />
+                  <img src="https://www.figma.com/api/mcp/asset/0cd1332e-590f-44ec-854e-ae111124f718" alt="MongoDB" className="absolute" style={{ left: '302px', top: '70px', width: '37px', height: '9px' }} />
                 </div>
 
-                {/* Skill Icon Circles - Scattered on orbital paths like Figma */}
-                <div className="absolute z-30" style={{ width: '895px', height: '657px' }}>
-                  {/* Left side icons on outer orbits */}
-                  <div className="absolute group cursor-pointer" style={{ left: '130px', top: '390px' }}>
-                    <div className="relative size-[44px]">
-                      {/* Progress Ring */}
-                      <svg className="absolute -inset-1 size-[52px] transform -rotate-90" viewBox="0 0 52 52">
-                        <circle cx="26" cy="26" r="20" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
-                        <circle cx="26" cy="26" r="20" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
-                          strokeLinecap="round" strokeDasharray="125.6" strokeDashoffset="18.84"
-                          className="transition-all duration-700 ease-out"/>
-                      </svg>
-                      {/* Icon Container */}
-                      <div className="size-[44px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.8)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" className="w-[24px] h-[24px]" />
-                      </div>
-                      {/* Progress Percentage */}
-                      <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-purple-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity">85%</div>
-                    </div>
-                  </div>
-                  {/* LinkedIn - Left outer orbit */}
-                  <div className="absolute group cursor-pointer" style={{ left: '155px', top: '185px' }}>
-                    <div className="relative size-[40px]">
-                      <svg className="absolute -inset-1 size-[48px] transform -rotate-90" viewBox="0 0 48 48">
-                        <circle cx="24" cy="24" r="18" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
-                        <circle cx="24" cy="24" r="18" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
-                          strokeLinecap="round" strokeDasharray="113" strokeDashoffset="17"
-                          className="transition-all duration-700 ease-out"/>
-                      </svg>
-                      <div className="size-[40px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" className="w-[22px] h-[22px]" />
-                      </div>
-                    </div>
-                  </div>
-                  {/* GitHub - Left middle orbit */}
-                  <div className="absolute group cursor-pointer" style={{ left: '265px', top: '290px' }}>
-                    <div className="relative size-[38px]">
-                      <svg className="absolute -inset-1 size-[46px] transform -rotate-90" viewBox="0 0 46 46">
-                        <circle cx="23" cy="23" r="17" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
-                        <circle cx="23" cy="23" r="17" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
-                          strokeLinecap="round" strokeDasharray="107" strokeDashoffset="16"
-                          className="transition-all duration-700 ease-out"/>
-                      </svg>
-                      <div className="size-[38px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" className="w-[20px] h-[20px] invert" />
-                      </div>
-                    </div>
-                  </div>
-                  {/* HTML5 - Left inner orbit */}
-                  <div className="absolute group cursor-pointer" style={{ left: '135px', top: '390px' }}>
-                    <div className="relative size-[38px]">
-                      <svg className="absolute -inset-1 size-[46px] transform -rotate-90" viewBox="0 0 46 46">
-                        <circle cx="23" cy="23" r="17" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
-                        <circle cx="23" cy="23" r="17" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
-                          strokeLinecap="round" strokeDasharray="107" strokeDashoffset="11"
-                          className="transition-all duration-700 ease-out"/>
-                      </svg>
-                      <div className="size-[38px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" className="w-[20px] h-[20px]" />
-                      </div>
-                    </div>
-                  </div>
-                  {/* Illustrator - Top center */}
-                  <div className="absolute group cursor-pointer" style={{ left: '428px', top: '310px' }}>
-                    <div className="relative size-[36px]">
-                      <svg className="absolute -inset-1 size-[44px] transform -rotate-90" viewBox="0 0 44 44">
-                        <circle cx="22" cy="22" r="16" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
-                        <circle cx="22" cy="22" r="16" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
-                          strokeLinecap="round" strokeDasharray="100" strokeDashoffset="15"
-                          className="transition-all duration-700 ease-out"/>
-                      </svg>
-                      <div className="size-[36px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" alt="Illustrator" className="w-[20px] h-[20px]" />
-                      </div>
-                    </div>
-                  </div>
-                  {/* React - Right outer */}
-                  <div className="absolute group cursor-pointer" style={{ left: '750px', top: '400px' }}>
-                    <div className="relative size-[38px]">
-                      <svg className="absolute -inset-1 size-[46px] transform -rotate-90" viewBox="0 0 46 46">
-                        <circle cx="23" cy="23" r="17" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
-                        <circle cx="23" cy="23" r="17" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
-                          strokeLinecap="round" strokeDasharray="107" strokeDashoffset="11"
-                          className="transition-all duration-700 ease-out"/>
-                      </svg>
-                      <div className="size-[38px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" className="w-[22px] h-[22px]" />
-                      </div>
-                    </div>
-                  </div>
-                  {/* JavaScript - Right top */}
-                  <div className="absolute group cursor-pointer" style={{ left: '695px', top: '345px' }}>
-                    <div className="relative size-[36px]">
-                      <svg className="absolute -inset-1 size-[44px] transform -rotate-90" viewBox="0 0 44 44">
-                        <circle cx="22" cy="22" r="16" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
-                        <circle cx="22" cy="22" r="16" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
-                          strokeLinecap="round" strokeDasharray="100" strokeDashoffset="12"
-                          className="transition-all duration-700 ease-out"/>
-                      </svg>
-                      <div className="size-[36px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" className="w-[20px] h-[20px]" />
-                      </div>
-                    </div>
-                  </div>
-                  {/* XD - Right middle */}
-                  <div className="absolute group cursor-pointer" style={{ left: '645px', top: '485px' }}>
-                    <div className="relative size-[36px]">
-                      <svg className="absolute -inset-1 size-[44px] transform -rotate-90" viewBox="0 0 44 44">
-                        <circle cx="22" cy="22" r="16" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
-                        <circle cx="22" cy="22" r="16" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
-                          strokeLinecap="round" strokeDasharray="100" strokeDashoffset="15"
-                          className="transition-all duration-700 ease-out"/>
-                      </svg>
-                      <div className="size-[36px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xd/xd-plain.svg" alt="Adobe XD" className="w-[20px] h-[20px]" />
-                      </div>
-                    </div>
-                  </div>
-                  {/* TypeScript - Right */}
-                  <div className="absolute group cursor-pointer" style={{ left: '715px', top: '520px' }}>
-                    <div className="relative size-[36px]">
-                      <svg className="absolute -inset-1 size-[44px] transform -rotate-90" viewBox="0 0 44 44">
-                        <circle cx="22" cy="22" r="16" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
-                        <circle cx="22" cy="22" r="16" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
-                          strokeLinecap="round" strokeDasharray="100" strokeDashoffset="17"
-                          className="transition-all duration-700 ease-out"/>
-                      </svg>
-                      <div className="size-[36px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" className="w-[20px] h-[20px]" />
-                      </div>
-                    </div>
-                  </div>
-                  {/* Node.js - Right inner */}
-                  <div className="absolute group cursor-pointer" style={{ left: '605px', top: '440px' }}>
-                    <div className="relative size-[36px]">
-                      <svg className="absolute -inset-1 size-[44px] transform -rotate-90" viewBox="0 0 44 44">
-                        <circle cx="22" cy="22" r="16" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
-                        <circle cx="22" cy="22" r="16" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
-                          strokeLinecap="round" strokeDasharray="100" strokeDashoffset="20"
-                          className="transition-all duration-700 ease-out"/>
-                      </svg>
-                      <div className="size-[36px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" className="w-[22px] h-[22px]" />
-                      </div>
-                    </div>
-                  </div>
-                  {/* MongoDB - Bottom right */}
-                  <div className="absolute group cursor-pointer" style={{ left: '565px', top: '570px' }}>
-                    <div className="relative size-[36px]">
-                      <svg className="absolute -inset-1 size-[44px] transform -rotate-90" viewBox="0 0 44 44">
-                        <circle cx="22" cy="22" r="16" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
-                        <circle cx="22" cy="22" r="16" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
-                          strokeLinecap="round" strokeDasharray="100" strokeDashoffset="22"
-                          className="transition-all duration-700 ease-out"/>
-                      </svg>
-                      <div className="size-[36px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" className="w-[20px] h-[20px]" />
-                      </div>
-                    </div>
-                  </div>
-                  {/* Next.js - Bottom center */}
-                  <div className="absolute group cursor-pointer" style={{ left: '460px', top: '590px' }}>
-                    <div className="relative size-[36px]">
-                      <svg className="absolute -inset-1 size-[44px] transform -rotate-90" viewBox="0 0 44 44">
-                        <circle cx="22" cy="22" r="16" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
-                        <circle cx="22" cy="22" r="16" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
-                          strokeLinecap="round" strokeDasharray="100" strokeDashoffset="40"
-                          className="transition-all duration-700 ease-out"/>
-                      </svg>
-                      <div className="size-[36px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" className="w-[22px] h-[22px] invert" />
-                      </div>
-                    </div>
-                  </div>
-                  {/* Express - Bottom left */}
-                  <div className="absolute group cursor-pointer" style={{ left: '335px', top: '570px' }}>
-                    <div className="relative size-[36px]">
-                      <svg className="absolute -inset-1 size-[44px] transform -rotate-90" viewBox="0 0 44 44">
-                        <circle cx="22" cy="22" r="16" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
-                        <circle cx="22" cy="22" r="16" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
-                          strokeLinecap="round" strokeDasharray="100" strokeDashoffset="32"
-                          className="transition-all duration-700 ease-out"/>
-                      </svg>
-                      <div className="size-[36px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" className="w-[22px] h-[22px] invert" />
-                      </div>
-                    </div>
-                  </div>
-                  {/* Gatsby - Left outer */}
-                  <div className="absolute group cursor-pointer" style={{ left: '100px', top: '400px' }}>
-                    <div className="relative size-[36px]">
-                      <svg className="absolute -inset-1 size-[44px] transform -rotate-90" viewBox="0 0 44 44">
-                        <circle cx="22" cy="22" r="16" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
-                        <circle cx="22" cy="22" r="16" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
-                          strokeLinecap="round" strokeDasharray="100" strokeDashoffset="25"
-                          className="transition-all duration-700 ease-out"/>
-                      </svg>
-                      <div className="size-[36px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gatsby/gatsby-original.svg" alt="Gatsby" className="w-[20px] h-[20px]" />
-                      </div>
-                    </div>
-                  </div>
-                  {/* C - Top left */}
-                  <div className="absolute group cursor-pointer" style={{ left: '205px', top: '345px' }}>
-                    <div className="relative size-[36px]">
-                      <svg className="absolute -inset-1 size-[44px] transform -rotate-90" viewBox="0 0 44 44">
-                        <circle cx="22" cy="22" r="16" fill="none" stroke="#1e1b4b" strokeWidth="1.5"/>
-                        <circle cx="22" cy="22" r="16" fill="none" stroke="#7c3aed" strokeWidth="1.5" 
-                          strokeLinecap="round" strokeDasharray="100" strokeDashoffset="18"
-                          className="transition-all duration-700 ease-out"/>
-                      </svg>
-                      <div className="size-[36px] rounded-full flex items-center justify-center" style={{ background: 'rgba(42, 36, 56, 0.6)', border: '1px solid rgba(139, 92, 246, 0.3)', backdropFilter: 'blur(8px)' }}>
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" className="w-[20px] h-[20px]" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Side Icons */}
-                <SideIcon src="https://www.figma.com/api/mcp/asset/b6da9bb1-80eb-41d4-b879-e4ac92de3ff5" label="LinkedIn" left="187px" top="535px" width="20px" height="20px" />
-                <SideIcon src="https://www.figma.com/api/mcp/asset/155928b8-6933-4bc7-9ca6-fc2d4f60d833" label="Adobe AI" left="771px" top="512px" width="13px" height="15px" side="right" />
-                <SideIcon src="https://www.figma.com/api/mcp/asset/5dd61af8-e7b0-474e-9e01-b9bd3f503628" label="Design" left="82px" top="577px" width="16px" height="22px" />
-                <SideIcon src="https://www.figma.com/api/mcp/asset/31e4b07e-ab20-4077-831d-14b69b1803fa" label="Security" left="766px" top="675px" width="11px" height="19px" side="right" />
-                <SideIcon src="https://www.figma.com/api/mcp/asset/41e94421-97b1-4667-a5c1-a8e406a3bd4e" label="Configuration" left="826px" top="607px" width="14px" height="15px" side="right" />
-                <SideIcon src="https://www.figma.com/api/mcp/asset/22023890-0c7f-48e0-84bb-8048e3f2b212" label="Mobile" left="709px" top="512px" width="20px" height="11px" side="right" />
-                <SideIcon src="https://www.figma.com/api/mcp/asset/28abf897-be7f-4ee6-b440-ac8ab394d0d0" label="Code" left="120px" top="577px" width="14px" height="17px" />
-                <SideIcon src="https://www.figma.com/api/mcp/asset/e1bdd6e2-187d-469f-bf2a-a4bec659675f" label="TypeScript" left="628px" top="646px" width="13px" height="20px" side="right" />
-                <SideIcon src="https://www.figma.com/api/mcp/asset/90dda598-d886-475c-9b89-8a47ee9a9c21" label="UI/UX" left="128px" top="655px" width="21px" height="18px" />
-                <SideIcon src="https://www.figma.com/api/mcp/asset/fee91154-4efc-4697-8cbe-fee79224fad3" label="Target" left="771px" top="680px" width="12px" height="14px" side="right" />
+                {/* Circular Background for Icons */}
+                <img src="https://www.figma.com/api/mcp/asset/02e7d9b4-b22d-4ecc-85af-4690748f4300" alt="" className="absolute z-35" style={{ left: '255px', top: '97px', width: '44px', height: '44px', opacity: 0.8 }} />
+                <img src="https://www.figma.com/api/mcp/asset/02e7d9b4-b22d-4ecc-85af-4690748f4300" alt="" className="absolute z-35" style={{ left: '310px', top: '97px', width: '44px', height: '44px', opacity: 0.8 }} />
+                <img src="https://www.figma.com/api/mcp/asset/02e7d9b4-b22d-4ecc-85af-4690748f4300" alt="" className="absolute z-35" style={{ left: '365px', top: '97px', width: '44px', height: '44px', opacity: 0.8 }} />
+                <img src="https://www.figma.com/api/mcp/asset/02e7d9b4-b22d-4ecc-85af-4690748f4300" alt="" className="absolute z-35" style={{ left: '423px', top: '97px', width: '44px', height: '44px', opacity: 0.8 }} />
+                <img src="https://www.figma.com/api/mcp/asset/02e7d9b4-b22d-4ecc-85af-4690748f4300" alt="" className="absolute z-35" style={{ left: '530px', top: '97px', width: '44px', height: '44px', opacity: 0.8 }} />
+                <img src="https://www.figma.com/api/mcp/asset/02e7d9b4-b22d-4ecc-85af-4690748f4300" alt="" className="absolute z-35" style={{ left: '585px', top: '97px', width: '44px', height: '44px', opacity: 0.8 }} />
+                <img src="https://www.figma.com/api/mcp/asset/02e7d9b4-b22d-4ecc-85af-4690748f4300" alt="" className="absolute z-35" style={{ left: '475px', top: '97px', width: '44px', height: '44px', opacity: 0.8 }} />
+                
+                <img src="https://www.figma.com/api/mcp/asset/02e7d9b4-b22d-4ecc-85af-4690748f4300" alt="" className="absolute z-35" style={{ left: '283px', top: '158px', width: '44px', height: '44px', opacity: 0.8 }} />
+                <img src="https://www.figma.com/api/mcp/asset/02e7d9b4-b22d-4ecc-85af-4690748f4300" alt="" className="absolute z-35" style={{ left: '395px', top: '158px', width: '44px', height: '44px', opacity: 0.8 }} />
+                <img src="https://www.figma.com/api/mcp/asset/02e7d9b4-b22d-4ecc-85af-4690748f4300" alt="" className="absolute z-35" style={{ left: '450px', top: '158px', width: '44px', height: '44px', opacity: 0.8 }} />
+                <img src="https://www.figma.com/api/mcp/asset/02e7d9b4-b22d-4ecc-85af-4690748f4300" alt="" className="absolute z-35" style={{ left: '509px', top: '158px', width: '44px', height: '44px', opacity: 0.8 }} />
+                <img src="https://www.figma.com/api/mcp/asset/02e7d9b4-b22d-4ecc-85af-4690748f4300" alt="" className="absolute z-35" style={{ left: '564px', top: '158px', width: '44px', height: '44px', opacity: 0.8 }} />
+                <img src="https://www.figma.com/api/mcp/asset/02e7d9b4-b22d-4ecc-85af-4690748f4300" alt="" className="absolute z-35" style={{ left: '343px', top: '158px', width: '44px', height: '44px', opacity: 0.8 }} />
+                
+                {/* Side Icon Elements - From Figma */}
+                <img src="https://www.figma.com/api/mcp/asset/5e24ef31-b257-4f69-b666-96c656e8f0b9" alt="" className="absolute z-35" style={{ left: '833px', top: '535.31px', width: '20.09px', height: '20.87px' }} />
+                <img src="https://www.figma.com/api/mcp/asset/4e3f7785-a766-4673-8d9b-9ea8340a1c82" alt="" className="absolute z-35" style={{ left: '771px', top: '504.99px', width: '13px', height: '15.16px' }} />
+                <img src="https://www.figma.com/api/mcp/asset/dc09f81c-9a8f-4480-88e7-120e033621f3" alt="" className="absolute z-35" style={{ left: '879px', top: '587.79px', width: '16px', height: '22.16px' }} />
+                <img src="https://www.figma.com/api/mcp/asset/85c63714-2ff5-4492-866a-5b6a87839602" alt="" className="absolute z-35" style={{ left: '766px', top: '675.25px', width: '11px', height: '19.24px' }} />
+                <img src="https://www.figma.com/api/mcp/asset/babc5e4d-ef8a-41d1-86d3-783407b61c5d" alt="" className="absolute z-35" style={{ left: '826px', top: '607.62px', width: '13.59px', height: '15.45px' }} />
+                <img src="https://www.figma.com/api/mcp/asset/cb8d58e0-abf0-4712-9706-4137b9078fb1" alt="" className="absolute z-35" style={{ left: '709px', top: '512.18px', width: '20.31px', height: '11.49px' }} />
+                <img src="https://www.figma.com/api/mcp/asset/1ad1b583-3940-4352-91db-22d8583efee4" alt="" className="absolute z-35" style={{ left: '120px', top: '577.29px', width: '14px', height: '17.49px' }} />
+                <img src="https://www.figma.com/api/mcp/asset/81ce3fea-ae89-4513-bbf9-9a19ccd789b7" alt="" className="absolute z-35" style={{ left: '28px', top: '645.98px', width: '13px', height: '20.33px' }} />
+                <img src="https://www.figma.com/api/mcp/asset/1ea26e9a-92c5-405c-9c66-9a4bb99eedab" alt="" className="absolute z-35" style={{ left: '187px', top: '484px', width: '12px', height: '14.74px' }} />
+                <img src="https://www.figma.com/api/mcp/asset/c6882485-fa07-4f75-93c2-dea833114cf1" alt="" className="absolute z-35" style={{ left: '82px', top: '521.32px', width: '12.57px', height: '14.95px' }} />
+                <img src="https://www.figma.com/api/mcp/asset/45cb095e-8f37-4f2f-a321-03a974d80ff6" alt="" className="absolute z-35" style={{ left: '128px', top: '655.43px', width: '21.71px', height: '18.66px' }} />
 
               </div>
             </div>
