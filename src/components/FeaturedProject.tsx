@@ -31,22 +31,6 @@ export default function FeaturedProject({
   
   return (
     <section className="relative w-full overflow-visible py-20 px-3">
-      {/* Background with gradient blobs */}
-      <div className="absolute inset-0 bg-[#0a021a] overflow-hidden">
-        {/* Smaller, more subtle gradient blobs */}
-        <div 
-          className="absolute rounded-full blur-xl opacity-12"
-          style={{
-            background: 'radial-gradient(circle, #3b82f6 0%, transparent 55%)',
-            width: '240px',
-            height: '280px',
-            top: alignment === 'left' ? '30%' : '70%',
-            left: alignment === 'left' ? '70%' : '20%',
-            transform: 'translate(-50%, -50%)'
-          }}
-        />
-      </div>
-      
       {/* Content Container */}
       <div className="relative max-w-[900px] mx-auto">
         <div className={`relative flex flex-col lg:flex-row items-start gap-4 lg:gap-6 ${alignment === 'right' ? 'lg:flex-row-reverse' : ''}`}>
@@ -171,7 +155,7 @@ export default function FeaturedProject({
             </div>
             <div className="relative">
               {/* Browser Window */}
-              <div className="relative rounded-[10px] overflow-hidden shadow-lg bg-[#2b0b3a]">
+              <div className="relative rounded-[10px] overflow-hidden shadow-lg bg-[#0a1929]">
                 {/* Browser Chrome */}
                 <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-gray-900/60 to-transparent z-10 flex items-center px-2.5">
                   <div className="flex gap-1">
