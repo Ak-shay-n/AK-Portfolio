@@ -42,10 +42,21 @@
 
 body {
   font-family: 'Courier New', monospace;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 
 body::-webkit-scrollbar {
   display: none; /* Hides the scrollbar */
+}
+
+/* Hide scrollbar for all browsers */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 /* Cybersecurity Theme Animations */

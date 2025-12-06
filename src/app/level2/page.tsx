@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useState, useEffect, useRef } from 'react';
+import LightRays from '@/components/LightRays';
 import Header from '@/components/Header';
 import FeaturedProject from '@/components/FeaturedProject';
 
@@ -85,6 +86,34 @@ export default function Level2() {
 
   return (
     <div className="flex flex-col min-h-screen bg-black text-white overflow-x-hidden">
+      {/* Light Rays Background */}
+      <div className="fixed inset-0 z-0">
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="#00ffff"
+          raysSpeed={1.5}
+          lightSpread={0.8}
+          rayLength={1.2}
+          followMouse={true}
+          mouseInfluence={0.1}
+          noiseAmount={0.1}
+          distortion={0.05}
+          className="custom-rays"
+        />
+      </div>
+
+      {/* Cyber Grid Pattern */}
+      <div className="fixed inset-0 z-0 opacity-5">
+        <svg className="w-full h-full">
+          <defs>
+            <pattern id="cyber-grid" width="60" height="60" patternUnits="userSpaceOnUse">
+              <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#00ff41" strokeWidth="0.5"/>
+              <circle cx="30" cy="30" r="1" fill="#00ff41" opacity="0.3"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#cyber-grid)" />
+        </svg>
+      </div>
 
       {/* Navigation Header */}
       <Header />
