@@ -17,8 +17,7 @@ export default function Level2() {
       description: "A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.",
       imageUrl: "https://www.figma.com/api/mcp/asset/c13e64c0-d645-4a1e-a979-f8b39928cc08",
       technologies: ["React", "Spotify API", "Node.js", "Express", "Chart.js", "OAuth 2.0"],
-      projectUrl: "#",
-      githubUrl: "#",
+      githubUrl: "https://github.com/Ak-shay-n/Android-Espion-2.O",
       alignment: "left" as const
     },
     {
@@ -27,7 +26,7 @@ export default function Level2() {
       imageUrl: "https://www.figma.com/api/mcp/asset/c13e64c0-d645-4a1e-a979-f8b39928cc08",
       technologies: ["Python", "Nmap", "Scapy", "Flask", "SQLAlchemy", "Redis"],
       projectUrl: "#",
-      githubUrl: "#",
+      githubUrl: "https://github.com/Ak-shay-n/Sentra-AI",
       alignment: "right" as const
     },
     {
@@ -36,7 +35,7 @@ export default function Level2() {
       imageUrl: "https://www.figma.com/api/mcp/asset/c13e64c0-d645-4a1e-a979-f8b39928cc08",
       technologies: ["Solidity", "Web3.js", "IPFS", "MetaMask", "Truffle", "React"],
       projectUrl: "#",
-      githubUrl: "#",
+      githubUrl: "https://github.com/Ak-shay-n/Voting-System",
       alignment: "left" as const
     },
     {
@@ -45,7 +44,7 @@ export default function Level2() {
       imageUrl: "https://www.figma.com/api/mcp/asset/c13e64c0-d645-4a1e-a979-f8b39928cc08",
       technologies: ["TypeScript", "OpenAI API", "Next.js", "PostgreSQL", "Docker", "GitHub API"],
       projectUrl: "#",
-      githubUrl: "#",
+      githubUrl: "https://github.com/Ak-shay-n/Decepticon-AI",
       alignment: "right" as const
     }
   ];
