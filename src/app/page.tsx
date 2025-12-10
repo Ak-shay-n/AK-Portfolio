@@ -38,17 +38,13 @@ export default function Home() {
       level: 1,
       href: "/level1",
       status: "unlocked" as const,
-      difficulty: "Easy" as const,
-      skills: ["Bio", "Skills", "Experience"]
+      difficulty: "Easy" as const, 
     },
     {
       title: "DECRYPT PROJECTS",
       description: "Decode my project portfolio. Explore interactive demos and technical implementations.",
-      level: 2,
       href: "/level2",
       status: "unlocked" as const,
-      difficulty: "Medium" as const,
-      skills: ["Web Apps", "Tools", "Demonstrations"]
     },
     {
       title: "SECURE CONTACT",
@@ -57,7 +53,6 @@ export default function Home() {
       href: "/level3",
       status: "unlocked" as const,
       difficulty: "Hard" as const,
-      skills: ["Contact", "Network", "Verification"]
     }
   ];
 
@@ -619,14 +614,17 @@ export default function Home() {
             </div>
 
             <div className="relative space-y-8">
-              {/* Background vertical line (unfilled) */}
-              <div className="absolute left-0 top-6 bottom-6 w-0.5 bg-green-400/20" />
+              {/* Background vertical line (unfilled) - ends at last icon */}
+              <div 
+                className="absolute left-0 top-6 w-0.5 bg-green-400/20"
+                style={{ height: 'calc(100% - 3rem - 4rem)' }}
+              />
               
               {/* Animated vertical progress line (fills up on scroll) */}
               <div 
                 className="absolute left-0 top-6 w-0.5 bg-gradient-to-b from-green-400 to-cyan-400 transition-all duration-300 ease-out"
                 style={{
-                  height: `calc((100% - 3rem) * ${educationProgress})`,
+                  height: `calc((100% - 3rem - 4rem) * ${educationProgress})`,
                   boxShadow: `0 0 20px rgba(34, 197, 94, ${educationProgress * 0.8})`
                 }}
               />
@@ -679,53 +677,89 @@ export default function Home() {
               <div className="w-24 h-1 bg-gradient-to-r from-white/60 to-transparent mx-auto mb-8"></div>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-              {levels.map((level, index) => (
-                <div key={level.level} className="group relative">
-                  <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-500 h-full">
-                    <div className="flex items-start justify-between mb-6">
-                      <div className="flex-1">
-                        <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">
-                          {level.title}
-                        </h3>
-                        <div className="flex items-center space-x-3 mb-4">
-                          <span className={`px-3 py-1 rounded-full text-xs font-medium border ${
-                            level.difficulty === 'Easy' ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20' :
-                            level.difficulty === 'Medium' ? 'bg-amber-500/10 text-amber-300 border-amber-500/20' :
-                            level.difficulty === 'Hard' ? 'bg-red-500/10 text-red-300 border-red-500/20' :
-                            'bg-purple-500/10 text-purple-300 border-purple-500/20'
-                          }`}>
-                            {level.difficulty}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <p className="text-white/70 mb-6 leading-relaxed font-light">
-                      {level.description}
-                    </p>
-                    
-                    <div className="mb-8">
-                      <div className="text-sm text-white/60 mb-3 font-medium">Technologies:</div>
-                      <div className="flex flex-wrap gap-2">
-                        {level.skills.map(skill => (
-                          <span key={skill} className="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs border border-white/20">
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    <Link 
-                      href={level.href}
-                      className="inline-flex items-center justify-center w-full py-3 px-6 bg-white text-black rounded-2xl font-semibold hover:bg-white/90 transition-all duration-300 group"
-                    >
-                      Explore Project
-                      <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
-                    </Link>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
+                
+              {/* First Card - Large Featured */}
+              <div className="md:col-span-2 md:row-span-2 group relative">
+                <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md rounded-2xl p-6 lg:p-7 border border-white/10 hover:border-white/30 hover:shadow-2xl hover:shadow-white/10 transition-all duration-500 h-full flex flex-col min-h-[320px] md:min-h-[380px]">
+                  <div className="flex items-center gap-2.5 mb-4">
                   </div>
+                  
+                  <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3 tracking-tight">
+                    {levels[0].title}
+                  </h3>
+                  
+                  <p className="text-white/80 text-base mb-6 leading-relaxed font-light flex-grow">
+                    {levels[0].description}
+                  </p>
+                
+                  <Link 
+                    href={levels[0].href}
+                    className="inline-flex items-center justify-center w-full py-3 px-5 bg-white text-black rounded-xl font-semibold hover:bg-white/90 hover:scale-[1.02] transition-all duration-300 group shadow-lg"
+                  >
+                    Explore Project
+                    <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
+                  </Link>
                 </div>
-              ))}
+              </div>
+
+              {/* Second Card - Tall */}
+              <div className="md:col-span-2 md:row-span-1 group relative">
+                <div className="bg-gradient-to-br from-white/8 to-white/4 backdrop-blur-md rounded-2xl p-5 lg:p-6 border border-white/10 hover:border-white/30 hover:shadow-xl hover:shadow-white/5 transition-all duration-500 h-full flex flex-col min-h-[240px] md:min-h-[185px]">
+                  <div className="flex items-center gap-2.5 mb-3">  
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-white mb-2.5 tracking-tight">
+                    {levels[1].title}
+                  </h3>
+                  
+                  <p className="text-white/70 text-sm mb-4 leading-relaxed font-light flex-grow">
+                    {levels[1].description}
+                  </p>
+                  
+                  <div className="mb-4">
+                    <div className="flex flex-wrap gap-1.5">
+                    </div>
+                  </div>
+                  
+                  <Link 
+                    href={levels[1].href}
+                    className="inline-flex items-center justify-center w-full py-2.5 px-4 bg-white text-black rounded-lg font-semibold hover:bg-white/90 hover:scale-[1.02] transition-all duration-300 group text-sm shadow-lg"
+                  >
+                    View Projects
+                    <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Third Card - Compact */}
+              <div className="md:col-span-2 md:row-span-1 group relative">
+                <div className="bg-gradient-to-br from-white/8 to-white/4 backdrop-blur-md rounded-2xl p-5 lg:p-6 border border-white/10 hover:border-white/30 hover:shadow-xl hover:shadow-white/5 transition-all duration-500 h-full flex flex-col min-h-[240px] md:min-h-[185px]">
+                  <div className="flex items-center gap-2.5 mb-3">
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-white mb-2.5 tracking-tight">
+                    {levels[2].title}
+                  </h3>
+                  
+                  <p className="text-white/70 text-sm mb-4 leading-relaxed font-light flex-grow">
+                    {levels[2].description}
+                  </p>
+                  
+                  <div className="mb-4">
+                    <div className="flex flex-wrap gap-1.5">
+                    </div>
+                  </div>
+                  
+                  <Link 
+                    href={levels[2].href}
+                    className="inline-flex items-center justify-center w-full py-2.5 px-4 bg-white text-black rounded-lg font-semibold hover:bg-white/90 hover:scale-[1.02] transition-all duration-300 group text-sm shadow-lg"
+                  >
+                    Get in Touch
+                    <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </section>

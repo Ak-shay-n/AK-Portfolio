@@ -129,33 +129,28 @@ export default function Level2() {
           </div>
         </div>
 
-        {/* Featured Projects - Bento Grid Layout */}
-        <div className="container mx-auto px-6 pb-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[400px]">
-            {featuredProjects.map((project, index) => (
-              <div 
-                key={index}
-                className={`opacity-0 translate-y-12 ${
-                  index === 0 ? 'md:col-span-2 md:row-span-2' : 
-                  index === 2 ? 'lg:row-span-2' : ''
-                }`}
-                style={{ 
-                  animationDelay: `${index * 200}ms`,
-                  animation: 'fadeInUp 0.8s ease-out forwards'
-                }}
-              >
-                <FeaturedProject
-                  title={project.title}
-                  description={project.description}
-                  imageUrl={project.imageUrl}
-                  technologies={project.technologies}
-                  projectUrl={project.projectUrl}
-                  githubUrl={project.githubUrl}
-                  alignment={project.alignment}
-                />
-              </div>
-            ))}
-          </div>
+        {/* Featured Projects */}
+        <div className="container mx-auto px-6 pb-20 space-y-32">
+          {featuredProjects.map((project, index) => (
+            <div 
+              key={index}
+              className="opacity-0 translate-y-12"
+              style={{ 
+                animationDelay: `${index * 200}ms`,
+                animation: 'fadeInUp 0.8s ease-out forwards'
+              }}
+            >
+              <FeaturedProject
+                title={project.title}
+                description={project.description}
+                imageUrl={project.imageUrl}
+                technologies={project.technologies}
+                projectUrl={project.projectUrl}
+                githubUrl={project.githubUrl}
+                alignment={project.alignment}
+              />
+            </div>
+          ))}
         </div>
       </section>
     </div>
