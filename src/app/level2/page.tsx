@@ -121,16 +121,16 @@ export default function Level2() {
       <section className="relative z-10">
             
         {/* Section Header */}
-        <div className="relative py-20 text-center">
-          <div className="relative z-10 container mx-auto px-6">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-[#60A5FA] to-white bg-clip-text text-transparent">
+        <div className="relative py-22 text-center">
+          <div className="relative z-10 container mx-auto px-8">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-7 bg-gradient-to-r from-white via-[#60A5FA] to-white bg-clip-text text-transparent">
               Projects
             </h2>
           </div>
         </div>
 
         {/* Featured Projects */}
-        <div className="container mx-auto px-6 pb-20 space-y-32">
+        <div className="container mx-auto px-8 pb-22 space-y-36">
           {featuredProjects.map((project, index) => (
             <div 
               key={index}

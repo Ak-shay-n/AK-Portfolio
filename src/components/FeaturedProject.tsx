@@ -26,7 +26,7 @@ export default function FeaturedProject({
 }: FeaturedProjectProps) {
   
   return (
-    <section className="relative w-full py-20 px-3">
+    <section className="relative w-full py-22 px-4">
       {/* Blue Gradient Background */}
       <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
         <div 
@@ -41,32 +41,32 @@ export default function FeaturedProject({
       </div>
       
       {/* Content Container */}
-      <div className="relative max-w-[900px] mx-auto">
-        <div className={`relative flex flex-col lg:flex-row items-start gap-4 lg:gap-6 ${alignment === 'right' ? 'lg:flex-row-reverse' : ''}`}>
+      <div className="relative max-w-[1000px] mx-auto">
+        <div className={`relative flex flex-col lg:flex-row items-start gap-5 lg:gap-8 ${alignment === 'right' ? 'lg:flex-row-reverse' : ''}`}>
           
           {/* Text Content Column */}
-          <div className={`relative w-full lg:w-[42%] z-10 pt-3 lg:pt-6 ${alignment === 'left' ? 'lg:pr-3' : 'lg:pl-3'} ${alignment === 'left' ? '' : 'lg:text-right lg:items-end lg:flex lg:flex-col'}`}>
+          <div className={`relative w-full lg:w-[42%] z-10 pt-3 lg:pt-7 ${alignment === 'left' ? 'lg:pr-4' : 'lg:pl-4'} ${alignment === 'left' ? '' : 'lg:text-right lg:items-end lg:flex lg:flex-col'}`}>
             
             {/* Featured Project Tag */}
-            <div className="mb-1.5">
-              <p className="font-['Poppins',sans-serif] font-semibold text-[12px] text-[#3b82f6] tracking-[0.24px] leading-normal m-0">
+            <div className="mb-2">
+              <p className="font-['Poppins',sans-serif] font-semibold text-[13px] text-[#3b82f6] tracking-[0.24px] leading-normal m-0">
                 Featured Project
               </p>
             </div>
 
             {/* Project Title */}
-            <div className="mb-26">
-              <h3 className="font-['Poppins',sans-serif] font-semibold text-[20px] lg:text-[24px] text-[#ccd6f6] tracking-[0.4px] leading-[1.05] m-0">
+            <div className="mb-4">
+              <h3 className="font-['Poppins',sans-serif] font-semibold text-[24px] lg:text-[28px] text-[#ccd6f6] tracking-[0.4px] leading-[1.1] m-0">
                 {title}
               </h3>
             </div>
 
             {/* Tech Stack */}
-            <div className={`flex flex-wrap gap-x-4 gap-y-2 ${alignment === 'left' ? '' : 'lg:justify-end'}`}>
+            <div className={`flex flex-wrap gap-x-4 gap-y-2 mb-7 ${alignment === 'left' ? '' : 'lg:justify-end'}`}>
               {technologies.map((tech, index) => (
                 <span 
                   key={index}
-                  className="font-['Poppins',sans-serif] font-normal text-[15px] text-[#ccd6f6] hover:text-[#3b82f6] transition-colors duration-200"
+                  className="font-['Poppins',sans-serif] font-normal text-[16px] text-[#ccd6f6] hover:text-[#3b82f6] transition-colors duration-200"
                 >
                   {tech}
                 </span>
@@ -74,7 +74,7 @@ export default function FeaturedProject({
             </div>
 
             {/* Interaction Icons */}
-            <div className={`flex items-center gap-2.5 mb-4 lg:mb-0 ${alignment === 'left' ? '' : 'lg:justify-end'}`}>
+            <div className={`flex items-center gap-3 mb-4 lg:mb-0 ${alignment === 'left' ? '' : 'lg:justify-end'}`}>
               {githubUrl && (
                 <a 
                   href={githubUrl}
@@ -115,10 +115,10 @@ export default function FeaturedProject({
               }}
             >
               <div 
-                className="rounded-[10px] overflow-hidden relative"
+                className="rounded-[11px] overflow-hidden relative"
                 style={{
-                  width: '450px',
-                  height: '120px',
+                  width: '480px',
+                  height: '135px',
                   boxShadow: '0 15px 35px -6px rgba(0, 0, 0, 0.3)'
                 }}
               >
@@ -146,7 +146,7 @@ export default function FeaturedProject({
                 
                 {/* Description Text */}
                 <div className="relative z-10 p-6 flex items-center h-full">
-                  <div className="font-['Poppins',sans-serif] font-medium text-[14px] text-[#ccd6f6] leading-[1.4]">
+                  <div className="font-['Poppins',sans-serif] font-medium text-[15px] text-[#ccd6f6] leading-[1.5]">
                     <p className="m-0">{description}</p>
                   </div>
                 </div>
@@ -154,10 +154,10 @@ export default function FeaturedProject({
             </div>
             <div className="relative">
               {/* Browser Window */}
-              <div className="relative rounded-[10px] overflow-hidden shadow-lg bg-[#0a1929]">
+              <div className="relative rounded-[11px] overflow-hidden shadow-xl bg-[#0a1929]">
                 {/* Browser Chrome */}
-                <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-gray-900/60 to-transparent z-10 flex items-center px-2.5">
-                  <div className="flex gap-1">
+                <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-gray-900/60 to-transparent z-10 flex items-center px-3">
+                  <div className="flex gap-1.5">
                     <div className="w-1.5 h-1.5 rounded-full bg-red-500/80"></div>
                     <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/80"></div>
                     <div className="w-1.5 h-1.5 rounded-full bg-green-500/80"></div>
@@ -170,7 +170,7 @@ export default function FeaturedProject({
                     src={imageUrl} 
                     alt={`${title} preview`}
                     className="w-full h-auto object-cover transition-all duration-500 ease-out hover:scale-105 hover:brightness-110 hover:contrast-105 cursor-pointer"
-                    style={{ minHeight: '220px', maxHeight: '260px' }}
+                    style={{ minHeight: '250px', maxHeight: '290px' }}
                   />
                   {/* Hover overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-500/10 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
