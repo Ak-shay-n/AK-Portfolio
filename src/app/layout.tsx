@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import TopLoader from "@/components/TopLoader";
 
 export const metadata: Metadata = {
   title: "Akshay Sandbox",
@@ -20,6 +21,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         {/* <SecurityLayer /> */}
+        <TopLoader />
         {children}
       </body>
     </html>
