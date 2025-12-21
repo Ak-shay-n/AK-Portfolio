@@ -55,18 +55,18 @@ export default function FeaturedProject({
             </div>
 
             {/* Project Title */}
-            <div className="mb-4">
+            <div className="mb-3">
               <h3 className="font-['Poppins',sans-serif] font-semibold text-[24px] lg:text-[28px] text-[#ccd6f6] tracking-[0.4px] leading-[1.1] m-0">
                 {title}
               </h3>
             </div>
 
-            {/* Tech Stack */}
-            <div className={`flex flex-wrap gap-x-4 gap-y-2 mb-7 ${alignment === 'left' ? '' : 'lg:justify-end'}`}>
+            {/* Tech Stack - Positioned right after title like in reference image */}
+            <div className={`flex flex-wrap gap-x-3 gap-y-2 mb-6 ${alignment === 'left' ? '' : 'lg:justify-end'}`}>
               {technologies.map((tech, index) => (
                 <span 
                   key={index}
-                  className="font-['Poppins',sans-serif] font-normal text-[16px] text-[#ccd6f6] hover:text-[#3b82f6] transition-colors duration-200"
+                  className="font-['Poppins',sans-serif] font-normal text-[14px] text-[#8892b0] transition-colors duration-200"
                 >
                   {tech}
                 </span>
