@@ -16,7 +16,7 @@ export default function Level2() {
       title: "Android Espion",
       description: "A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.",
       imageUrl: "https://www.figma.com/api/mcp/asset/c13e64c0-d645-4a1e-a979-f8b39928cc08",
-      technologies: ["React", "Spotify API", "Node.js", "Express", "Chart.js", "OAuth 2.0"],
+      technologies: ["React", "Spotify API", "Node.js", "Express", "Chart.js"],
       githubUrl: "https://github.com/Ak-shay-n/Android-Espion-2.O",
       alignment: "left" as const
     },
@@ -42,7 +42,7 @@ export default function Level2() {
       title: "Decepticon AI",
       description: "Intelligent code review assistant that analyzes pull requests using machine learning. Identifies bugs, security vulnerabilities, and suggests performance optimizations. Integrates seamlessly with GitHub and GitLab for automated code quality checks.",
       imageUrl: "https://www.figma.com/api/mcp/asset/c13e64c0-d645-4a1e-a979-f8b39928cc08",
-      technologies: ["TypeScript", "OpenAI API", "Next.js", "PostgreSQL", "Docker", "GitHub API"],
+      technologies: ["TypeScript", "OpenAI API", "Next.js", "PostgreSQL", "Docker"],
       projectUrl: "#",
       githubUrl: "https://github.com/Ak-shay-n/Decepticon-AI",
       alignment: "right" as const
