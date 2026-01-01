@@ -511,8 +511,8 @@ export default function Home() {
       <Header />
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center pt-32 pb-0">
-          <div className="container mx-auto px-8 text-center relative z-10">
+      <section id="home" className="min-h-screen flex items-center justify-center pt-32 pb-0 relative z-10">
+          <div className="container mx-auto px-8 text-center relative">
             <div className="max-w-5xl mx-auto">
               {/* Modern Hero Title */}
               <div className="mb-8">
@@ -605,8 +605,8 @@ export default function Home() {
         </section>
 
         {/* Education Section */}
-        <section ref={educationRef} className="py-24 relative">
-          <div className="container mx-auto px-8 max-w-5xl">
+        <section ref={educationRef} className="py-24 relative z-10 bg-black">
+          <div className="container mx-auto px-8 max-w-5xl relative">
             <div className="mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">
                 My <span className="bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent">Education</span>
@@ -665,8 +665,8 @@ export default function Home() {
         </section>
 
         {/* Portfolio Section */}
-        <section id="levels" className="py-24 relative">
-          <div className="container mx-auto px-8">
+        <section id="levels" className="py-24 relative z-10 bg-black">
+          <div className="container mx-auto px-8 relative">
             <div className="text-center mb-16">
               <div className="inline-block mb-4">
                 <span className="text-white/60 text-sm font-light tracking-wider uppercase">My Work</span>
@@ -685,7 +685,7 @@ export default function Home() {
                   <div className="flex items-center gap-2.5 mb-4">
                   </div>
                   
-                  <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3 tracking-tight">
+                  <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3 font-serif tracking-wider">
                     {levels[0].title}
                   </h3>
                   
@@ -709,7 +709,7 @@ export default function Home() {
                   <div className="flex items-center gap-2.5 mb-3">  
                   </div>
                   
-                  <h3 className="text-xl font-bold text-white mb-2.5 tracking-tight">
+                  <h3 className="text-xl font-bold text-white mb-2.5 font-serif tracking-wider">
                     {levels[1].title}
                   </h3>
                   
@@ -738,7 +738,7 @@ export default function Home() {
                   <div className="flex items-center gap-2.5 mb-3">
                   </div>
                   
-                  <h3 className="text-xl font-bold text-white mb-2.5 tracking-tight">
+                  <h3 className="text-xl font-bold text-white mb-2.5 font-serif tracking-wider">
                     {levels[2].title}
                   </h3>
                   
@@ -765,8 +765,8 @@ export default function Home() {
         </section>
 
         {/* Footer */}
-        <footer ref={footerRef} className="relative mt-auto pt-20 pb-0">
-          <div className="container mx-auto px-8 max-w-5xl">
+        <footer ref={footerRef} className="relative z-10 mt-auto pt-20 pb-0 bg-black">
+          <div className="container mx-auto px-8 max-w-5xl relative">
             {/* Quote Banner */}
             <div className={`relative rounded-t-xl bg-white/5 backdrop-blur-sm border border-white/10 py-6 px-8 text-center transition-all duration-1000 ${
               showFooter ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'

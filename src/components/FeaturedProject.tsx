@@ -61,8 +61,8 @@ export default function FeaturedProject({
               </h3>
             </div>
 
-            {/* Tech Stack - Positioned right after title like in reference image */}
-            <div className={`flex flex-wrap gap-x-4 gap-y-3 mb-8 ${alignment === 'left' ? '' : 'lg:justify-end'}`}>
+            {/* Tech Stack - Positioned right after title - Hidden on mobile, shown on desktop */}
+            <div className={`hidden lg:flex flex-wrap gap-x-4 gap-y-3 mb-8 ${alignment === 'left' ? '' : 'lg:justify-end'}`}>
               {technologies.map((tech, index) => (
                 <span 
                   key={index}
@@ -78,9 +78,9 @@ export default function FeaturedProject({
           <div className={`relative w-full lg:w-[58%] z-20 ${alignment === 'left' ? '' : ''}`}>
             {/* Glass Description Card - Positioned to overlap edge of browser */}
             <div 
-              className={`absolute hidden lg:block z-30 ${alignment === 'left' ? 'left-[-420px]' : 'right-[-420px]'}`} 
+              className={`absolute hidden lg:block z-30 ${alignment === 'left' ? 'left-[-450px]' : 'right-[-420px]'}`} 
               style={{ 
-                top: '60%',
+                top: '72%',
                 transform: 'translateY(-50%)'
               }}
             >
@@ -180,7 +180,20 @@ export default function FeaturedProject({
           </div>
 
           {/* Mobile-only description card */}
-          <div className="lg:hidden w-full mt-3">
+          <div className="lg:hidden w-full mt-6">
+            {/* Tech Stack - Mobile Only */}
+            <div className="flex flex-wrap gap-x-4 gap-y-3 mb-5">
+              {technologies.map((tech, index) => (
+                <span 
+                  key={index}
+                  className="font-['Poppins',sans-serif] font-normal text-[15px] text-[#8892b0] transition-colors duration-200 leading-relaxed"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+            
+            {/* Description Card */}
             <div 
               className="rounded-[10px] overflow-hidden relative shadow-lg"
               style={{
