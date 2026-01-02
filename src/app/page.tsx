@@ -519,7 +519,7 @@ export default function Home() {
                 <div className={`inline-block mb-6 transition-all duration-1000 ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
                   <span className="text-white/60 text-lg font-light tracking-wider uppercase">Hello, I'm</span>
                 </div>
-                <h1 className={`text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight leading-none transition-all duration-1000 delay-200 ${showContent ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+                <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-wider leading-none transition-all duration-1000 delay-200 ${showContent ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`} style={{ fontFamily: "'Audiowide', sans-serif" }}>
                   Akshay Kumar B
                 </h1>
                 <div className={`w-24 h-1 bg-gradient-to-r from-white/60 to-transparent mx-auto mb-8 transition-all duration-1000 delay-300 ${showContent ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}`}></div>
@@ -605,7 +605,7 @@ export default function Home() {
         </section>
 
         {/* Education Section */}
-        <section ref={educationRef} className="py-24 relative z-10 bg-black">
+        <section ref={educationRef} className="py-24 relative z-10">
           <div className="container mx-auto px-8 max-w-5xl relative">
             <div className="mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">
@@ -665,7 +665,7 @@ export default function Home() {
         </section>
 
         {/* Portfolio Section */}
-        <section id="levels" className="py-24 relative z-10 bg-black">
+        <section id="levels" className="py-24 relative z-10">
           <div className="container mx-auto px-8 relative">
             <div className="text-center mb-16">
               <div className="inline-block mb-4">
@@ -765,7 +765,7 @@ export default function Home() {
         </section>
 
         {/* Footer */}
-        <footer ref={footerRef} className="relative z-10 mt-auto pt-20 pb-0 bg-black">
+        <footer ref={footerRef} className="relative z-10 mt-auto pt-20 pb-0">
           <div className="container mx-auto px-8 max-w-5xl relative">
             {/* Quote Banner */}
             <div className={`relative rounded-t-xl bg-white/5 backdrop-blur-sm border border-white/10 py-6 px-8 text-center transition-all duration-1000 ${
