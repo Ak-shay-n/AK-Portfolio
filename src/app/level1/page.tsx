@@ -138,11 +138,11 @@ export default function Level1() {
                   <div className="absolute -left-16 top-12 z-0">
                     <div className="relative w-32 h-32">
                       {/* Large outer square */}
-                      <div className="absolute top-0 left-0 w-24 h-24 border-2 border-[#a362ff] opacity-60"></div>
+                      <div className="absolute top-0 left-0 w-24 h-24 border-2 border-[#3b82f6] opacity-60"></div>
                       {/* Medium square */}
-                      <div className="absolute top-8 left-8 w-20 h-20 border-2 border-[#a362ff] opacity-50"></div>
+                      <div className="absolute top-8 left-8 w-20 h-20 border-2 border-[#3b82f6] opacity-50"></div>
                       {/* Small inner square */}
-                      <div className="absolute top-12 left-4 w-16 h-16 border-2 border-[#a362ff] opacity-40"></div>
+                      <div className="absolute top-12 left-4 w-16 h-16 border-2 border-[#3b82f6] opacity-40"></div>
                     </div>
                   </div>
 
@@ -163,7 +163,7 @@ export default function Level1() {
                     
                     {/* "Currently working on" Badge */}
                     <div className="absolute bottom-8 left-4 right-4 bg-gray-800/90 backdrop-blur-sm border border-gray-600 px-4 py-3 rounded flex items-center gap-3">
-                      <div className="w-4 h-4 bg-[#a362ff] rounded-sm flex-shrink-0"></div>
+                      <div className="w-4 h-4 bg-[#3b82f6] rounded-sm flex-shrink-0"></div>
                       <p className="text-white/90 text-sm font-mono">
                         Currently working on <span className="text-white font-semibold">Portfolio</span>
                       </p>
