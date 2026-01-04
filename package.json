@@ -14,7 +14,7 @@
     "gsap": "^3.13.0",
     "lucide-react": "^0.544.0",
     "motion": "^12.23.22",
-    "next": "15.4.6",
+    "next": "15.4.10",
     "nextjs-toploader": "^3.9.17",
     "nprogress": "^0.2.0",
     "ogl": "^1.0.11",
