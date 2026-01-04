@@ -98,7 +98,7 @@ export default function Level1() {
       <Header />
 
       {/* Main Content */}
-      <div className="relative z-10 pt-32 pb-20">
+      <div className="relative z-10 pt-9 pb-20">
         <div className="container mx-auto px-8 max-w-7xl">
 
           {/* About Me Section */}
@@ -134,25 +134,19 @@ export default function Level1() {
 
                 {/* Right Column - Image with Decorative Elements */}
                 <div className="relative flex justify-center lg:justify-end">
-                  {/* Purple Outlined Squares - Left Side */}
-                  <div className="absolute -left-16 top-12 z-0">
-                    <div className="relative w-32 h-32">
-                      {/* Large outer square */}
+                  
+                  {/* Blue Outlined Squares - Behind Image */}
+                  <div className="absolute left-1/2 -translate-x-1/2 lg:left-auto lg:translate-x-0 lg:right-72 top-20 z-0">
+                    <div className="relative w-36 h-36">
+                      {/* Large square - top left */}
                       <div className="absolute top-0 left-0 w-24 h-24 border-2 border-[#3b82f6] opacity-60"></div>
-                      {/* Medium square */}
-                      <div className="absolute top-8 left-8 w-20 h-20 border-2 border-[#3b82f6] opacity-50"></div>
-                      {/* Small inner square */}
-                      <div className="absolute top-12 left-4 w-16 h-16 border-2 border-[#3b82f6] opacity-40"></div>
+                      {/* Medium square - overlapping middle right */}
+                      <div className="absolute top-8 left-14 w-20 h-20 border-2 border-[#3b82f6] opacity-50"></div>
+                      {/* Small square - bottom left */}
+                      <div className="absolute top-18 left-4 w-16 h-16 border-2 border-[#3b82f6] opacity-40"></div>
                     </div>
                   </div>
-
-                  {/* Decorative Dots Grid - Right Side */}
-                  <div className="absolute -right-4 top-1/3 grid grid-cols-5 gap-2 opacity-50">
-                    {[...Array(25)].map((_, i) => (
-                      <div key={`dot-right-${i}`} className="w-1.5 h-1.5 bg-white rounded-full"></div>
-                    ))}
-                  </div>
-
+                  
                   {/* Main Image Container */}
                   <div className="relative z-10">
                     <img 
@@ -161,13 +155,82 @@ export default function Level1() {
                       className="w-full max-w-md"
                     />
                     
-                    {/* "Currently working on" Badge */}
-                    <div className="absolute bottom-8 left-4 right-4 bg-gray-800/90 backdrop-blur-sm border border-gray-600 px-4 py-3 rounded flex items-center gap-3">
-                      <div className="w-4 h-4 bg-[#3b82f6] rounded-sm flex-shrink-0"></div>
-                      <p className="text-white/90 text-sm font-mono">
-                        Currently working on <span className="text-white font-semibold">Portfolio</span>
-                      </p>
+                    {/* "Currently working on" Badge - Ultra Futuristic */}
+                    <div className="absolute bottom-8 left-4 right-4 bg-black/80 backdrop-blur-xl border-2 border-[#3b82f6]/60 shadow-[0_0_30px_rgba(59,130,246,0.4),inset_0_0_20px_rgba(59,130,246,0.1)] px-6 py-4 relative overflow-hidden group hover:shadow-[0_0_40px_rgba(59,130,246,0.6),inset_0_0_30px_rgba(59,130,246,0.2)] transition-all duration-500">
+                      {/* Corner accents */}
+                      <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-[#3b82f6]"></div>
+                      <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-[#3b82f6]"></div>
+                      <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-[#3b82f6]"></div>
+                      <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-[#3b82f6]"></div>
+                      
+                      {/* Scanning line effect */}
+                      <div className="absolute inset-0 opacity-30">
+                        <div className="absolute h-[2px] w-full bg-gradient-to-r from-transparent via-[#3b82f6] to-transparent animate-[scan_2s_ease-in-out_infinite]" style={{top: '0%', animationDelay: '0s'}}></div>
+                      </div>
+                      
+                      {/* Glitch effect overlay */}
+                      <div className="absolute inset-0 opacity-20">
+                        <div className="absolute h-[1px] w-full bg-[#3b82f6]/50 animate-[glitch_3s_infinite]" style={{top: '30%'}}></div>
+                        <div className="absolute h-[1px] w-full bg-[#3b82f6]/30 animate-[glitch_2.5s_infinite]" style={{top: '60%', animationDelay: '0.5s'}}></div>
+                        <div className="absolute h-[1px] w-full bg-[#3b82f6]/40 animate-[glitch_2.8s_infinite]" style={{top: '80%', animationDelay: '1s'}}></div>
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="relative flex items-center gap-4">
+                        
+                        
+                        <div className="flex-1">
+                          <p className="text-white text-sm font-mono tracking-wide flex items-center gap-2">
+                            Currently working on 
+                            <span className="text-[#3b82f6] font-bold group-hover:text-[#60a5fa] transition-colors relative">
+                              True Lens
+                              <span className="absolute -bottom-0.5 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#3b82f6] to-transparent"></span>
+                            </span>
+                          </p>
+                        </div>
+                        
+                        {/* Status indicators */}
+                        <div className="flex flex-col gap-1.5">
+                          <div className="flex gap-1">
+                            <div className="w-6 h-0.5 bg-[#3b82f6] shadow-[0_0_5px_rgba(59,130,246,0.8)]"></div>
+                            <div className="w-4 h-0.5 bg-[#3b82f6]/60"></div>
+                            <div className="w-2 h-0.5 bg-[#3b82f6]/30"></div>
+                          </div>
+                          <div className="flex gap-1">
+                            <div className="w-4 h-0.5 bg-[#3b82f6]/60"></div>
+                            <div className="w-6 h-0.5 bg-[#3b82f6] shadow-[0_0_5px_rgba(59,130,246,0.8)]"></div>
+                            <div className="w-2 h-0.5 bg-[#3b82f6]/30"></div>
+                          </div>
+                          <div className="flex gap-1">
+                            <div className="w-2 h-0.5 bg-[#3b82f6]/30"></div>
+                            <div className="w-4 h-0.5 bg-[#3b82f6]/60"></div>
+                            <div className="w-6 h-0.5 bg-[#3b82f6] shadow-[0_0_5px_rgba(59,130,246,0.8)]"></div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <style jsx>{`
+                        @keyframes scan {
+                          0%, 100% { top: 0%; opacity: 0; }
+                          50% { top: 100%; opacity: 1; }
+                        }
+                        @keyframes glitch {
+                          0%, 100% { transform: translateX(0); opacity: 0.2; }
+                          10% { transform: translateX(-2px); opacity: 0.4; }
+                          20% { transform: translateX(2px); opacity: 0.3; }
+                          30%, 70% { transform: translateX(0); opacity: 0.2; }
+                          80% { transform: translateX(1px); opacity: 0.35; }
+                          90% { transform: translateX(-1px); opacity: 0.25; }
+                        }
+                      `}</style>
                     </div>
+                  </div>
+
+                  {/* Decorative Dots Grid - Right Side */}
+                  <div className="absolute -right-4 top-1/3 grid grid-cols-5 gap-2 opacity-50 z-0">
+                    {[...Array(25)].map((_, i) => (
+                      <div key={`dot-right-${i}`} className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                    ))}
                   </div>
                 </div>
               </div>
