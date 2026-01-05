@@ -156,7 +156,7 @@ export default function Level1() {
                     />
                     
                     {/* "Currently working on" Badge - Ultra Futuristic */}
-                    <div className="absolute bottom-8 left-4 right-4 bg-black/80 backdrop-blur-xl border-2 border-[#3b82f6]/60 shadow-[0_0_30px_rgba(59,130,246,0.4),inset_0_0_20px_rgba(59,130,246,0.1)] px-6 py-4 relative overflow-hidden group hover:shadow-[0_0_40px_rgba(59,130,246,0.6),inset_0_0_30px_rgba(59,130,246,0.2)] transition-all duration-500">
+                    <div className="absolute -bottom-0 left-0 w-full bg-black/80 backdrop-blur-xl border-2 border-[#3b82f6]/60 shadow-[0_0_30px_rgba(59,130,246,0.4),inset_0_0_20px_rgba(59,130,246,0.1)] px-6 py-4 relative overflow-hidden group hover:shadow-[0_0_40px_rgba(59,130,246,0.6),inset_0_0_30px_rgba(59,130,246,0.2)] transition-all duration-500">
                       {/* Corner accents */}
                       <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-[#3b82f6]"></div>
                       <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-[#3b82f6]"></div>
@@ -227,9 +227,18 @@ export default function Level1() {
                   </div>
 
                   {/* Decorative Dots Grid - Right Side */}
-                  <div className="absolute -right-4 top-1/3 grid grid-cols-5 gap-2 opacity-50 z-0">
+                  <div className="absolute right-[17px] top-[50%] grid grid-cols-5 gap-4 z-20">
                     {[...Array(25)].map((_, i) => (
-                      <div key={`dot-right-${i}`} className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                      <div
+                        key={`dot-right-${i}`}
+                        className="rounded-full"
+                        style={{
+                          width: i % 3 === 0 ? '5px' : '5px',
+                          height: i % 3 === 0 ? '5px' : '5px',
+                          backgroundColor: 'rgba(255,255,255,0.6)',
+                          opacity: i % 4 === 0 ? 0.9 : i % 2 === 0 ? 0.6 : 0.4,
+                        }}
+                      />
                     ))}
                   </div>
                 </div>
