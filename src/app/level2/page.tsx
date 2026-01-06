@@ -118,20 +118,20 @@ export default function Level2() {
       <Header />
 
       {/* Featured Projects Section */}
-      <section className="relative z-10">
+      <section className="relative z-10 pt-50 pb-20">
+        <div className="container mx-auto px-8 max-w-7xl">
             
-        {/* Section Header */}
-        <div className="relative py-22 text-center">
-          <div className="relative z-10 container mx-auto px-8">
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-7 bg-gradient-to-r from-white via-[#60A5FA] to-white bg-clip-text text-transparent">
-              Projects
-            </h2>
+          {/* Section Header */}
+          <div className="mb-8">
+            <h1 className="text-4xl md:text-5xl font-mono text-white mb-4">
+              <span className="text-[#3b82f6]">/</span>projects
+            </h1>
+            <p className="text-white/70 text-lg">Stuff I've built</p>
           </div>
-        </div>
 
-        {/* Featured Projects */}
-        <div className="container mx-auto px-8 pb-22 space-y-36">
-          {featuredProjects.map((project, index) => (
+          {/* Featured Projects */}
+          <div className="space-y-36 mt-16">
+            {featuredProjects.map((project, index) => (
             <div 
               key={index}
               className="opacity-0 translate-y-12"
@@ -152,6 +152,7 @@ export default function Level2() {
             </div>
           ))}
         </div>
+      </div>
       </section>
     </div>
   );
