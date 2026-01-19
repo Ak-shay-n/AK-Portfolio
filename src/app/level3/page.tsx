@@ -292,10 +292,8 @@ export default function Level3() {
           {/* Terminal Header */}
           <div className="mb-8" id="terminal-form">
             <div className="text-center space-y-4 animate-fadeInUp">
-              <h1 className="text-4xl md:text-5xl font-bold font-mono tracking-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-green-400 to-cyan-400">
-                  INITIATE SECURE CONNECTION
-                </span>
+              <h1 className="text-3xl md:text-4xl font-mono text-white mb-3">
+                <span className="text-[#3b82f6]">/</span>initiate-secure-connection
               </h1>
               {/* Location and Scan Time - Outside Terminal */}
               <div className="text-left max-w-3xl mx-auto font-mono text-sm space-y-1 pt-4">
