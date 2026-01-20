@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import LightRays from '@/components/LightRays';
 import ScrollReveal from '@/components/ScrollReveal';
 import Header from '@/components/Header';
+import SkillsSection from '@/components/SkillsSection';
 
 export default function Level1() {
   console.log('🚀 Level1 component loaded!');
@@ -245,6 +246,9 @@ export default function Level1() {
               </div>
             </div>
           </section>
+
+          {/* Skills Section */}
+          <SkillsSection />
 
         </div>
       </div>
