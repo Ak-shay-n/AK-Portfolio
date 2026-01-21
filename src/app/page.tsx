@@ -622,11 +622,11 @@ export default function Home() {
                 </p>
                 
                 <p className="text-white/80 text-base leading-relaxed font-light">
-                  I'm a self-taught cybersecurity enthusiast and developer based in Chennai, India. I can develop secure applications from scratch and implement comprehensive security measures to protect modern user-friendly digital experiences.
+                  During my college days, I spent most of my time trying things out—hackathons, club work, random ideas, and projects that sometimes worked and sometimes didn’t. I’ve made it to the finals of several hackathons (still chasing that one win), and along the way learned more from building, failing, and reworking than from just results.
                 </p>
                 
                 <p className="text-white/80 text-base leading-relaxed font-light">
-                  Transforming my knowledge of cybersecurity and development into practical solutions has been my passion for over 2 years. I have been helping various projects and organizations establish their security posture online. I always strive to learn about the newest technologies, security frameworks, and best practices.
+                  I also worked as a chief designer for my club, where I handled ideas, visuals, and execution. I’m mostly a quiet, sit-and-work kind of person—someone who spends time experimenting, occasionally wasting time, occasionally building something useful, and every now and then cooking up something rare that actually works.
                 </p>
               </div>
 

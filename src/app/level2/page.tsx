@@ -12,6 +12,15 @@ export default function Level2() {
 
   // Featured Projects Data
   const featuredProjects = [
+     {
+      title: "True Lens",
+      description: "Advanced network vulnerability assessment tool with real-time monitoring capabilities. Detects security threats, analyzes network traffic patterns, and provides comprehensive security reports. Features automated scanning schedules and customizable alert systems for enterprise environments.",
+      imageUrl: "https://www.figma.com/api/mcp/asset/c13e64c0-d645-4a1e-a979-f8b39928cc08",
+      technologies: ["Python", "Nmap", "Scapy", "Flask", "SQLAlchemy", "Redis"],
+      projectUrl: "#",
+      githubUrl: "https://github.com/Ak-shay-n/Sentra-AI",
+      alignment: "right" as const
+    },
     {
       title: "Android Espion",
       description: "A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.",
