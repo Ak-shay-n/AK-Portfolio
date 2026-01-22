@@ -631,50 +631,27 @@ export default function Home() {
               </div>
 
               {/* Right Column - Profile Image & Status */}
-              <div className="relative">
-                <div className="relative inline-block">
+              <div className="relative flex justify-center md:justify-start">
+                <div className="relative inline-block max-w-xs w-full">
                   {/* Decorative frame borders */}
-                  <div className="absolute -top-4 -left-4 w-24 h-24 border-l-2 border-t-2 border-blue-500/50"></div>
-                  <div className="absolute -bottom-4 -right-4 w-24 h-24 border-r-2 border-b-2 border-blue-500/50"></div>
+                  <div className="absolute -top-3 -left-3 w-16 h-16 border-l-2 border-t-2 border-blue-500/50"></div>
+                  <div className="absolute -bottom-3 -right-3 w-16 h-16 border-r-2 border-b-2 border-blue-500/50"></div>
                   
                   {/* Dot grid background effect */}
                   <div className="absolute inset-0 -z-10" style={{
                     backgroundImage: 'radial-gradient(circle, rgba(59, 130, 246, 0.1) 1px, transparent 1px)',
                     backgroundSize: '20px 20px',
-                    transform: 'translate(30px, 30px)'
+                    transform: 'translate(20px, 20px)'
                   }}></div>
 
                   {/* Profile Image Container */}
-                  <div className="relative bg-gradient-to-br from-gray-900 to-black p-1 rounded-lg">
-                    <div className="relative w-full aspect-[3/4] bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg overflow-hidden">
-                      {/* Placeholder for profile image - replace with your actual image */}
-                      <div className="w-full h-full flex items-center justify-center text-white/40">
-                        <svg className="w-32 h-32" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      {/* Uncomment and use this when you have your profile image */}
-                      {/* <img src="/profile.jpg" alt="Akshay Kumar B" className="w-full h-full object-cover" /> */}
+                  <div className="relative p-1 rounded-lg">
+                    <div className="relative w-full aspect-[3/4] rounded-lg overflow-hidden">
+                      <img src="/landpgaboutme.png" className="w-full h-full object-cover" />
                     </div>
                   </div>
                 </div>
 
-                {/* Currently Working On Status */}
-                <div className="mt-8 relative">
-                  <div className="bg-gradient-to-r from-gray-900/80 to-black/80 backdrop-blur-sm border border-blue-500/30 rounded-lg p-4 shadow-lg">
-                    <div className="flex items-center gap-3">
-                      <div className="flex-shrink-0">
-                        <svg className="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                      </div>
-                      <div className="flex-grow min-w-0">
-                        <p className="text-white/60 text-sm mb-1">Currently working on</p>
-                        <p className="text-blue-500 font-semibold text-lg truncate">True Lens</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
