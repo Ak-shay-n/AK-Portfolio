@@ -606,17 +606,17 @@ export default function Home() {
 
         {/* About Me Section */}
         <section className="py-24 relative z-10">
-          <div className="container mx-auto px-8 max-w-6xl relative">
-            <div className="mb-8">
+          <div className="container mx-auto px-8 max-w-6xl">
+            <div className="mb-12">
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-2 font-mono">
                 <span className="text-blue-500">/</span>about-me
               </h2>
               <p className="text-white/60 text-lg font-light">Who am i?</p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-12 items-start">
-              {/* Left Column - Text Content */}
-              <div className="space-y-6">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-16">
+              {/* Text Content */}
+              <div className="space-y-6 max-w-lg order-2 md:order-1">
                 <p className="text-white/80 text-lg leading-relaxed font-light">
                   Hello, i'm <span className="text-white font-semibold">Akshay</span>!
                 </p>
@@ -629,10 +629,9 @@ export default function Home() {
                   I also worked as a chief designer for my club, where I handled ideas, visuals, and execution. I’m mostly a quiet, sit-and-work kind of person—someone who spends time experimenting, occasionally wasting time, occasionally building something useful, and every now and then cooking up something rare that actually works.
                 </p>
               </div>
-
-              {/* Right Column - Profile Image & Status */}
-              <div className="relative flex justify-center md:justify-start">
-                <div className="relative inline-block max-w-xs w-full">
+              {/* Profile Image */}
+              <div className="flex-shrink-0 order-1 md:order-2">
+                <div className="relative inline-block">
                   {/* Decorative frame borders */}
                   <div className="absolute -top-3 -left-3 w-16 h-16 border-l-2 border-t-2 border-blue-500/50"></div>
                   <div className="absolute -bottom-3 -right-3 w-16 h-16 border-r-2 border-b-2 border-blue-500/50"></div>
@@ -646,12 +645,11 @@ export default function Home() {
 
                   {/* Profile Image Container */}
                   <div className="relative p-1 rounded-lg">
-                    <div className="relative w-full aspect-[3/4] rounded-lg overflow-hidden">
+                    <div className="relative w-64 sm:w-72 md:w-80 aspect-[3/4] rounded-lg overflow-hidden">
                       <img src="/landpgaboutme.png" className="w-full h-full object-cover" />
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
@@ -662,7 +660,7 @@ export default function Home() {
           <div className="container mx-auto px-8 max-w-5xl relative">
             <div className="mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">
-                My <span className="bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent">Education</span>
+                /my <span className="bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent">Education</span>
               </h2>
             </div>
 
