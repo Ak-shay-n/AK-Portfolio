@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AK-Portfolio
 
-## Getting Started
+> *Because apparently, we still need portfolio websites in 2026. Thanks, recruiters.*
 
-First, run the development server:
+## Stack
+
+**Next.js 14+** - Because React alone wasn't complicated enough  
+**TypeScript** - For people who like their JavaScript with trust issues  
+**Tailwind CSS** - Inline styles but make it ✨fancy✨  
+**shadcn/ui** - Pre-built components for developers who value their sanity
+
+## Local Deployment
+
+*Or as some call it: "Making it work on your machine"*
 
 ```bash
+# Install dependencies (this will take a while, grab coffee)
+npm install
+
+# Fire up the dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Access at http://localhost:3000
+# Yes, localhost. No, it's not exposed to the internet. Yet.
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Pro tip:** The page hot-reloads. Change `app/page.tsx` and watch the magic happen. Or the errors. Probably errors.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/              # Next.js 14 App Router (RIP pages directory)
+├── components/       # React components (because everything is a component)
+└── lib/              # Utilities (home of that one function you copied from Stack Overflow)
+```
 
-## Learn More
+## Environment Variables
 
-To learn more about Next.js, take a look at the following resources:
+*What environment variables? There are no secrets here. This is a frontend portfolio.*
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+If you add any, create a `.env.local` and **DON'T COMMIT IT**. I know you know, but I'm saying it anyway.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Build & Deploy
 
-## Deploy on Vercel
+```bash
+# Production build
+npm run build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Deploy to Vercel (one command, zero brain cells required)
+vercel deploy
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Security Notes
+
+- All client-side code is visible. Because that's how browsers work.
+- No API keys in the frontend. Ever. I'm watching you.
+- Content Security Policy? In a portfolio? Let's not get crazy.
+
+## Contributing
+
+Found a bug? Fork it. Fix it. PR it.  
+Found a feature request? Open an issue. Or don't. I'm not your manager.
+
+---
+
+**Built with caffeine, Stack Overflow, and questionable life choices.**  
+*localhost:3000 - Where dreams are compiled*
