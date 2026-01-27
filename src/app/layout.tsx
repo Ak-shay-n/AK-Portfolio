@@ -3,7 +3,7 @@ import "./globals.css";
 import TopLoader from "@/components/TopLoader";
 
 export const metadata: Metadata = {
-  title: "Akshay Sandbox",
+  title: "Akshay's Sandbox",
 };
 
 export default function RootLayout({
